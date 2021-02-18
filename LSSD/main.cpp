@@ -63,14 +63,12 @@ static bool LoadSav(const std::string &Path) {
 	Returns the Last Saved Slot. (-1 if not existent).
 
 	const uint8_t SAVSlot: The Slot which to check. ( 0 - 4 )
-
-	TODO: Proper detection way for when Saving after 0xFFFF.
 */
 static int LSSD(const uint8_t SAVSlot) {
 	if (!SavData) return -1; // Also return -1 there.
 
 	int LastSavedSlot = -1, IDCount = 0;
-	uint16_t SAVCount[5] = { 0x0 }; // It is actually 2 byte, not 1, hence checking for uint16_t now.
+	uint32_t SAVCount[5] = { 0x0 }; // Correction: It IS indeed 4 byte, hence uint32_t.
 	bool SAVSlotExist[5] = { false };
 
 	/* Looping 5 times. */
@@ -84,18 +82,18 @@ static int LSSD(const uint8_t SAVSlot) {
 
 		/* If 3, then it passed "d a t". */
 		if (IDCount == 3) {
-			/* Check, if current slot is also the actual SAVSlot. */
-			if (SavData.get()[(0x1000 * Slot) + SLOT_OFFS] == SAVSlot) {
+			/* Check, if current slot is also the actual SAVSlot. It seems 0xC and 0xD added is the Slot, however 0xD seems never be touched from the game and hence like all the time 0x0? */
+			if ((SavData.get()[(0x1000 * Slot) + SLOT_OFFS] + SavData.get()[(0x1000 * Slot) + SLOT_OFFS + 1]) == SAVSlot) {
 
 				/* Now get the SAVCount. */
-				SAVCount[Slot] = *reinterpret_cast<uint16_t *>(SavData.get() + (0x1000 * Slot) + SAV_COUNT_OFFS);
+				SAVCount[Slot] = *reinterpret_cast<uint32_t *>(SavData.get() + (0x1000 * Slot) + SAV_COUNT_OFFS);
 				SAVSlotExist[Slot] = true;
 			}
 		}
 	}
 
 	/* Here we check and return the proper last saved Slot. */
-	int HighestCount = -1, LSS = -1;
+	uint32_t HighestCount = 0, LSS = -1;
 
 	for (uint8_t Slot = 0; Slot < 5; Slot++) {
 		if (SAVSlotExist[Slot]) { // Ensure the Slot existed before.

@@ -15,10 +15,8 @@ Firstly, it will tell you the path of the argument you passed by drag and drop t
 
 1.) Check if the Header Identifier `d a t` is correct. (`0x64, 0x61, 0x74`)
 
-2.) Check, if the SAVSlot (`0x0 for 1, 0x1 for 2 and 0x2 for 3`) is correct for the checked Slot. (Can be found at offset `SAVSLOT_OFFS + 0xC`).
+2.) Check, if the SAVSlot (`0x0 for 1, 0x1 for 2 and 0x2 for 3`) is correct for the checked Slot. (Can be found at offset `SAVSLOT_OFFS + 0xC` and for some reason also at `0xD` as well).
 
-3.) Check the SAVCount, which can be found at `SAVSLOT_OFFS + 0x8`.
+3.) Check the SAVCount, which can be found at `SAVSLOT_OFFS + 0x8`. NOTE: It is 4 byte long, so `0x8 - 0xB`.
 
 4.) Compare all of the proper Slots for their SAVCount. Return the Slot with the highest Count.
-
-NOTE: That this may NOT properly work *yet*, if it has a SAVCount of 0xFF+, this still needs to be worked on.
