@@ -31,8 +31,8 @@
 #include <memory>
 #include <string>
 
-#define SLOT_OFFS 0xC // The Slot (0x0: 1, 0x1: 2, 0x2: 3).
-#define SAV_COUNT_OFFS 0x8 // The SAV Count offset. (seems to be 1 byte and from 0x0 TO 0xFF?).
-#define START_STR "Last Saved Slot Detector v0.1.0 by SuperSaiyajinStackZ.\n\n"
+#define SLOT_OFFS 0xC // The Slot (0x0: 1, 0x1: 2, 0x2: 3). Additional Note: 0xD seems to be related to the Slot offset too, but the SAV handles it on 0xC only?
+#define SAV_COUNT_OFFS 0x8 // The SAV Count offset. (seems to be 2 byte and from 0x0000 TO 0xFFFF).
+#define START_STR "Last Saved Slot Detector v0.2.0 by SuperSaiyajinStackZ.\n\n"
 
 #endif

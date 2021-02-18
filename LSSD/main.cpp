@@ -64,13 +64,13 @@ static bool LoadSav(const std::string &Path) {
 
 	const uint8_t SAVSlot: The Slot which to check. ( 0 - 4 )
 
-	TODO: What happens if SAVCount reaches 0xFF? Does it reset to 0x0 and goes up to 0xFF again? Detect it as well for v0.2.0!
+	TODO: Proper detection way for when Saving after 0xFFFF.
 */
 static int LSSD(const uint8_t SAVSlot) {
 	if (!SavData) return -1; // Also return -1 there.
 
 	int LastSavedSlot = -1, IDCount = 0;
-	uint8_t SAVCount[5] = { 0x0 };
+	uint16_t SAVCount[5] = { 0x0 }; // It is actually 2 byte, not 1, hence checking for uint16_t now.
 	bool SAVSlotExist[5] = { false };
 
 	/* Looping 5 times. */
@@ -88,7 +88,7 @@ static int LSSD(const uint8_t SAVSlot) {
 			if (SavData.get()[(0x1000 * Slot) + SLOT_OFFS] == SAVSlot) {
 
 				/* Now get the SAVCount. */
-				SAVCount[Slot] = SavData.get()[(0x1000 * Slot) + SAV_COUNT_OFFS];
+				SAVCount[Slot] = *reinterpret_cast<uint16_t *>(SavData.get() + (0x1000 * Slot) + SAV_COUNT_OFFS);
 				SAVSlotExist[Slot] = true;
 			}
 		}
