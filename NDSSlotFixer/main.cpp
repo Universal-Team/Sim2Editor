@@ -108,6 +108,12 @@ static void HeaderFix(const uint8_t Slot) {
 	const uint32_t SAVCount = *reinterpret_cast<uint32_t *>(SavData.get() + (Slot * 0x1000) + 0x14); // 0x14 seems to be the SAVCount there?
 	*reinterpret_cast<uint32_t *>(SavData.get() + (Slot * 0x1000) + 0x8) = SAVCount;
 
+	std::cout << "Restoring Slot Position for the Header for Slot " << std::to_string(Slot) << "...\n";
+	/* Restore SAVSlot Position. */
+	const uint16_t SlotPosition = *reinterpret_cast<uint16_t *>(SavData.get() + (Slot * 0x1000) + 0x22); // 0x22 seems to be the Slot Position there?
+	*reinterpret_cast<uint16_t *>(SavData.get() + (Slot * 0x1000) + 0xC) = SlotPosition;
+
+
 	std::cout << "Fixing Header for Slot " << std::to_string(Slot) << "...\n";
 	uint8_t Byte1 = 0, Byte2 = 0;
 

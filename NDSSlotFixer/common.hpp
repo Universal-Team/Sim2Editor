@@ -31,6 +31,6 @@
 #include <memory>
 #include <string>
 
-#define START_STR "NDSSlotFixer v0.1.0 by SuperSaiyajinStackZ.\n\n"
+#define START_STR "NDSSlotFixer v0.2.0 by SuperSaiyajinStackZ.\n\n"
 
 #endif

@@ -16,6 +16,8 @@ If that's the case, it will then calculate the `0x14 - 0xFFF` bytes range, which
 
 After that, it will set the semi-valid header `64, 61, 74, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0` at the start. Then it will fetch the SAVCount from offset `0x14 - 0x17` and writes it to the SAVCount Location from the Header (`0x8 - 0xB`).
 
+After that, it will fetch the Slot Position from offset `0x22 + 0x23` and writes it to the Slot Position Location from the Header (`0xC - 0xD`).
+
 Then it actually calculates `0x0 - 0x13`, but skipping `0xE - 0xF` & `0x13`, because `0xE - 0xF` is the Header checksum, and `0x13` contains some kind of flag, which it requires now. If `0x13` is `00`, then it adds a `+1` to the second byte variable. After it, it writes the calculated result to `0xE - 0xF` and the Slot should be fixed.
 
 ALL you really have to do is just drag and drop the SAVFile into the executable, really. It does everything else on it's own for you.
