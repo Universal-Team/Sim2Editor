@@ -81,7 +81,7 @@ bool Checksum::SavSlotExist(uint8_t Slot) {
 	*/
 	if (this->SType == SAVType::GBA) {
 		for (uint8_t i = 0; i < 0x10; i++) {
-			if (this->SavData.get()[(0x1000 * Slot) + i] != 0x0) return true;
+			if (this->SavData.get()[(Slot * 0x1000) + i] != 0x0) return true;
 		}
 
 		return false; // All of them are NULLs.. so i assume not valid.
@@ -92,7 +92,7 @@ bool Checksum::SavSlotExist(uint8_t Slot) {
 	*/
 	} else if (this->SType == SAVType::NDS) {
 		for (uint8_t i = 0; i < 3; i++) {
-			if (this->SavData.get()[(0x1000 * Slot) + i] != this->NDSSlotHeader[i]) return false;
+			if (this->SavData.get()[(Slot * 0x1000) + i] != this->NDSSlotHeader[i]) return false;
 		}
 
 		return true;
@@ -110,15 +110,15 @@ void Checksum::PerformUpdate(uint8_t Slot) {
 			/* GBA Method. */
 			if (this->SType == SAVType::GBA) {
 				for (uint16_t i = 0; i < (0xFFE / 2); i++) {
-					if (Byte1 + this->SavData.get()[(0x1000 * Slot) + (i * 2)] > 255) Byte2++;
+					if (Byte1 + this->SavData.get()[(Slot * 0x1000) + (i * 2)] > 255) Byte2++;
 
-					Byte1 += this->SavData.get()[(0x1000 * Slot) + (i * 2)];
-					Byte2 += this->SavData.get()[(0x1000 * Slot) + (i * 2) + 1];
+					Byte1 += this->SavData.get()[(Slot * 0x1000) + (i * 2)];
+					Byte2 += this->SavData.get()[(Slot * 0x1000) + (i * 2) + 1];
 				}
 
 				Byte2++;
 
-				const uint16_t CurrentChks = *reinterpret_cast<uint16_t *>(this->SavData.get() + (0x1000 * Slot) + 0xFFE);
+				const uint16_t CurrentChks = *reinterpret_cast<uint16_t *>(this->SavData.get() + (Slot * 0x1000) + 0xFFE);
 				const uint16_t CalcChks = (256 * (uint8_t)-Byte2) + (uint8_t)-Byte1;
 
 				if (CurrentChks != CalcChks) {
@@ -128,7 +128,7 @@ void Checksum::PerformUpdate(uint8_t Slot) {
 					std::cin >> res;
 
 					if (res == 1) {
-						*reinterpret_cast<uint16_t *>(this->SavData.get() + (0x1000 * Slot) + 0xFFE) = CalcChks;
+						*reinterpret_cast<uint16_t *>(this->SavData.get() + (Slot * 0x1000) + 0xFFE) = CalcChks;
 						this->UpdatedChecksum = true;
 						std::cout << "Checksum fixed.\n\n";
 
@@ -146,15 +146,15 @@ void Checksum::PerformUpdate(uint8_t Slot) {
 					if (i == (0x12 / 2)) continue;
 					if (i == (0x28 / 2)) continue;
 
-					if (Byte1 + this->SavData.get()[(0x1000 * Slot) + (i * 2)] > 255) Byte2++;
+					if (Byte1 + this->SavData.get()[(Slot * 0x1000) + (i * 2)] > 255) Byte2++;
 
-					Byte1 += this->SavData.get()[(0x1000 * Slot) + (i * 2)];
-					Byte2 += this->SavData.get()[(0x1000 * Slot) + (i * 2) + 1];
+					Byte1 += this->SavData.get()[(Slot * 0x1000) + (i * 2)];
+					Byte2 += this->SavData.get()[(Slot * 0x1000) + (i * 2) + 1];
 				}
 
 				Byte2++;
 
-				const uint16_t CurrentChks = *reinterpret_cast<uint16_t *>(this->SavData.get() + (0x1000 * Slot) + 0x28);
+				const uint16_t CurrentChks = *reinterpret_cast<uint16_t *>(this->SavData.get() + (Slot * 0x1000) + 0x28);
 				const uint16_t CalcChks = ((256 * (uint8_t)-Byte2) + (uint8_t)-Byte1);
 
 				if (CurrentChks != CalcChks) {
@@ -164,7 +164,7 @@ void Checksum::PerformUpdate(uint8_t Slot) {
 					std::cin >> res;
 
 					if (res == 1) {
-						*reinterpret_cast<uint16_t *>(this->SavData.get() + (0x1000 * Slot) + 0x28) = CalcChks;
+						*reinterpret_cast<uint16_t *>(this->SavData.get() + (Slot * 0x1000) + 0x28) = CalcChks;
 						this->UpdatedChecksum = true;
 						std::cout << "Checksum fixed.\n\n";
 

@@ -28,7 +28,6 @@
 
 static const uint8_t SlotIdent[0x3] = { 0x64, 0x61, 0x74 }; // Slot Identifier.
 static std::unique_ptr<uint8_t[]> SavData = nullptr; // SAVData.
-//static bool Valid = false; // Not used for now.
 
 /*
 	Load a SAVFile.
@@ -77,16 +76,16 @@ static int LSSD(const uint8_t SAVSlot) {
 
 		/* Check for Identifier. */
 		for (uint8_t ID = 0; ID < 3; ID++) {
-			if (SavData.get()[(0x1000 * Slot) + ID] == SlotIdent[ID]) IDCount++;
+			if (SavData.get()[(Slot * 0x1000) + ID] == SlotIdent[ID]) IDCount++;
 		}
 
 		/* If 3, then it passed "d a t". */
 		if (IDCount == 3) {
 			/* Check, if current slot is also the actual SAVSlot. It seems 0xC and 0xD added is the Slot, however 0xD seems never be touched from the game and hence like all the time 0x0? */
-			if ((SavData.get()[(0x1000 * Slot) + SLOT_OFFS] + SavData.get()[(0x1000 * Slot) + SLOT_OFFS + 1]) == SAVSlot) {
+			if ((SavData.get()[(Slot * 0x1000) + SLOT_OFFS] + SavData.get()[(Slot * 0x1000) + SLOT_OFFS + 1]) == SAVSlot) {
 
 				/* Now get the SAVCount. */
-				SAVCount[Slot] = *reinterpret_cast<uint32_t *>(SavData.get() + (0x1000 * Slot) + SAV_COUNT_OFFS);
+				SAVCount[Slot] = *reinterpret_cast<uint32_t *>(SavData.get() + (Slot * 0x1000) + SAV_COUNT_OFFS);
 				SAVSlotExist[Slot] = true;
 			}
 		}
@@ -123,7 +122,7 @@ int main(int argc, char *argv[]) {
 				const int LSS = LSSD(Slot);
 
 				if (LSS >= 0) {
-					std::cout << "Slot " << std::to_string(Slot + 1) << "'s last saved location is: " << std::to_string(LSS) << " which can be found at: " << "0x" << std::hex << (0x1000 * LSS) << ".\n\n";
+					std::cout << "Slot " << std::to_string(Slot + 1) << "'s last saved location is: " << std::to_string(LSS) << " which can be found at: " << "0x" << std::hex << (LSS * 0x1000) << ".\n\n";
 
 				} else {
 					std::cout << "Slot " << std::to_string(Slot + 1) << " don't seem to exist inside the SAVFile.\n\n";
