@@ -7,12 +7,12 @@ Everything on this branch is in `C++`.
 
 **You can find all External Tools listed here.**
 
-- [Checksum-Updater](https://github.com/SuperSaiyajinStackZ/Sim2Editor/tree/External-Tools/Checksum-Updater): A Tool which can update and fix invalid Checksums for the SAVSlots. Useful if you prefer manually Hex Editing the SAVFile and after it, use it directly.
+- [Checksum-Updater](https://github.com/Universal-Team/Sim2Editor/tree/External-Tools/Checksum-Updater): A Tool which can update and fix invalid Checksums for the SAVSlots. Useful if you prefer manually Hex Editing the SAVFile and after it, use it directly.
 
-- [LSSD](https://github.com/SuperSaiyajinStackZ/Sim2Editor/tree/External-Tools/LSSD): **LSSD**, also known as **L**ast **S**aved **S**lot **D**etector, a Tool which detects the 3 in game base SAVSlots on the NDS version. The game stores 5 of them.. tho only 3 are loadable in game.
+- [LSSD](https://github.com/Universal-Team/Sim2Editor/tree/External-Tools/LSSD): **LSSD**, also known as **L**ast **S**aved **S**lot **D**etector, a Tool which detects the 3 in game base SAVSlots on the NDS version. The game stores 5 of them.. tho only 3 are loadable in game.
 
-- [NDSSlotFixer](https://github.com/SuperSaiyajinStackZ/Sim2Editor/tree/External-Tools/NDSSlotFixer): Fix SAVSlots which got corrupted through bad Checksums from The Sims 2 NDS.
+- [NDSSlotFixer](https://github.com/Universal-Team/Sim2Editor/tree/External-Tools/NDSSlotFixer): Fix SAVSlots which got corrupted through bad Checksums from The Sims 2 NDS.
 
 
 ## Credits
-- [SuperSaiyajinStackZ](https://github.com/SuperSaiyajinStackZ): All Credits goes to me. I wrote all the Tools while Researching the SAVFiles.
+- [SuperSaiyajinStackZ](https://github.com/SuperSaiyajinStackZ): Being the main researcher and main developer of these Tools.

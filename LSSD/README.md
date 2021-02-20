@@ -1,6 +1,6 @@
 # Last Saved Slot Detector (LSSD)
 
-![](https://github.com/SuperSaiyajinStackZ/Sim2Editor/blob/External-Tools/LSSD/Screenshot.png)
+![](https://github.com/Universal-Team/Sim2Editor/blob/External-Tools/LSSD/Screenshot.png)
 
 ## What is this for?
 This Tool is, to detect the Last Saved Slot on the NDS Version. The SAV stores *5* of the 0x1000 Slots.. but only *3* are actually loadable in game. This Tool will return the base Offset for all of the 3 Slots, so you know, which one you have to edit, if you do it manually for example.

@@ -1,6 +1,6 @@
 # NDSSlotFixer
 
-![](https://github.com/SuperSaiyajinStackZ/Sim2Editor/blob/External-Tools/NDSSlotFixer/Screenshot.png)
+![](https://github.com/Universal-Team/Sim2Editor/blob/External-Tools/NDSSlotFixer/Screenshot.png)
 
 ## What is this for?
 This Tool is, to fix from the game corrupted SAVSlots. If the game notices an invalid Checksum, it writes the following bytes at the begin of the SAVSlot (Header): `2A 2A 2A 00 00 00 00 00 E0 20 7E 02 D8 8F 00 00 00 00 00 00`.

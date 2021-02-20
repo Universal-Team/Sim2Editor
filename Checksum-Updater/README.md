@@ -1,6 +1,6 @@
 # Checksum-Updater
 
-![](https://github.com/SuperSaiyajinStackZ/Sim2Editor/blob/External-Tools/Checksum-Updater/Screenshot.png)
+![](https://github.com/Universal-Team/Sim2Editor/blob/External-Tools/Checksum-Updater/Screenshot.png)
 
 ## What is this for?
 This Tool is, to update the Checksum of your The Sims 2 GBA or NDS SAVFile. An incorrect Checksum causes the GBA version to not display your GBA SAVSlot and on the NDS version a message appears which tells you, that the SAVFile is corrupted and modifies the first 3 bytes from `dat` into `***` which makes the SAVSlot disappear. Exactly this Tool fixes that problem by updating the Checksums to properly match.
