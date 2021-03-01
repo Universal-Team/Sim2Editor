@@ -59,8 +59,7 @@ void Checksum::DetectType() {
 	switch(this->SavSize) {
 		case 0x10000:
 		case 0x20000: // GBA Checks.
-
-			for (int i = 0; i < 7; i++) {
+			for (uint8_t i = 0; i < 7; i++) {
 				if (this->SavData.get()[i] == this->GBAIdent[i]) Count++;
 			}
 
@@ -76,7 +75,10 @@ void Checksum::DetectType() {
 					if (this->SavData.get()[(Loc * 0x1000) + i] == this->NDSIdent[i]) Count++;
 				}
 
-				if (Count == 8) this->SType = SAVType::NDS;
+				if (Count == 8) {
+					this->SType = SAVType::NDS; // NDS SAV.
+					break; // No need to loop this any longer.
+				}
 			}
 			break;
 	}
