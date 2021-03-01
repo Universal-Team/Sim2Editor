@@ -48,7 +48,8 @@ public:
 	bool SavSlotExist(uint8_t Slot);
 private:
 	const uint8_t GBAIdent[0x7] = { 0x53, 0x54, 0x57, 0x4E, 0x30, 0x32, 0x34 };
-	const uint8_t NDSSlotHeader[0x3] = { 'd', 'a', 't' }; // NOTE: This seems to be always the Slot header. It'll be '* * *' if the Checksum got invalid and SAV tries to remove it.
+	const uint8_t NDSIdent[0x8] = { 0x64, 0x61, 0x74, 0x0, 0x20, 0x0, 0x0, 0x0 };
+
 	std::unique_ptr<uint8_t[]> SavData = nullptr;
 	uint32_t SavSize = 0;
 	SAVType SType = SAVType::None;

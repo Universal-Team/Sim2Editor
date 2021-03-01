@@ -28,47 +28,47 @@
 #include <iostream>
 
 int main(int argc, char *argv[]) {
-	std::cout << "Sim2Editor External Tools - Checksum-Updater v0.1.0 by SuperSaiyajinStackZ.\n\n";
+	printf("Sim2Editor External Tools - Checksum-Updater v0.2.0 by SuperSaiyajinStackZ.\n\n");
 
 	if (argc > 1) {
-		const std::string fName = argv[1];
-		std::cout << "Detected the following parameter: " << fName << ".\n";
+		const char *fName = argv[1];
+		printf("Detected the following parameter: %s.\n", fName);
 
 		std::unique_ptr<Checksum> chks = std::make_unique<Checksum>(fName);
 
 		if (chks->IsValid()) {
-			std::cout << "This is a valid SAV.. continue with the SAVType check.\n\n";
+			printf("This is a valid SAV.. continue with the SAVType check.\n\n");
 
 			if (chks->GetType() != SAVType::None) {
 				if (chks->GetType() == SAVType::GBA) { // GBA SAV Detected.
-					std::cout << "Detected a GBA SAV! Continue with the Checksum operations...\n\n";
+					printf("Detected a GBA SAV! Continue with the Checksum operations...\n\n");
 					/* GBA has 4 SAVSlots, hence do a for loop with 4. */
 					for (uint8_t i = 0; i < 4; i++) chks->PerformUpdate(i + 1);
 					chks->WriteBack();
-					std::cout << "Checksum operation done!\n\n";
+					printf("Checksum operation done!\n\n");
 
 				} else if (chks->GetType() == SAVType::NDS) {
-					std::cout << "Detected a NDS SAV! Continue with the Checksum operations...\n\n";
+					printf("Detected a NDS SAV! Continue with the Checksum operations...\n\n");
 					/* NDS has 5 SAVSlots in the SAVFile, hence do a for loop with 5. */
 					for (uint8_t i = 0; i < 5; i++) chks->PerformUpdate(i);
 					chks->WriteBack();
-					std::cout << "Checksum operation done!\n\n";
+					printf("Checksum operation done!\n\n");
 				}
 
 			} else {
-				std::cout << "The SAVType which got detected is invalid. Are you sure this is a THE SIMS 2 GBA or NDS SAV?\n\n";
+				printf("The SAVType which got detected is invalid. Are you sure this is a THE SIMS 2 GBA or NDS SAV?\n\n");
 			}
 
 		} else {
-			std::cout << "The SAV is not a valid one. Are you sure this is a THE SIMS 2 GBA or NDS SAV?\n\n";
+			printf("The SAV is not a valid one. Are you sure this is a THE SIMS 2 GBA or NDS SAV?\n\n");
 		}
 
 	} else {
-		std::cout << "You did not provide enough parameters. Please drag and drop your SAVFile into the executable.\n\n";
+		printf("You did not provide enough parameters. Please drag and drop your SAVFile into the executable.\n\n");
 	}
 
 	std::string END;
-	std::cout << "Close the window to exit.";
+	printf("Close the window to exit.");
 	std::cin >> END;
 
 	return 0;

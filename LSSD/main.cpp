@@ -26,7 +26,7 @@
 
 #include "common.hpp"
 
-static const uint8_t SlotIdent[0x3] = { 0x64, 0x61, 0x74 }; // Slot Identifier.
+static const uint8_t SlotIdent[0x8] = { 0x64, 0x61, 0x74, 0x0, 0x20, 0x0, 0x0, 0x0 }; // Slot Identifier.
 static std::unique_ptr<uint8_t[]> SavData = nullptr; // SAVData.
 
 /*
@@ -35,6 +35,7 @@ static std::unique_ptr<uint8_t[]> SavData = nullptr; // SAVData.
 	const std::string &Path: The path to the SAVFile.
 */
 static bool LoadSav(const std::string &Path) {
+	bool res = false; // What we return.
 	FILE *SAV = fopen(Path.c_str(), "r");
 
 	if (SAV) {
@@ -42,20 +43,29 @@ static bool LoadSav(const std::string &Path) {
 		const uint32_t SavSize = ftell(SAV);
 		fseek(SAV, 0, SEEK_SET);
 
-		if (SavSize >= 0x5000) {
+		if (SavSize == 0x40000 || SavSize == 0x80000) {
 			SavData = std::make_unique<uint8_t[]>(SavSize); // Create Buffer.
 			fread(SavData.get(), 1, SavSize, SAV);
-			fclose(SAV);
 
-			return true;
+			uint8_t Count = 0;
+			for (uint8_t Loc = 0; Loc < 5; Loc++) {
+				Count = 0; // Reset.
 
-		} else {
-			fclose(SAV);
-			return false;
+				for (uint8_t i = 0; i < 8; i++) {
+					if (SavData.get()[(Loc * 0x1000) + i] == SlotIdent[i]) Count++;
+				}
+
+				if (Count == 8) {
+					res = true;
+					break;
+				}
+			}
 		}
+
+		fclose(SAV);
 	}
 
-	return false;
+	return res;
 }
 
 /*
@@ -75,12 +85,12 @@ static int LSSD(const uint8_t SAVSlot) {
 		IDCount = 0; // First reset here to 0.
 
 		/* Check for Identifier. */
-		for (uint8_t ID = 0; ID < 3; ID++) {
+		for (uint8_t ID = 0; ID < 0x8; ID++) {
 			if (SavData.get()[(Slot * 0x1000) + ID] == SlotIdent[ID]) IDCount++;
 		}
 
-		/* If 3, then it passed "d a t". */
-		if (IDCount == 3) {
+		/* If 8, then it passed the header. */
+		if (IDCount == 8) {
 			/* Check, if current slot is also the actual SAVSlot. It seems 0xC and 0xD added is the Slot, however 0xD seems never be touched from the game and hence like all the time 0x0? */
 			if ((SavData.get()[(Slot * 0x1000) + SLOT_OFFS] + SavData.get()[(Slot * 0x1000) + SLOT_OFFS + 1]) == SAVSlot) {
 
@@ -108,37 +118,37 @@ static int LSSD(const uint8_t SAVSlot) {
 }
 
 int main(int argc, char *argv[]) {
-	std::cout << START_STR;
+	printf(START_STR);
 
 	if (argc > 1) {
-		const std::string FName = argv[1];
+		const char *FName = argv[1];
 
-		std::cout << "Detected the following parameter: " << FName << ".\n";
+		printf("Detected the following parameter: %s.\n", FName);
 
 		if (LoadSav(FName)) {
-			std::cout << "This is a valid SAV.. Checking for the Last Saved Slots now...\n\n";
+			printf("This is a valid SAV.. Checking for the Last Saved Slots now...\n\n");
 
 			for (uint8_t Slot = 0; Slot < 3; Slot++) {
 				const int LSS = LSSD(Slot);
 
 				if (LSS >= 0) {
-					std::cout << "Slot " << std::to_string(Slot + 1) << "'s last saved location is: " << std::to_string(LSS) << " which can be found at: " << "0x" << std::hex << (LSS * 0x1000) << ".\n\n";
+					printf("Slot %i's last saved location is: %i, which can be found at: 0x%04x.\n\n", Slot + 1, LSS, LSS * 0x1000);
 
 				} else {
-					std::cout << "Slot " << std::to_string(Slot + 1) << " don't seem to exist inside the SAVFile.\n\n";
+					printf("Slot %i don't seem to exist inside the SAVFile.\n\n", Slot + 1);
 				}
 			}
 
 		} else {
-			std::cout << "The SAV is not a valid one. Are you sure this is a THE SIMS 2 NDS SAV?\n\n";
+			printf("The SAV is not a valid one. Are you sure this is a THE SIMS 2 NDS SAV?\n\n");
 		}
 
 	} else {
-		std::cout << "You did not provide enough parameters. Please drag and drop your SAVFile into the executable.\n\n";
+		printf("You did not provide enough parameters. Please drag and drop your SAVFile into the executable.\n\n");
 	}
 
 	std::string END;
-	std::cout << "Close the window to exit.";
+	printf("Close the window to exit.");
 	std::cin >> END;
 
 	return 0;

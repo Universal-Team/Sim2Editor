@@ -53,24 +53,35 @@ Checksum::Checksum(const std::string &File) {
 
 /* Detecting SAVType. */
 void Checksum::DetectType() {
-	/* First check for GBA, cause we already know a way, on how to detect it. */
-	uint8_t count = 0;
+	this->SType = SAVType::None;
 
-	if (this->SavSize >= 0x5000) { // Ensure it is larger than 0x5000.
-		for (uint8_t i = 0; i < 7; i++) { // Check for the Idents.
-			if (this->SavData[i] == this->GBAIdent[i]) count++;
-		}
+	uint8_t Count = 0;
+	switch(this->SavSize) {
+		case 0x10000:
+		case 0x20000: // GBA Checks.
+
+			for (int i = 0; i < 7; i++) {
+				if (this->SavData.get()[i] == this->GBAIdent[i]) Count++;
+			}
+
+			if (Count == 7) this->SType = SAVType::GBA; // GBA SAV.
+			break;
+
+		case 0x40000:
+		case 0x80000: // NDS Checks.
+			for (uint8_t Loc = 0; Loc < 5; Loc++) {
+				Count = 0; // Reset.
+
+				for (uint8_t i = 0; i < 8; i++) {
+					if (this->SavData.get()[(Loc * 0x1000) + i] == this->NDSIdent[i]) Count++;
+				}
+
+				if (Count == 8) this->SType = SAVType::NDS;
+			}
+			break;
 	}
 
-	if (count == 7) {
-		this->SType = SAVType::GBA; // If the Ident match count is 7, it is a GBA SAV.
-		this->Valid = true;
-	}
-
-	if (this->SType != SAVType::GBA) {
-		this->SType = SAVType::NDS; // Else for now it's a NDS SAV.
-		this->Valid = true;
-	}
+	this->Valid = this->SType != SAVType::None;
 }
 
 /* Check, if a SAVSlot exists. */
@@ -87,12 +98,11 @@ bool Checksum::SavSlotExist(uint8_t Slot) {
 		return false; // All of them are NULLs.. so i assume not valid.
 
 	/*
-		NDS Way: Not 100% sure yet, honestly.
-		Maybe check for "d a t" on the first 3 byte of the SAVSlot?
+		NDS Way: Check if the Header is correct.
 	*/
 	} else if (this->SType == SAVType::NDS) {
-		for (uint8_t i = 0; i < 3; i++) {
-			if (this->SavData.get()[(Slot * 0x1000) + i] != this->NDSSlotHeader[i]) return false;
+		for (uint8_t i = 0; i < 8; i++) {
+			if (this->SavData.get()[(Slot * 0x1000) + i] != this->NDSIdent[i]) return false;
 		}
 
 		return true;
@@ -122,7 +132,7 @@ void Checksum::PerformUpdate(uint8_t Slot) {
 				const uint16_t CalcChks = (256 * (uint8_t)-Byte2) + (uint8_t)-Byte1;
 
 				if (CurrentChks != CalcChks) {
-					std::cout << "Slot " << std::to_string(Slot) << " does not contain a valid Checksum. Would you like to fix it?\nPress 1 for yes, 0 for no: ";
+					printf("Slot %i does not contain a valid Checksum. Would you like to fix it?\nPress 1 for yes, 0 for no: ", Slot);
 
 					int res = 0;
 					std::cin >> res;
@@ -130,14 +140,14 @@ void Checksum::PerformUpdate(uint8_t Slot) {
 					if (res == 1) {
 						*reinterpret_cast<uint16_t *>(this->SavData.get() + (Slot * 0x1000) + 0xFFE) = CalcChks;
 						this->UpdatedChecksum = true;
-						std::cout << "Checksum fixed.\n\n";
+						printf("Checksum fixed.\n\n");
 
 					} else {
-						std::cout << "Fix aborted.\n\n";
+						printf("Fix aborted.\n\n");
 					}
 
 				} else {
-					std::cout << "Slot " << std::to_string(Slot) << " has a valid Checksum and is good.\n\n";
+					printf("Slot %i has a valid Checksum and is good.\n\n", Slot);
 				}
 
 			/* NDS Method. */
@@ -158,7 +168,7 @@ void Checksum::PerformUpdate(uint8_t Slot) {
 				const uint16_t CalcChks = ((256 * (uint8_t)-Byte2) + (uint8_t)-Byte1);
 
 				if (CurrentChks != CalcChks) {
-					std::cout << "Slot " << std::to_string(Slot + 1) << " does not contain a valid Checksum. Would you like to fix it?\nPress 1 for yes, 0 for no: ";
+					printf("Slot %i does not contain a valid Checksum. Would you like to fix it?\nPress 1 for yes, 0 for no: ", Slot + 1);
 
 					int res = 0;
 					std::cin >> res;
@@ -166,19 +176,19 @@ void Checksum::PerformUpdate(uint8_t Slot) {
 					if (res == 1) {
 						*reinterpret_cast<uint16_t *>(this->SavData.get() + (Slot * 0x1000) + 0x28) = CalcChks;
 						this->UpdatedChecksum = true;
-						std::cout << "Checksum fixed.\n\n";
+						printf("Checksum fixed.\n\n");
 
 					} else {
-						std::cout << "Fix aborted.\n\n";
+						printf("Fix aborted.\n\n");
 					}
 
 				} else {
-					std::cout << "Slot " << std::to_string(Slot + 1) << " has a valid Checksum and is good.\n\n";
+					printf("Slot %i has a valid Checksum and is good.\n\n", Slot + 1);
 				}
 			}
 
 		} else {
-			std::cout << "Slot " << std::to_string((this->SType == SAVType::NDS ? Slot + 1 : Slot)) << " does not exist.\n\n";
+			printf("Slot %i does not exist.\n\n", (this->SType == SAVType::NDS ? Slot + 1 : Slot));
 		}
 	}
 }

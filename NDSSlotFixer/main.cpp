@@ -28,6 +28,7 @@
 
 static std::unique_ptr<uint8_t[]> SavData = nullptr; // SAVData.
 static uint32_t SavSize = 0;
+static const uint8_t SlotIdent[0x8] = { 0x64, 0x61, 0x74, 0x0, 0x20, 0x0, 0x0, 0x0 }; // Slot Identifier.
 
 /*
 	Load a SAVFile.
@@ -35,27 +36,37 @@ static uint32_t SavSize = 0;
 	const std::string &Path: The path to the SAVFile.
 */
 static bool LoadSav(const std::string &Path) {
+	bool res = false; // What we return.
 	FILE *SAV = fopen(Path.c_str(), "r");
 
 	if (SAV) {
 		fseek(SAV, 0, SEEK_END);
-		SavSize = ftell(SAV);
+		const uint32_t SavSize = ftell(SAV);
 		fseek(SAV, 0, SEEK_SET);
 
-		if (SavSize >= 0x5000) {
+		if (SavSize == 0x40000 || SavSize == 0x80000) {
 			SavData = std::make_unique<uint8_t[]>(SavSize); // Create Buffer.
 			fread(SavData.get(), 1, SavSize, SAV);
-			fclose(SAV);
 
-			return true;
+			uint8_t Count = 0;
+			for (uint8_t Loc = 0; Loc < 5; Loc++) {
+				Count = 0; // Reset.
 
-		} else {
-			fclose(SAV);
-			return false;
+				for (uint8_t i = 0; i < 8; i++) {
+					if (SavData.get()[(Loc * 0x1000) + i] == SlotIdent[i]) Count++;
+				}
+
+				if (Count == 8) {
+					res = true;
+					break;
+				}
+			}
 		}
+
+		fclose(SAV);
 	}
 
-	return false;
+	return res;
 }
 
 /*
@@ -77,17 +88,6 @@ static uint16_t CalcSlot(const uint8_t Slot) {
 
 	Byte2++;
 
-	/*
-		// This was for testing purposes.
-		uint8_t Byte3 = 0, Byte4 = 0;
-
-		Byte3 = SavData.get()[(Slot * 0x1000) + 0x10];
-		Byte4 = SavData.get()[(Slot * 0x1000) + 0x11];
-
-		std::cout << "Byte 1: " << std::to_string((uint8_t)-Byte1) << " | " << std::to_string(Byte3) << ".\n";
-		std::cout << "Byte 2: " << std::to_string((uint8_t)-Byte2) << " | " << std::to_string(Byte4) << ".\n\n";
-	*/
-
 	return ((256 * (uint8_t)-Byte2) + (uint8_t)-Byte1); // Return as uint16_t.
 }
 
@@ -97,24 +97,24 @@ static uint16_t CalcSlot(const uint8_t Slot) {
 	const uint8_t Slot: The Slot which to fix the header.
 */
 static void HeaderFix(const uint8_t Slot) {
-	std::cout << "Setting the initial Header for Slot " << std::to_string(Slot) << "...\n";
+	printf("Setting the initial Header for Slot %i...\n", Slot);
 
 	/* Set initial header. */
 	const uint8_t HDR[14] = { 0x64, 0x61, 0x74, 0x0, 0x20, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
 	for (uint8_t i = 0; i < 14; i++) SavData.get()[(Slot * 0x1000) + i] = HDR[i];
 
-	std::cout << "Restoring SAVCount for the Header for Slot " << std::to_string(Slot) << "...\n";
+	printf("Restoring SAVCount for the Header for Slot %i...\n", Slot);
 	/* Restore SAVCount. */
 	const uint32_t SAVCount = *reinterpret_cast<uint32_t *>(SavData.get() + (Slot * 0x1000) + 0x14); // 0x14 seems to be the SAVCount there?
 	*reinterpret_cast<uint32_t *>(SavData.get() + (Slot * 0x1000) + 0x8) = SAVCount;
 
-	std::cout << "Restoring Slot Position for the Header for Slot " << std::to_string(Slot) << "...\n";
+	printf("Restoring Slot Position for the Header for Slot %i...\n", Slot);
 	/* Restore SAVSlot Position. */
 	const uint16_t SlotPosition = *reinterpret_cast<uint16_t *>(SavData.get() + (Slot * 0x1000) + 0x22); // 0x22 seems to be the Slot Position there?
 	*reinterpret_cast<uint16_t *>(SavData.get() + (Slot * 0x1000) + 0xC) = SlotPosition;
 
 
-	std::cout << "Fixing Header for Slot " << std::to_string(Slot) << "...\n";
+	printf("Fixing Header for Slot %i...\n", Slot);
 	uint8_t Byte1 = 0, Byte2 = 0;
 
 	for (uint16_t i = 0x0; i < (0x13 / 2); i++) {
@@ -128,33 +128,21 @@ static void HeaderFix(const uint8_t Slot) {
 
 	if (SavData.get()[(Slot * 0x1000) + 0x13] == 0x0) Byte2++; // If 0x13 is 0, then it just got created and hence, add +1 to Byte2.
 
-	/*
-		// This was for testing purposes.
-
-		uint8_t Byte3 = 0, Byte4 = 0;
-
-		Byte3 = SavData.get()[(Slot * 0x1000) + 0xE];
-		Byte4 = SavData.get()[(Slot * 0x1000) + 0xF];
-
-		std::cout << "Byte 1: " << std::to_string((uint8_t)-Byte1) << " | " << std::to_string(Byte3) << ".\n";
-		std::cout << "Byte 2: " << std::to_string((uint8_t)-Byte2) << " | " << std::to_string(Byte4) << ".\n\n";
-	*/
-
 	*reinterpret_cast<uint16_t *>(SavData.get() + (Slot * 0x1000) + 0xE) = ((256 * (uint8_t)-Byte2) + (uint8_t)-Byte1);
-	std::cout << "Fixed!\n\n";
+	printf("Fixed!\n\n");
 }
 
 int main(int argc, char *argv[]) {
-	std::cout << START_STR;
+	printf(START_STR);
 
 	if (argc > 1) {
-		const std::string FName = argv[1];
-		std::cout << "Detected the following parameter: " << FName << ".\n";
+		const char *FName = argv[1];
+		printf("Detected the following parameter: %s.\n", FName);
 
 		if (LoadSav(FName)) {
 			bool SlotFixed = false;
 
-			std::cout << "This is a valid SAV.. Checking for corrupted Headers now...\n\n";
+			printf("This is a valid SAV.. Checking for corrupted Headers now...\n\n");
 
 			for (uint8_t Slot = 0; Slot < 5; Slot++) {
 				uint16_t CHK = 0; // Checksum value for 0x10 - 0x11.
@@ -164,13 +152,13 @@ int main(int argc, char *argv[]) {
 					/* NOTE: 0x2A on the first 3 bytes means, the header got corrupted from game. */
 					if (SavData.get()[(Slot * 0x1000) + i] != 0x2A) {
 						needsFix = false;
-						std::cout << "Slot " << std::to_string(Slot) << " is not corrupted.\n\n";
+						printf("Slot %i is not corrupted.\n\n", Slot);
 						break;
 					}
 				}
 
 				if (needsFix) {
-					std::cout << "Fixes are neccessary for Slot " << std::to_string(Slot) << ".. Fix in progress.\n\n";
+					printf("Fixes are neccessary for Slot %i.. Fix in progress.\n\n", Slot);
 					CHK = CalcSlot(Slot);
 					*reinterpret_cast<uint16_t *>(SavData.get() + (Slot * 0x1000) + 0x10) = CHK; // Set 0x10 checksum.
 					HeaderFix(Slot);
@@ -180,21 +168,21 @@ int main(int argc, char *argv[]) {
 
 			if (SlotFixed) {
 				/* Because at least one Slot got fixed, we write back to file. */
-				FILE *SAV = fopen(FName.c_str(), "rb+");
+				FILE *SAV = fopen(FName, "rb+");
 				fwrite(SavData.get(), 1, SavSize, SAV);
 				fclose(SAV);
 			}
 
 		} else {
-			std::cout << "The SAV is not a valid one. Are you sure this is a THE SIMS 2 NDS SAV?\n\n";
+			printf("The SAV is not a valid one. Are you sure this is a THE SIMS 2 NDS SAV?\n\n");
 		}
 
 	} else {
-		std::cout << "You did not provide enough parameters. Please drag and drop your SAVFile into the executable.\n\n";
+		printf("You did not provide enough parameters. Please drag and drop your SAVFile into the executable.\n\n");
 	}
 
 	std::string END;
-	std::cout << "Close the window to exit.";
+	printf("Close the window to exit.");
 	std::cin >> END;
 	return 0;
 }
