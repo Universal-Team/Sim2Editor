@@ -1,0 +1,31 @@
+/* Cast Names. */
+const Casts_EN = [
+	"Emperor Xizzle",
+	"Burple",
+	"Ara Fusilli",
+	"Auda Sherif",
+	"Ava Cadavra",
+	"Bigfoot",
+	"Frankie Fusilli",
+	"Dusty Hogg",
+	"Giuseppi Mezzoalto",
+	"Honest Jackson",
+	"Jebediah Jerky",
+	"Jimmy the Neck",
+	"Kayleigh Wintercrest",
+	"Luthor L. Bigbucks",
+	"Mamma Hogg",
+	"Misty Waters",
+	"Lord Mole",
+	"Mummy",
+	"Optimum Alfred",
+	"Penelope Redd",
+	"Pepper Pete",
+	"Kent Hackett",
+	"Sancho Paco Panza",
+	"Tank Grunt",
+	"Tristan Legend",
+	"Yeti"
+];
+
+export default Casts_EN;

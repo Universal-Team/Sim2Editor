@@ -1,0 +1,70 @@
+{
+	"cast-alternative-picture": "Alternative Picture Unlocked",
+	"cast-interaction-friendly": "Friendly Interaction Level",
+	"cast-interaction-intimidate": "Intimidate Interaction Level",
+	"cast-interaction-romance": "Romance Interaction Level",
+	"cast-max-interaction": "Max Interactions",
+	"cast-min-interaction": "Min Interactions",
+	"cast-mystery": "Mystery Unlocked",
+	"cast-selected": "Selected Cast: ",
+	"cast-unlock-all-alt-pics": "Unlock all Alternative Picture",
+	"cast-unlock-all-mysteries": "Unlock all mysteries",
+
+	"episode-aspiration-conversations": "Aspiration Conversations",
+	"episode-clear-ratings": "Clear all Episode Ratings",
+	"episode-errand-completed": "Errand Completed",
+	"episode-hidden-want-completed": "Hidden Want Completed",
+	"episode-lock-all": "Lock all Episodes",
+	"episode-max-ratings": "Max out all Episode Ratings",
+	"episode-misc": "Misc",
+	"episode-plot-points-completed": "Plot Points Completed",
+	"episode-ratings": "Episode Ratings",
+	"episode-selected": "Selected Episode: ",
+	"episode-unlock-all": "Unlock all Episodes",
+	"episode-unlocked": "Episode Unlocked",
+
+	"general-collectables": "Collectables",
+	"general-general": "General",
+	"general-hour": "Hour",
+	"general-minute": "Minute",
+	"general-name": "Sim Name",
+	"general-ratings": "Ratings",
+	"general-simoleons": "Simoleons",
+
+	"loader-select": "Select a SAVFile",
+
+	"max": "Max",
+
+	"menu-loaded-slot": "Loaded Slot: ",
+	"menu-slots": "Slots",
+	"menu-general": "General",
+	"menu-cast": "Cast",
+	"menu-episode": "Episode",
+	"menu-finish": "Finish",
+
+	"min": "Min",
+
+	"msg-no-sav-selected": "No SAVFile selected!",
+	"msg-no-valid-sav": "This is not a valid The Sims 2 GBA SAVFile.\nIf this is a mistake, report it on the Sim2Editor repository.",
+	"msg-wip-warning": "This is a work in progress SAVEditor. It is recommended to create backups before trying it out.",
+
+	"no": "No",
+	"none": "None",
+
+	"slot": "Slot",
+	"slot-checksum": "Checksum",
+	"slot-checksum-good": "Checksum good: ",
+	"slot-current-checksum": "Current Checksum: ",
+	"slot-erase": "Erase Slot",
+	"slot-exist": "Slot Exist: ",
+	"slot-fix-checksum": "Fix Checksum",
+	"slot-information": "Slot Information",
+	"slot-load": "Load Slot",
+	"slot-name": "Sim Name: ",
+	"slot-ratings": "Ratings: ",
+	"slot-selected": "Selected Slot: ",
+	"slot-simoleons": "Simoleons: ",
+	"slot-time": "Time: ",
+
+	"yes": "Yes"
+}

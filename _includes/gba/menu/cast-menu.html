@@ -1,0 +1,34 @@
+<!-- Sim2Editor GBA Cast Menu. -->
+<div id="CastMenu" class="showNone"><br>
+	<label for="CastSelection">{{ site.data.[page.lang].gba.cast-selected }}</label><select id="CastSelection" class="SelectionList"></select><br><br>
+
+	<div id="CastEditMenu" class="showNone">
+		{{ site.data.[page.lang].gba.cast-interaction-friendly }}<br>
+			<input type="number" id="Cast_Friendly" min="0" max="3" class="EditBox">
+			<button id="Cast_MinFriendly" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+			<button id="Cast_MaxFriendly" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+		<br>
+
+		{{ site.data.[page.lang].gba.cast-interaction-romance }}<br>
+			<input type="number" id="Cast_Romance" min="0" max="3" class="EditBox">
+			<button id="Cast_MinRomance" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+			<button id="Cast_MaxRomance" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+		<br>
+
+		{{ site.data.[page.lang].gba.cast-interaction-intimidate }}<br>
+			<input type="number" id="Cast_Intimidate" min="0" max="3" class="EditBox">
+			<button id="Cast_MinIntimidate" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+			<button id="Cast_MaxIntimidate" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+		<br>
+
+		{{ site.data.[page.lang].gba.cast-alternative-picture }} <input type="checkbox" id="Cast_AlternatePic"><br>
+		{{ site.data.[page.lang].gba.cast-mystery }} <input type="checkbox" id="Cast_Mystery"><br><br>
+	</div>
+
+	<div>
+		<button id="Cast_MaxInteraction" class="ClickButton">{{ site.data.[page.lang].gba.cast-max-interaction }}</button>
+		<button id="Cast_MinInteraction" class="ClickButton">{{ site.data.[page.lang].gba.cast-min-interaction }}</button><br>
+		<button id="Cast_AlternatePicUnlock" class="ClickButton">{{ site.data.[page.lang].gba.cast-unlock-all-alt-pics }}</button>
+		<button id="Cast_Mystery_Unlocker" class="ClickButton">{{ site.data.[page.lang].gba.cast-unlock-all-mysteries }}</button>
+	</div>
+</div>

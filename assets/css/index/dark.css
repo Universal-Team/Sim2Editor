@@ -1,0 +1,22 @@
+/* Display nothing. */
+.showNone { display: none; }
+
+body {
+	background-color: #343840;
+	color: #D8E4E4;
+	text-align: center;
+}
+
+/* Footer and Header share the same things. */
+footer, header {
+	color: #D8E4E4;
+	text-align: center;
+	background-color: #2C3040;
+}
+
+/* Clickable Button. */
+.ClickButton {
+	background-color: #507080;
+	color: #D8E4E4;
+	text-align: center;
+}

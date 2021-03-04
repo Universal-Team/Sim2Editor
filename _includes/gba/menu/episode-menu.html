@@ -1,0 +1,45 @@
+<!-- Sim2Editor GBA Episode Menu. -->
+<div id="EpisodeMenu" class="showNone"><br>
+	<label for="EpisodeSelection">{{ site.data.[page.lang].gba.episode-selected }}</label><select id="EpisodeSelection" class="SelectionList"></select><br><br>
+
+	<div id="EpisodeEditMenu" class="showNone">
+		<b>{{ site.data.[page.lang].gba.episode-ratings }}</b><br><br>
+
+			{{ site.data.[page.lang].gba.episode-plot-points-completed }}<br>
+				<input type="number" id="Episode_Rating1" min="0" max="25" class="EditBox">
+				<button id="Episode_MinRating1" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button id="Episode_MaxRating1" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<br>
+
+			{{ site.data.[page.lang].gba.episode-aspiration-conversations }}<br>
+				<input type="number" id="Episode_Rating2" min="0" max="25" class="EditBox">
+				<button id="Episode_MinRating2" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button id="Episode_MaxRating2" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<br>
+
+			{{ site.data.[page.lang].gba.episode-hidden-want-completed }}<br>
+				<input type="number" id="Episode_Rating3" min="0" max="25" class="EditBox">
+				<button id="Episode_MinRating3" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button id="Episode_MaxRating3" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<br>
+
+			{{ site.data.[page.lang].gba.episode-errand-completed }}<br>
+				<input type="number" id="Episode_Rating4" min="0" max="25" class="EditBox">
+				<button id="Episode_MinRating4" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button id="Episode_MaxRating4" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<br>
+
+			{{ site.data.[page.lang].gba.episode-unlocked }}
+				<input type="checkbox" id="Episode_Unlocked">
+			<br>
+	</div>
+
+	<div>
+		<br><b>{{ site.data.[page.lang].gba.episode-misc }}</b><br><br>
+			<button id="Episode_Min" class="ClickButton">{{ site.data.[page.lang].gba.episode-clear-ratings }}</button>
+			<button id="Episode_Max" class="ClickButton">{{ site.data.[page.lang].gba.episode-max-ratings }}</button><br>
+			<button id="Episode_Locks" class="ClickButton">{{ site.data.[page.lang].gba.episode-lock-all }}</button>
+			<button id="Episode_Unlocks" class="ClickButton">{{ site.data.[page.lang].gba.episode-unlock-all }}</button>
+		<br>
+	</div>
+</div>

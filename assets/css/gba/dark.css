@@ -1,0 +1,57 @@
+/* Display nothing. */
+.showNone { display: none; }
+
+body {
+	background-color: #343840;
+	color: #D8E4E4;
+	text-align: center;
+}
+
+footer {
+	color: #D8E4E4;
+	text-align: center;
+	background-color: #2C3040;
+}
+
+/* Menu Bar Background. */
+#Menus { background-color: #2C3040; }
+
+/* The current Selected Top Menu. */
+.SelectedMenu {
+	background-color: #507080;
+	color: #D8E4E4;
+}
+
+/* All the Unselected Top Menu's. */
+.UnselectedMenu {
+	background-color: #343C4C;
+	color: #D8E4E4;
+}
+
+/* Input / Edit Box. */
+.EditBox {
+	background-color: #507080;
+	color: #D8E4E4;
+	text-align: left;
+}
+
+/* Clickable Button. */
+.ClickButton {
+	background-color: #507080;
+	color: #D8E4E4;
+	text-align: center;
+}
+
+/* Unclickable Button. */
+.NoButton {
+	background-color: #2C3040;
+	color: #D8E4E4;
+	text-align: center;
+}
+
+/* Selection List. */
+.SelectionList {
+	background-color: #507080;
+	color: #D8E4E4;
+	text-align: center;
+}

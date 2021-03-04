@@ -1,0 +1,22 @@
+<!-- Sim2Editor GBA Slot Menu. -->
+<div id="SlotMenu" class="showNone"><br>
+	<label for="SlotSelector">{{ site.data.[page.lang].gba.slot-selected }}</label><select id="SlotSelector" value="0" class="SelectionList"></select>
+
+	<div id="SlotInformation" class="showNone"><br>
+		<h3><b>{{ site.data.[page.lang].gba.slot-information }}</b></h3>
+		{{ site.data.[page.lang].gba.slot-exist }}<b id="Slot_Exist"></b><br>
+		{{ site.data.[page.lang].gba.slot-name }}<b id="Slot_Name"></b><br>
+		{{ site.data.[page.lang].gba.slot-simoleons }}<b id="Slot_Simoleons"></b><br>
+		{{ site.data.[page.lang].gba.slot-ratings }}<b id="Slot_Rating"></b><br>
+		{{ site.data.[page.lang].gba.slot-time }}<b id="Slot_Time"></b><br>
+
+		<h3><b>{{ site.data.[page.lang].gba.slot-checksum }}</b></h3>
+		{{ site.data.[page.lang].gba.slot-current-checksum }}<b id="Slot_Checksum"></b><br>
+		{{ site.data.[page.lang].gba.slot-checksum-good }}<b id="Slot_Checksum_Good"></b><br>
+			<button id="Slot_Checksum_Fix" class="ClickButton">{{ site.data.[page.lang].gba.slot-fix-checksum }}</button>
+		<br>
+	</div><br>
+
+	<button id="Slot_Load" class="ClickButton">{{ site.data.[page.lang].gba.slot-load }}</button><br>
+	<button id="Slot_Erase" class="NoButton" disabled="true">{{ site.data.[page.lang].gba.slot-erase }}</button><br>
+</div>
