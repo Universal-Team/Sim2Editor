@@ -82,8 +82,8 @@ export function InitEditor() {
 	InitStrings(); // Load initial Strings.
 
 	document.getElementById("Loader").classList.add("showNone"); // Hide Loader.
-	document.getElementById("SavEditor").classList.remove("showNone"); // Unhide SAVEditor.
-	document.getElementById("Menus").classList.remove("showNone"); // Unhide SAVEditor.
+	document.getElementById("SavEditor").classList.remove("showNone"); // Show SAVEditor.
+	document.getElementById("Menus").classList.remove("showNone"); // Show SAVEditor.
 	document.getElementById("Loaded_Slot").innerText = document.getElementById("External-Strings").dataset.none;
 
 	MenuHandle("Slot-Selector-Menu"); // Go to the Slot Menu.
