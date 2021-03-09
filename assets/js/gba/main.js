@@ -70,16 +70,6 @@ export function InitStrings() {
 		document.getElementById("MoveSelection").appendChild(e);
 	}
 
-	/* Init Social Moves Flag list. */
-	for (let i = 0; i < 3; i++) {
-		const Flags = [ "move-locked", "move-unlocked", "move-blocked" ];
-
-		let e = document.createElement("option");
-		e.innerText = Moves[i];
-		e.value = i;
-		document.getElementById("MoveSelection").appendChild(e);
-	}
-
 	/* Init SAVSlot Selector. */
 	for (let i = 1; i < 5; i++) {
 		let e = document.createElement("option");
