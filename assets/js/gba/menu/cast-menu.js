@@ -24,6 +24,7 @@
 *         reasonable ways as different from the original version.
 */
 
+import { SetInteractionLevel } from '../gfx.js';
 import { ActiveSlot } from './slot-menu.js';
 let ActiveCast;
 
@@ -39,13 +40,19 @@ function InitSelectedCast(Cst) {
 		document.getElementById("CastEditMenu").classList.remove("showNone"); // We can edit.
 
 		/* Interaction Levels. */
-		document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
-		document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
-		document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
+		for (let i = 0; i < 3; i++) CastInteractionDraw(i);
 
 		/* Flags. */
 		document.getElementById("Cast_AlternatePic").checked = ActiveCast.GetAlternatePic();
 		document.getElementById("Cast_Mystery").checked = ActiveCast.GetMystery();
+
+		/* Set Picture. */
+		if (ActiveCast.GetAlternatePic()) {
+			document.getElementById("Cast_Prev").src = `/assets/images/cast_alt/${document.getElementById("CastSelection").value}.png`;
+
+		} else {
+			document.getElementById("Cast_Prev").src = `/assets/images/cast/${document.getElementById("CastSelection").value}.png`;
+		}
 	}
 };
 
@@ -67,49 +74,74 @@ document.getElementById("CastSelection").onchange = () => InitSelectedCast(docum
 
 
 /* Friendly Interaction Level. */
-document.getElementById("Cast_Friendly").onchange = function() {
-	ActiveCast.SetFriendly(document.getElementById("Cast_Friendly").value);
+document.getElementById("Cast_Friendly").onclick = function() {
+	if (ActiveCast.GetFriendly() < 3) ActiveCast.SetFriendly(ActiveCast.GetFriendly() + 1);
+	else ActiveCast.SetFriendly(0);
+
 	document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
+	CastInteractionDraw(0);
 };
 document.getElementById("Cast_MinFriendly").onclick = function() {
 	ActiveCast.SetFriendly(0);
 	document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
+	CastInteractionDraw(0);
 };
 document.getElementById("Cast_MaxFriendly").onclick = function() {
 	ActiveCast.SetFriendly(3);
 	document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
+	CastInteractionDraw(0);
 };
 
 /* Romance Interaction Level. */
-document.getElementById("Cast_Romance").onchange = function() {
-	ActiveCast.SetRomance(document.getElementById("Cast_Romance").value);
+document.getElementById("Cast_Romance").onclick = function() {
+	if (ActiveCast.GetRomance() < 3) ActiveCast.SetRomance(ActiveCast.GetRomance() + 1);
+	else ActiveCast.SetRomance(0);
+
 	document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
+	CastInteractionDraw(1);
 };
 document.getElementById("Cast_MinRomance").onclick = function() {
 	ActiveCast.SetRomance(0);
 	document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
+	CastInteractionDraw(1);
 };
 document.getElementById("Cast_MaxRomance").onclick = function() {
 	ActiveCast.SetRomance(3);
 	document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
+	CastInteractionDraw(1);
 };
 
 /* Intimidate Interaction Level. */
-document.getElementById("Cast_Intimidate").onchange = function() {
-	ActiveCast.SetIntimidate(document.getElementById("Cast_Intimidate").value);
+document.getElementById("Cast_Intimidate").onclick = function() {
+	if (ActiveCast.GetIntimidate() < 3) ActiveCast.SetIntimidate(ActiveCast.GetIntimidate() + 1);
+	else ActiveCast.SetIntimidate(0);
+
 	document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
+	CastInteractionDraw(2);
 };
 document.getElementById("Cast_MinIntimidate").onclick = function() {
 	ActiveCast.SetIntimidate(0);
 	document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
+	CastInteractionDraw(2);
 };
 document.getElementById("Cast_MaxIntimidate").onclick = function() {
 	ActiveCast.SetIntimidate(3);
 	document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
+	CastInteractionDraw(2);
 };
 
 /* Alternative Picture (Smile). */
-document.getElementById("Cast_AlternatePic").onclick = () => ActiveCast.SetAlternatePic(document.getElementById("Cast_AlternatePic").checked);
+document.getElementById("Cast_AlternatePic").onclick = function() {
+	ActiveCast.SetAlternatePic(document.getElementById("Cast_AlternatePic").checked);
+
+	/* Set Picture. */
+	if (ActiveCast.GetAlternatePic()) {
+		document.getElementById("Cast_Prev").src = `/assets/images/cast_alt/${document.getElementById("CastSelection").value}.png`;
+
+	} else {
+		document.getElementById("Cast_Prev").src = `/assets/images/cast/${document.getElementById("CastSelection").value}.png`;
+	}
+}
 
 /* Mystery Unlocked. */
 document.getElementById("Cast_Mystery").onclick = () => ActiveCast.SetMystery(document.getElementById("Cast_Mystery").checked);
@@ -128,6 +160,7 @@ document.getElementById("Cast_MaxInteraction").onclick = function() {
 	document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
 	document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
 	document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
+	for (let i = 0; i < 3; i++) CastInteractionDraw(i);
 };
 
 /* Mass Action -> Min Interactions. */
@@ -143,6 +176,7 @@ document.getElementById("Cast_MinInteraction").onclick = function() {
 	document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
 	document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
 	document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
+	for (let i = 0; i < 3; i++) CastInteractionDraw(i);
 };
 
 
@@ -151,6 +185,14 @@ document.getElementById("Cast_AlternatePicUnlock").onclick = function() {
 	for (let i = 0; i < 26; i++) ActiveSlot.GetCast(i).SetAlternatePic(true);
 
 	document.getElementById("Cast_AlternatePic").checked = ActiveCast.GetAlternatePic();
+
+	/* Set Picture. */
+	if (ActiveCast.GetAlternatePic()) {
+		document.getElementById("Cast_Prev").src = `/assets/images/cast_alt/${document.getElementById("CastSelection").value}.png`;
+
+	} else {
+		document.getElementById("Cast_Prev").src = `/assets/images/cast/${document.getElementById("CastSelection").value}.png`;
+	}
 };
 
 /* Mass Action -> Unlock all Mysteries. */
@@ -158,4 +200,67 @@ document.getElementById("Cast_Mystery_Unlocker").onclick = function() {
 	for (let i = 0; i < 26; i++) ActiveSlot.GetCast(i).SetMystery(true);
 
 	document.getElementById("Cast_Mystery").checked = ActiveCast.GetMystery();
+};
+
+/*
+	Draw the Active Cast's Interaction Levels.
+
+	i: 0: Friendly, 1: Romance, 2: Intimidate.
+*/
+function CastInteractionDraw(i) {
+	if (!ActiveCast) return;
+
+	switch(i) {
+		case 0:
+			SetInteractionLevel(document.getElementById("Cast_Friendly"), ActiveCast.GetFriendly());
+			break;
+
+		case 1:
+			SetInteractionLevel(document.getElementById("Cast_Romance"), ActiveCast.GetRomance());
+			break;
+
+		case 2:
+			SetInteractionLevel(document.getElementById("Cast_Intimidate"), ActiveCast.GetIntimidate());
+			break;
+	}
+};
+
+/* Clicking on the preview opens the Cast Selection GUI. */
+document.getElementById("Cast_Prev").onclick = function() {
+	if (ActiveSlot) {
+		/* Hide Cast Menu and show Cast Selector. */
+		document.getElementById("Menus").classList.add("showNone");
+		document.getElementById("CastEditMenu").classList.add("showNone");
+		document.getElementById("CastMenu").classList.add("showNone");
+		document.getElementById("CastSelectMenu").classList.remove("showNone");
+	}
+};
+
+/* Cast GUI Select Menu callback. */
+document.getElementById("CastSelectMenu").onclick = function() {
+	const casts = document.getElementById("CastSelectorGrid").children;
+
+	let clicked = false;
+	for (let i = 0; i < 26; i++) {
+		casts[i].onclick = function() {
+			document.getElementById("CastSelection").value = i;
+			InitSelectedCast(i);
+
+			/* Set Picture. */
+			if (ActiveCast.GetAlternatePic()) {
+				document.getElementById("Cast_Prev").src = `/assets/images/cast_alt/${document.getElementById("CastSelection").value}.png`;
+
+			} else {
+				document.getElementById("Cast_Prev").src = `/assets/images/cast/${document.getElementById("CastSelection").value}.png`;
+			}
+
+			document.getElementById("CastSelectMenu").classList.add("showNone");
+			document.getElementById("CastEditMenu").classList.remove("showNone");
+			document.getElementById("CastMenu").classList.remove("showNone");
+			document.getElementById("Menus").classList.remove("showNone");
+			clicked = true;
+		}
+
+		if (clicked) break;
+	}
 };

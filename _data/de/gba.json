@@ -31,6 +31,8 @@
 	"general-ratings": "Quoten",
 	"general-simoleons": "Simoleons",
 
+	"gui-cast-selector": "Wähle den Schauspieler, den du bearbeiten möchtest.",
+
 	"loader-select": "Wähle eine Speicherdatei",
 
 	"max": "Max",
@@ -46,7 +48,7 @@
 
 	"msg-no-sav-selected": "Keine Speicherdatei ausgewählt!",
 	"msg-no-valid-sav": "Dies ist kein gültiger Die Sims 2 GBA Speicherstand.\nFalls dies ein Fehler ist, berichte das zur Sim2Editor Repository.",
-	"msg-wip-warning": "Dies ist ein 'Work in progress' SAVEditor. Es wird empfohlen eine Sicherung zu erstellen bevor dies ausprobiert wird.",
+	"msg-wip-warning": "Dies ist ein 'Work in progress' SAVEditor. Es wird empfohlen eine Sicherung zu erstellen bevor dies ausprobiert wird. NOTE: Ein paar Features könnten eventuell nicht richtig funktionieren, falls du noch an dem 'Wie alles begann' tutorial bist.",
 
 	"no": "Nein",
 	"none": "keiner",

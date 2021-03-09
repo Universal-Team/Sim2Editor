@@ -1,25 +1,26 @@
 <!-- Sim2Editor GBA Cast Menu. -->
 <div id="CastMenu" class="showNone"><br>
+	<img id="Cast_Prev" src="/assets/images/cast/0.png" alt="Cast Preview" width="140" height="140"><br><br>
 	<label for="CastSelection">{{ site.data.[page.lang].gba.cast-selected }}</label><select id="CastSelection" class="SelectionList"></select><br><br>
 
 	<div id="CastEditMenu" class="showNone">
 		{{ site.data.[page.lang].gba.cast-interaction-friendly }}<br>
-			<input type="number" id="Cast_Friendly" min="0" max="3" class="EditBox">
+			<img src="/assets/images/interaction/interaction_level0.png" alt="Interaction Level 0" id="Cast_Friendly" height="116" width="106"></canvas>
 			<button type="button" id="Cast_MinFriendly" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
 			<button type="button" id="Cast_MaxFriendly" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
-		<br>
+		<br><br>
 
 		{{ site.data.[page.lang].gba.cast-interaction-romance }}<br>
-			<input type="number" id="Cast_Romance" min="0" max="3" class="EditBox">
+			<img src="/assets/images/interaction/interaction_level0.png" alt="Interaction Level 0" id="Cast_Romance" height="116" width="106"></canvas>
 			<button type="button" id="Cast_MinRomance" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
 			<button type="button" id="Cast_MaxRomance" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
-		<br>
+		<br><br>
 
 		{{ site.data.[page.lang].gba.cast-interaction-intimidate }}<br>
-			<input type="number" id="Cast_Intimidate" min="0" max="3" class="EditBox">
+			<img src="/assets/images/interaction/interaction_level0.png" alt="Interaction Level 0" id="Cast_Intimidate" height="116" width="106"></canvas>
 			<button type="button" id="Cast_MinIntimidate" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
 			<button type="button" id="Cast_MaxIntimidate" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
-		<br>
+		<br><br>
 
 		{{ site.data.[page.lang].gba.cast-alternative-picture }} <input type="checkbox" id="Cast_AlternatePic"><br>
 		{{ site.data.[page.lang].gba.cast-mystery }} <input type="checkbox" id="Cast_Mystery"><br><br>

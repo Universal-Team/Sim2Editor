@@ -7,29 +7,30 @@
 	<meta name="viewport" content="width=device-width,maximum-scale=2">
 	<title>Sim2Editor - GBA</title>
 
-	<link rel="stylesheet" href="../assets/css/gba/dark.css">
+	<link rel="stylesheet" href="/assets/css/gba/dark.css">
 
 	<!-- Common things. -->
-	<script type="module" src="../assets/js/common/checksum.js"></script>
-	<script type="module" src="../assets/js/common/common.js"></script>
-	<script type="module" src="../assets/js/common/simutils.js"></script>
+	<script type="module" src="/assets/js/common/checksum.js"></script>
+	<script type="module" src="/assets/js/common/common.js"></script>
+	<script type="module" src="/assets/js/common/simutils.js"></script>
 
 	<!-- Main things. -->
-	<script type="module" src="../assets/js/gba/main.js"></script>
-	<script type="module" src="../assets/js/gba/string-handler.js"></script>
+	<script type="module" src="/assets/js/gba/gfx.js"></script>
+	<script type="module" src="/assets/js/gba/main.js"></script>
+	<script type="module" src="/assets/js/gba/string-handler.js"></script>
 
 	<!-- Core things. -->
-	<script type="module" src="../assets/js/gba/core/cast.js"></script>
-	<script type="module" src="../assets/js/gba/core/episode.js"></script>
-	<script type="module" src="../assets/js/gba/core/sav.js"></script>
-	<script type="module" src="../assets/js/gba/core/savslot.js"></script>
-	<script type="module" src="../assets/js/gba/core/savutils.js"></script>
+	<script type="module" src="/assets/js/gba/core/cast.js"></script>
+	<script type="module" src="/assets/js/gba/core/episode.js"></script>
+	<script type="module" src="/assets/js/gba/core/sav.js"></script>
+	<script type="module" src="/assets/js/gba/core/savslot.js"></script>
+	<script type="module" src="/assets/js/gba/core/savutils.js"></script>
 
 	<!-- Menu things. -->
-	<script type="module" src="../assets/js/gba/menu/main-editor-menu.js"></script>
-	<script type="module" src="../assets/js/gba/menu/slot-menu.js"></script>
-	<script type="module" src="../assets/js/gba/menu/cast-menu.js"></script>
-	<script type="module" src="../assets/js/gba/menu/episode-menu.js"></script>
+	<script type="module" src="/assets/js/gba/menu/main-editor-menu.js"></script>
+	<script type="module" src="/assets/js/gba/menu/slot-menu.js"></script>
+	<script type="module" src="/assets/js/gba/menu/cast-menu.js"></script>
+	<script type="module" src="/assets/js/gba/menu/episode-menu.js"></script>
 </head>
 
 <body>
@@ -44,6 +45,9 @@
 			{% include gba/menu/main-editor-menu.html %} <!-- General / Main Editor Menu. -->
 			{% include gba/menu/cast-menu.html %}
 			{% include gba/menu/episode-menu.html %}
+
+			<!-- GUI Selections. -->
+			{% include gba/selectors/cast-selector.html %}
 		</div>
 
 		{% include footer.html %} <!-- Footer. -->
