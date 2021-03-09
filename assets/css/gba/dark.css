@@ -63,5 +63,13 @@ footer {
 	display: inline-grid;
 	grid-template-columns: auto auto auto;
 	width: min-content;
-	gap: 10px;
+	gap: 4px;
+}
+
+/* Social Moves Selection Grid. */
+#SocialMoveSelectorGrid {
+	display: inline-grid;
+	grid-template-columns: auto auto auto auto auto;
+	width: min-content;
+	gap: 4px;
 }

@@ -46,8 +46,14 @@
 </ul>
 
 <b>Unlock Episode.</b><br>
-<b>Mass Max out the Rating and Unlock State of all 11 Episodes. Even the `A Very Special Reunion` Episode!</b>
+<b>Mass Max out the Rating and Unlock State of all 11 Episodes. Even the `A Very Special Reunion` Episode!</b><br>
 
+## Social-Move-Menu
+<b>Change the State flag of the Social Move (locked, unlocked, blocked).</b><br>
+<b>Change the Level of the Social Move (Lv. 1, Lv. 2, Lv. 3, Lv. None?).</b><br>
+<b>Unlock all Social Moves with one click.</b><br>
+<b>Max out all Social Move Levels with one click.</b><br>
+<b>Clear all Social Move Levels with one click.</b>
 
 # NDS
 - None right now.

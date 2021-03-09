@@ -30,6 +30,7 @@ import { SavData } from './savutils.js';
 /* Import Cast and Episode classes. */
 import { Cast } from './cast.js';
 import { Episode } from './episode.js';
+import { SocialMove } from './social-move.js';
 
 /*
 	NOTE: The Cast + Collectables seem to be moved through +0x5, if the tutorial is over.
@@ -109,4 +110,7 @@ export class SAVSlot {
 
 	/* Return an Cast class. ( 0 - 25 ) */
 	GetCast(v) { if (v < 26) return new Cast(this.Offs + 0x46C + (v * 0xA), v); };
+
+	/* Return a Social Move class ( 0 - 14 ) */
+	GetSocialMove(v) { if (v < 15) return new SocialMove(this.Offs, v); };
 };

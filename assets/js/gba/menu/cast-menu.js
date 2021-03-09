@@ -24,12 +24,12 @@
 *         reasonable ways as different from the original version.
 */
 
-import { SetInteractionLevel } from '../gfx.js';
+import { SetConversationLevel } from '../gfx.js';
 import { ActiveSlot } from './slot-menu.js';
 let ActiveCast;
 
 /*
-	Inits the Selected Cast, so editing is possible.
+	Inits the Selected Cast.
 
 	Cst: The selected Cast.
 */
@@ -37,10 +37,10 @@ function InitSelectedCast(Cst) {
 	ActiveCast = ActiveSlot.GetCast(Cst);
 
 	if (ActiveCast) {
-		document.getElementById("CastEditMenu").classList.remove("showNone"); // We can edit.
+		document.getElementById("CastEditMenu").classList.remove("showNone");
 
-		/* Interaction Levels. */
-		for (let i = 0; i < 3; i++) CastInteractionDraw(i);
+		/* Conversation Levels. */
+		for (let i = 0; i < 3; i++) CastConversationDraw(i);
 
 		/* Flags. */
 		document.getElementById("Cast_AlternatePic").checked = ActiveCast.GetAlternatePic();
@@ -73,61 +73,61 @@ export function CastMenuHide() {
 document.getElementById("CastSelection").onchange = () => InitSelectedCast(document.getElementById("CastSelection").value);
 
 
-/* Friendly Interaction Level. */
+/* Friendly Conversation Level. */
 document.getElementById("Cast_Friendly").onclick = function() {
 	if (ActiveCast.GetFriendly() < 3) ActiveCast.SetFriendly(ActiveCast.GetFriendly() + 1);
 	else ActiveCast.SetFriendly(0);
 
 	document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
-	CastInteractionDraw(0);
+	CastConversationDraw(0);
 };
 document.getElementById("Cast_MinFriendly").onclick = function() {
 	ActiveCast.SetFriendly(0);
 	document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
-	CastInteractionDraw(0);
+	CastConversationDraw(0);
 };
 document.getElementById("Cast_MaxFriendly").onclick = function() {
 	ActiveCast.SetFriendly(3);
 	document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
-	CastInteractionDraw(0);
+	CastConversationDraw(0);
 };
 
-/* Romance Interaction Level. */
+/* Romance Conversation Level. */
 document.getElementById("Cast_Romance").onclick = function() {
 	if (ActiveCast.GetRomance() < 3) ActiveCast.SetRomance(ActiveCast.GetRomance() + 1);
 	else ActiveCast.SetRomance(0);
 
 	document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
-	CastInteractionDraw(1);
+	CastConversationDraw(1);
 };
 document.getElementById("Cast_MinRomance").onclick = function() {
 	ActiveCast.SetRomance(0);
 	document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
-	CastInteractionDraw(1);
+	CastConversationDraw(1);
 };
 document.getElementById("Cast_MaxRomance").onclick = function() {
 	ActiveCast.SetRomance(3);
 	document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
-	CastInteractionDraw(1);
+	CastConversationDraw(1);
 };
 
-/* Intimidate Interaction Level. */
+/* Intimidate Conversation Level. */
 document.getElementById("Cast_Intimidate").onclick = function() {
 	if (ActiveCast.GetIntimidate() < 3) ActiveCast.SetIntimidate(ActiveCast.GetIntimidate() + 1);
 	else ActiveCast.SetIntimidate(0);
 
 	document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
-	CastInteractionDraw(2);
+	CastConversationDraw(2);
 };
 document.getElementById("Cast_MinIntimidate").onclick = function() {
 	ActiveCast.SetIntimidate(0);
 	document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
-	CastInteractionDraw(2);
+	CastConversationDraw(2);
 };
 document.getElementById("Cast_MaxIntimidate").onclick = function() {
 	ActiveCast.SetIntimidate(3);
 	document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
-	CastInteractionDraw(2);
+	CastConversationDraw(2);
 };
 
 /* Alternative Picture (Smile). */
@@ -147,8 +147,8 @@ document.getElementById("Cast_AlternatePic").onclick = function() {
 document.getElementById("Cast_Mystery").onclick = () => ActiveCast.SetMystery(document.getElementById("Cast_Mystery").checked);
 
 
-/* Mass Action -> Max Interactions. */
-document.getElementById("Cast_MaxInteraction").onclick = function() {
+/* Mass Action -> Max Conversation. */
+document.getElementById("Cast_MaxConversation").onclick = function() {
 	for (let i = 0; i < 26; i++) {
 		const C = ActiveSlot.GetCast(i);
 
@@ -160,11 +160,11 @@ document.getElementById("Cast_MaxInteraction").onclick = function() {
 	document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
 	document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
 	document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
-	for (let i = 0; i < 3; i++) CastInteractionDraw(i);
+	for (let i = 0; i < 3; i++) CastConversationDraw(i);
 };
 
-/* Mass Action -> Min Interactions. */
-document.getElementById("Cast_MinInteraction").onclick = function() {
+/* Mass Action -> Min Conversation. */
+document.getElementById("Cast_MinConversation").onclick = function() {
 	for (let i = 0; i < 26; i++) {
 		const C = ActiveSlot.GetCast(i);
 
@@ -176,7 +176,7 @@ document.getElementById("Cast_MinInteraction").onclick = function() {
 	document.getElementById("Cast_Friendly").value = ActiveCast.GetFriendly();
 	document.getElementById("Cast_Romance").value = ActiveCast.GetRomance();
 	document.getElementById("Cast_Intimidate").value = ActiveCast.GetIntimidate();
-	for (let i = 0; i < 3; i++) CastInteractionDraw(i);
+	for (let i = 0; i < 3; i++) CastConversationDraw(i);
 };
 
 
@@ -203,24 +203,24 @@ document.getElementById("Cast_Mystery_Unlocker").onclick = function() {
 };
 
 /*
-	Draw the Active Cast's Interaction Levels.
+	Draw the Active Cast's Conversation Levels.
 
 	i: 0: Friendly, 1: Romance, 2: Intimidate.
 */
-function CastInteractionDraw(i) {
+function CastConversationDraw(i) {
 	if (!ActiveCast) return;
 
 	switch(i) {
 		case 0:
-			SetInteractionLevel(document.getElementById("Cast_Friendly"), ActiveCast.GetFriendly());
+			SetConversationLevel(document.getElementById("Cast_Friendly"), ActiveCast.GetFriendly());
 			break;
 
 		case 1:
-			SetInteractionLevel(document.getElementById("Cast_Romance"), ActiveCast.GetRomance());
+			SetConversationLevel(document.getElementById("Cast_Romance"), ActiveCast.GetRomance());
 			break;
 
 		case 2:
-			SetInteractionLevel(document.getElementById("Cast_Intimidate"), ActiveCast.GetIntimidate());
+			SetConversationLevel(document.getElementById("Cast_Intimidate"), ActiveCast.GetIntimidate());
 			break;
 	}
 };
@@ -237,7 +237,7 @@ document.getElementById("Cast_Prev").onclick = function() {
 };
 
 /* Cast GUI Select Menu callback. */
-document.getElementById("CastSelectMenu").onclick = function() {
+document.getElementById("CastSelectorGrid").onclick = function() {
 	const casts = document.getElementById("CastSelectorGrid").children;
 
 	let clicked = false;

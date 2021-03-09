@@ -1,0 +1,26 @@
+<!-- Sim2Editor GBA Social Move Menu. -->
+<div id="SocialMoveMenu" class="showNone"><br>
+	<img id="SocialMovePrev" src="/assets/images/social-moves/0.png" alt="Social Move Preview" width="140" height="140"><br><br>
+	<label for="MoveSelection">{{ site.data.[page.lang].gba.move-selected }}</label><select id="MoveSelection" class="SelectionList"></select><br><br>
+
+	<div id="SocialMoveEditMenu" class="showNone">
+		<label for="SocialMove_Flag">{{ site.data.[page.lang].gba.move-flag }}</label><select id="SocialMove_Flag" class="SelectionList">
+			<option value="0">{{ site.data.[page.lang].gba.move-locked }}</option>
+			<option value="1">{{ site.data.[page.lang].gba.move-unlocked }}</option>
+			<option value="2">{{ site.data.[page.lang].gba.move-blocked }}</option>
+		</select><br><br>
+
+		<label for="SocialMove_Level">{{ site.data.[page.lang].gba.move-level }}</label><select id="SocialMove_Level" class="SelectionList">
+			<option value="0">{{ site.data.[page.lang].gba.move-level-1 }}</option>
+			<option value="1">{{ site.data.[page.lang].gba.move-level-2 }}</option>
+			<option value="2">{{ site.data.[page.lang].gba.move-level-3 }}</option>
+			<option value="3">{{ site.data.[page.lang].gba.move-level-none }}</option>
+		</select><br><br><br>
+	</div>
+
+	<div>
+		<button type="button" id="SocialMove_UnlockAll" class="ClickButton">{{ site.data.[page.lang].gba.move-unlock-all }}</button><br>
+		<button type="button" id="SocialMove_MinAll" class="ClickButton">{{ site.data.[page.lang].gba.move-min-all }}</button><br>
+		<button type="button" id="SocialMove_MaxAll" class="ClickButton">{{ site.data.[page.lang].gba.move-max-all }}</button>
+	</div>
+</div>

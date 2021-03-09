@@ -32,8 +32,9 @@ import { MainEditorInit, MainEditorHide } from './menu/main-editor-menu.js';
 import { SlotMenuInit, SlotMenuHide } from './menu/slot-menu.js';
 import { CastMenuInit, CastMenuHide } from './menu/cast-menu.js';
 import { EpisodeMenuInit, EpisodeMenuHide } from './menu/episode-menu.js';
+import { SocialMoveMenuInit, SocialMoveMenuHide } from './menu/social-move-menu.js';
 
-import { Casts, Collectables, Episodes, LoadStrings } from './string-handler.js';
+import { Casts, Collectables, Episodes, Moves, LoadStrings } from './string-handler.js';
 import { Sav, SavName, RawData } from './core/savutils.js';
 
 /* Initialize the List Selections. */
@@ -59,6 +60,24 @@ export function InitStrings() {
 		e.innerText = Episodes[i + 1]; // Skip the first episode for now, because it isn't actually one, it's more like a tutorial.
 		e.value = i;
 		document.getElementById("EpisodeSelection").appendChild(e);
+	}
+
+	/* Init Social Moves List. */
+	for (let i = 0; i < 15; i++) {
+		let e = document.createElement("option");
+		e.innerText = Moves[i];
+		e.value = i;
+		document.getElementById("MoveSelection").appendChild(e);
+	}
+
+	/* Init Social Moves Flag list. */
+	for (let i = 0; i < 3; i++) {
+		const Flags = [ "move-locked", "move-unlocked", "move-blocked" ];
+
+		let e = document.createElement("option");
+		e.innerText = Moves[i];
+		e.value = i;
+		document.getElementById("MoveSelection").appendChild(e);
 	}
 
 	/* Init SAVSlot Selector. */
@@ -118,6 +137,11 @@ export function MenuHandle(NewMenu) {
 			document.getElementById("Episode-Menu").classList.replace("SelectedMenu", "UnselectedMenu");
 			EpisodeMenuHide();
 			break;
+
+		case "Social-Moves-Menu":
+			document.getElementById("Social-Moves-Menu").classList.replace("SelectedMenu", "UnselectedMenu");
+			SocialMoveMenuHide();
+			break;
 	}
 
 	/* Show and init new menu. */
@@ -141,6 +165,11 @@ export function MenuHandle(NewMenu) {
 			document.getElementById("Episode-Menu").classList.replace("UnselectedMenu", "SelectedMenu");
 			EpisodeMenuInit();
 			break;
+
+		case "Social-Moves-Menu":
+			document.getElementById("Social-Moves-Menu").classList.replace("UnselectedMenu", "SelectedMenu");
+			SocialMoveMenuInit();
+			break;
 	}
 
 	CurrentMenu = NewMenu; // Set to Current Menu.
@@ -151,6 +180,7 @@ document.getElementById("Slot-Selector-Menu").onclick = () => MenuHandle("Slot-S
 document.getElementById("Main-Editor-Menu").onclick = () => MenuHandle("Main-Editor-Menu");
 document.getElementById("Cast-Menu").onclick = () => MenuHandle("Cast-Menu");
 document.getElementById("Episode-Menu").onclick = () => MenuHandle("Episode-Menu");
+document.getElementById("Social-Moves-Menu").onclick = () => MenuHandle("Social-Moves-Menu");
 
 /* Finish call handling here. */
 document.getElementById("Finish-Menu").onclick = function() {

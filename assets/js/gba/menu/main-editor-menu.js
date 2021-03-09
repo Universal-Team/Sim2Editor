@@ -29,7 +29,7 @@ import { ActiveSlot } from './slot-menu.js';
 /* Initialize the Main Editor. */
 export function MainEditorInit() {
 	if (ActiveSlot) { // Ensure it's not undefined first.
-		document.getElementById("MainEditorMenu").classList.remove("showNone"); // We can edit.
+		document.getElementById("MainEditorMenu").classList.remove("showNone");
 
 		/* General. */
 		document.getElementById("Main_SimName").value = ActiveSlot.GetName();

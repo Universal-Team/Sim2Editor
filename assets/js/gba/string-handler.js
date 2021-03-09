@@ -28,13 +28,15 @@
 import Casts_EN from './strings/en/casts.js';
 import Collectables_EN from './strings/en/collectables.js';
 import Episodes_EN from './strings/en/episodes.js';
+import Moves_EN from './strings/en/social-moves.js';
 
 /* German. */
 import Casts_DE from './strings/de/casts.js';
 import Collectables_DE from './strings/de/collectables.js';
 import Episodes_DE from './strings/de/episodes.js';
+import Moves_DE from './strings/de/social-moves.js';
 
-export let Casts, Collectables, Episodes;
+export let Casts, Collectables, Episodes, Moves;
 
 /*
 	Load Strings.
@@ -47,18 +49,21 @@ export function LoadStrings(v) {
 			Casts = Casts_EN;
 			Collectables = Collectables_EN;
 			Episodes = Episodes_EN;
+			Moves = Moves_EN;
 			break;
 
 		case 3: // German.
 			Casts = Casts_DE;
 			Collectables = Collectables_DE;
 			Episodes = Episodes_DE;
+			Moves = Moves_DE;
 			break;
 
 		default: // Default to English.
 			Casts = Casts_EN;
 			Collectables = Collectables_EN;
 			Episodes = Episodes_EN;
+			Moves = Moves_EN;
 			break;
 	}
-}
+};

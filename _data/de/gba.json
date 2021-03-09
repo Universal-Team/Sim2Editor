@@ -1,10 +1,10 @@
 {
 	"cast-alternative-picture": "Alternatives Bild freigeschalten",
-	"cast-interaction-friendly": "Freundlich Interaktion Level",
-	"cast-interaction-intimidate": "Bedrohlich Interaktion Level",
-	"cast-interaction-romance": "Romantik Interaktion Level",
-	"cast-max-interaction": "Maximale Interaktion",
-	"cast-min-interaction": "Minimale Interaktion",
+	"cast-conversation-friendly": "Freundliches Gesprächs Level",
+	"cast-conversation-intimidate": "Bedrohliches Gesprächs Level",
+	"cast-conversation-romance": "Romantisches Gesprächs Level",
+	"cast-max-conversation": "Maximiere alle Gespräche",
+	"cast-min-conversation": "Minimiere alle Gespräche",
 	"cast-mystery": "Geheimnis freigeschalten",
 	"cast-selected": "Ausgewählter Schauspieler: ",
 	"cast-unlock-all-alt-pics": "Alle Alternativen Bilder freischalten",
@@ -32,6 +32,7 @@
 	"general-simoleons": "Simoleons",
 
 	"gui-cast-selector": "Wähle den Schauspieler, den du bearbeiten möchtest.",
+	"gui-social-move-selector": "Wähle die Aktion, die du bearbeiten möchtest.",
 
 	"loader-select": "Wähle eine Speicherdatei",
 
@@ -42,6 +43,7 @@
 	"menu-general": "General",
 	"menu-cast": "Schauspieler",
 	"menu-episode": "Folgen",
+	"menu-social-move": "Action",
 	"menu-finish": "Beenden",
 
 	"min": "Min",
@@ -49,6 +51,20 @@
 	"msg-no-sav-selected": "Keine Speicherdatei ausgewählt!",
 	"msg-no-valid-sav": "Dies ist kein gültiger Die Sims 2 GBA Speicherstand.\nFalls dies ein Fehler ist, berichte das zur Sim2Editor Repository.",
 	"msg-wip-warning": "Dies ist ein 'Work in progress' SAVEditor. Es wird empfohlen eine Sicherung zu erstellen bevor dies ausprobiert wird. NOTE: Ein paar Features könnten eventuell nicht richtig funktionieren, falls du noch an dem 'Wie alles begann' tutorial bist.",
+
+	"move-blocked": "geblockt",
+	"move-flag": "Action Flag: ",
+	"move-level": "Level: ",
+	"move-level-1": "Level 1",
+	"move-level-2": "Level 2",
+	"move-level-3": "Level 3",
+	"move-level-none": "Level Nichts",
+	"move-locked": "gesperrt",
+	"move-max-all": "Maximiere alle Aktion-Levels",
+	"move-min-all": "Minimiere alle Aktion-Levels",
+	"move-selected": "Ausgewählte Aktion: ",
+	"move-unlock-all": "Schalte alle Aktionen frei",
+	"move-unlocked": "freigeschaltet",
 
 	"no": "Nein",
 	"none": "keiner",

@@ -25,12 +25,12 @@
 */
 
 /*
-	Set the Cast's Interaction Level image.
+	Set the Cast's Conversation Level image.
 
 	CV: The img object element.
-	lvl: The Interaction Level.
+	lvl: The Conversation Level.
 */
-export function SetInteractionLevel(element, lvl) {
-	element.src = `/assets/images/interaction/interaction_level${lvl}.png`;
-	element.alt = `interaction Level ${lvl}`;
+export function SetConversationLevel(element, lvl) {
+	element.src = `/assets/images/conversation/conversation_level${lvl}.png`;
+	element.alt = `Conversation Level ${lvl}`;
 };

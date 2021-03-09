@@ -1,10 +1,10 @@
 {
 	"cast-alternative-picture": "Alternative Picture Unlocked",
-	"cast-interaction-friendly": "Friendly Interaction Level",
-	"cast-interaction-intimidate": "Intimidate Interaction Level",
-	"cast-interaction-romance": "Romance Interaction Level",
-	"cast-max-interaction": "Max Interactions",
-	"cast-min-interaction": "Min Interactions",
+	"cast-conversation-friendly": "Friendly Conversation Level",
+	"cast-conversation-intimidate": "Intimidate Conversation Level",
+	"cast-conversation-romance": "Romance Conversation Level",
+	"cast-max-conversation": "Max Conversations",
+	"cast-min-conversation": "Min Conversations",
 	"cast-mystery": "Mystery Unlocked",
 	"cast-selected": "Selected Cast: ",
 	"cast-unlock-all-alt-pics": "Unlock all Alternative Picture",
@@ -32,16 +32,19 @@
 	"general-simoleons": "Simoleons",
 
 	"gui-cast-selector": "Select the Cast you like to edit.",
+	"gui-social-move-selector": "Select the Social Move you like to edit.",
 
 	"loader-select": "Select a SAVFile",
 
 	"max": "Max",
 
+	"menu-action": "Action",
 	"menu-loaded-slot": "Loaded Slot: ",
 	"menu-slots": "Slots",
 	"menu-general": "General",
 	"menu-cast": "Cast",
 	"menu-episode": "Episode",
+	"menu-social-move": "Social Moves",
 	"menu-finish": "Finish",
 
 	"min": "Min",
@@ -49,6 +52,20 @@
 	"msg-no-sav-selected": "No SAVFile selected!",
 	"msg-no-valid-sav": "This is not a valid The Sims 2 GBA SAVFile.\nIf this is a mistake, report it on the Sim2Editor repository.",
 	"msg-wip-warning": "This is a work in progress SAVEditor. It is recommended to create backups before trying it out. NOTE: Some Features may not properly work if you are still on the 'It All Began' tutorial.",
+
+	"move-blocked": "blocked",
+	"move-flag": "Move Flag: ",
+	"move-level": "Level: ",
+	"move-level-1": "Level 1",
+	"move-level-2": "Level 2",
+	"move-level-3": "Level 3",
+	"move-level-none": "Level None",
+	"move-locked": "locked",
+	"move-max-all": "Max out all Social Move Levels",
+	"move-min-all": "Clear all Social Move Levels",
+	"move-selected": "Selected Move: ",
+	"move-unlock-all": "Unlock all Moves",
+	"move-unlocked": "Unlocked",
 
 	"no": "No",
 	"none": "None",
