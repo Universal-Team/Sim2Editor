@@ -1,4 +1,4 @@
-/* Episode Names. */
+/* Episode and Rating Category Names. */
 const Episodes_EN = [
 	"It All Began",
 	"Buried By the Mob",
@@ -11,7 +11,13 @@ const Episodes_EN = [
 	"Triassic Trouble",
 	"The Doomed Earth",
 	"It All Came to an End",
-	"A Very Special Reunion"
+	"A Very Special Reunion",
+
+	"Episode Ratings",
+	"Plot Points Completed",
+	"Aspiration Conversations",
+	"Hidden Want Completed",
+	"Errand Completed"
 ];
 
 export default Episodes_EN;

@@ -3,31 +3,31 @@
 	<label for="EpisodeSelection">{{ site.data.[page.lang].gba.episode-selected }}</label><select id="EpisodeSelection" class="SelectionList"></select><br><br>
 
 	<div id="EpisodeEditMenu" class="showNone">
-		<b>{{ site.data.[page.lang].gba.episode-ratings }}</b><br><br>
+		<b id="Episode_Ratings"></b><br><br>
 
-			{{ site.data.[page.lang].gba.episode-plot-points-completed }}<br>
+			<b id="Episode_Plot_Points_Completed"></b><br>
 				<input type="number" id="Episode_Rating1" min="0" max="25" class="EditBox">
 				<button type="button" id="Episode_MinRating1" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
 				<button type="button" id="Episode_MaxRating1" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
-			<br>
+			<br><br>
 
-			{{ site.data.[page.lang].gba.episode-aspiration-conversations }}<br>
+			<b id="Episode_Aspiration_Conversation"></b><br>
 				<input type="number" id="Episode_Rating2" min="0" max="25" class="EditBox">
 				<button type="button" id="Episode_MinRating2" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
 				<button type="button" id="Episode_MaxRating2" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
-			<br>
+			<br><br>
 
-			{{ site.data.[page.lang].gba.episode-hidden-want-completed }}<br>
+			<b id="Episode_Hidden_Want_Completed"></b><br>
 				<input type="number" id="Episode_Rating3" min="0" max="25" class="EditBox">
 				<button type="button" id="Episode_MinRating3" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
 				<button type="button" id="Episode_MaxRating3" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
-			<br>
+			<br><br>
 
-			{{ site.data.[page.lang].gba.episode-errand-completed }}<br>
+			<b id="Episode_Errand_Completed"></b><br>
 				<input type="number" id="Episode_Rating4" min="0" max="25" class="EditBox">
 				<button type="button" id="Episode_MinRating4" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
 				<button type="button" id="Episode_MaxRating4" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
-			<br>
+			<br><br>
 
 			{{ site.data.[page.lang].gba.episode-unlocked }}
 				<input type="checkbox" id="Episode_Unlocked">

@@ -92,18 +92,30 @@ export class SAVSlot {
 	/* Empty Chug-Chug Cola Cans. */
 	GetCans() { return SavData.getUint8(this.Offs + 0xFC); };
 	SetCans(v) { SavData.setUint8(this.Offs + 0xFC, Math.min(250, v)); };
+	/* Get the Sell price of it. */
+	GetCansPrice() { return SavData.getUint8(this.Offs + 0x100); };
+	SetCansPrice(v) { SavData.setUint8(this.Offs + 0x100, Math.min(255, v)); };
 
 	/* Cowbells. */
 	GetCowbells() { return SavData.getUint8(this.Offs + 0xFD); };
 	SetCowbells(v) { SavData.setUint8(this.Offs + 0xFD, Math.min(250, v)); };
+	/* Get the Sell price of it. */
+	GetCowbellsPrice() { return SavData.getUint8(this.Offs + 0x101); };
+	SetCowbellsPrice(v) { SavData.setUint8(this.Offs + 0x101, Math.min(255, v)); };
 
 	/* Alien Spaceship Parts. */
 	GetSpaceship() { return SavData.getUint8(this.Offs + 0xFE); };
 	SetSpaceship(v) { SavData.setUint8(this.Offs + 0xFE, Math.min(250, v)); };
+	/* Get the Sell price of it. */
+	GetSpaceshipPrice() { return SavData.getUint8(this.Offs + 0x102); };
+	SetSpaceshipPrice(v) { SavData.setUint8(this.Offs + 0x102, Math.min(255, v)); };
 
 	/* Nuclear Fuel Rods. */
 	GetFuelrods() { return SavData.getUint8(this.Offs + 0xFF); };
 	SetFuelrods(v) { SavData.setUint8(this.Offs + 0xFF, Math.min(250, v)); };
+	/* Get the Sell price of it. */
+	GetFuelrodsPrice() { return SavData.getUint8(this.Offs + 0x103); };
+	SetFuelrodsPrice(v) { SavData.setUint8(this.Offs + 0x103, Math.min(255, v)); };
 
 	/* Return an Episode class. ( 0 - 10 ) */
 	GetEpisode(v) { if (v < 11) return new Episode(this.Slot, v); };

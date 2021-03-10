@@ -21,10 +21,10 @@
 <b>Edit Ratings.</b><br>
 <b>Edit Hour and Minute.</b><br>
 
-<b>Edit Empty Chug-Chug Cola Cans.</b><br>
-<b>Edit Cowbells.</b><br>
-<b>Edit Alien Spaceship Parts.</b><br>
-<b>Edit Nuclear Fuel Rods.</b><br><br>
+<b>Edit Empty Chug-Chug Cola Cans Amount and Sell price.</b><br>
+<b>Edit Cowbells Amount and Sell price.</b><br>
+<b>Edit Alien Spaceship Parts Amount and Sell price.</b><br>
+<b>Edit Nuclear Fuel Rods Amount and Sell price.</b><br><br>
 
 ## Cast-Menu
 <b>Edit Friendly Interaction Level.</b><br>

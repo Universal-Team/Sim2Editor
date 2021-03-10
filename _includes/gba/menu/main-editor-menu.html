@@ -3,60 +3,88 @@
 	<!-- General stuff. -->
 	<div>
 		<h3><b>{{ site.data.[page.lang].gba.general-general }}</b></h3>
-		{{ site.data.[page.lang].gba.general-name }}<br>
+		<label for="Main_SimName">{{ site.data.[page.lang].gba.general-name }}</label>
 			<input type="text" id="Main_SimName" size="8" class="EditBox">
-		<br>
+		<br><br>
 
-		{{ site.data.[page.lang].gba.general-simoleons }}<br>
+		<label for="Main_Simoleons">{{ site.data.[page.lang].gba.general-simoleons }}</label>
 			<input type="number" id="Main_Simoleons" min="0" max="999999" class="EditBox">
 			<button type="button" id="Main_MinSimoleons" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
 			<button type="button" id="Main_MaxSimoleons" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
-		<br>
+		<br><br>
 
-		{{ site.data.[page.lang].gba.general-ratings }}<br>
+		<label for="Main_Ratings">{{ site.data.[page.lang].gba.general-ratings }}</label>
 			<input type="number" id="Main_Ratings" min="0" max="9999" class="EditBox">
 			<button type="button" id="Main_MinRatings" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
 			<button type="button" id="Main_MaxRatings" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
-		<br>
+		<br><br>
 
-		{{ site.data.[page.lang].gba.general-hour }}<br>
+		<label for="Main_Hour">{{ site.data.[page.lang].gba.general-hour }}</label>
 			<input type="number" id="Main_Hour" min="0" max="23" class="EditBox">
-		<br>
+		<br><br>
 
-		{{ site.data.[page.lang].gba.general-minute }}<br>
+		<label for="Main_Minute">{{ site.data.[page.lang].gba.general-minute }}</label>
 			<input type="number" id="Main_Minute" min="0" max="59" class="EditBox">
-		<br>
+		<br><br>
 	</div>
 
 	<!-- Collectables. -->
 	<div>
 		<h3><b>{{ site.data.[page.lang].gba.general-collectables }}</b></h3>
 		<b id="collectables-chug-chug-cola-cans"></b><br>
-		<img src="/assets/images/collectables/cola.png" alt="img"><br>
-			<input type="number" id="Main_Cans" min="0" max="250" class="EditBox">
-			<button type="button" id="Main_MinCans" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
-			<button type="button" id="Main_MaxCans" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<img src="/assets/images/collectables/cola.png" alt="img"><br>
+			<label for="Main_Cans_Amount">{{ site.data.[page.lang].gba.general-amount }}</label>
+				<input type="number" id="Main_Cans_Amount" min="0" max="250" class="EditBox">
+				<button type="button" id="Main_MinCans" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button type="button" id="Main_MaxCans" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<br>
+
+			<label for="Main_Cans_Price">{{ site.data.[page.lang].gba.general-sellprice }}</label>
+				<input type="number" id="Main_Cans_Price" min="0" max="255" class="EditBox">
+				<button type="button" id="Main_MinCansPrice" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button type="button" id="Main_MaxCansPrice" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
 		<br><br>
 
 		<b id="collectables-cowbells"></b><br>
 			<img src="/assets/images/collectables/bell.png" alt="img"><br>
-			<input type="number" id="Main_Cowbells" min="0" max="250" class="EditBox">
-			<button type="button" id="Main_MinCowbells" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
-			<button type="button" id="Main_MaxCowbells" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<label for="Main_Cowbells_Amount">{{ site.data.[page.lang].gba.general-amount }}</label>
+				<input type="number" id="Main_Cowbells_Amount" min="0" max="250" class="EditBox">
+				<button type="button" id="Main_MinCowbells" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button type="button" id="Main_MaxCowbells" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<br>
+
+			<label for="Main_Cowbells_Price">{{ site.data.[page.lang].gba.general-sellprice }}</label>
+				<input type="number" id="Main_Cowbells_Price" min="0" max="255" class="EditBox">
+				<button type="button" id="Main_MinCowbellsPrice" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button type="button" id="Main_MaxCowbellsPrice" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
 		<br><br>
 
 		<b id="collectables-alien-spaceship-parts"></b><br>
 			<img src="/assets/images/collectables/spaceship.png" alt="img"><br>
-			<input type="number" id="Main_SpaceshipParts" min="0" max="250" class="EditBox">
-			<button type="button" id="Main_MinSpaceshipParts" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
-			<button type="button" id="Main_MaxSpaceshipParts" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<label for="Main_SpaceshipParts_Amount">{{ site.data.[page.lang].gba.general-amount }}</label>
+				<input type="number" id="Main_SpaceshipParts_Amount" min="0" max="250" class="EditBox">
+				<button type="button" id="Main_MinSpaceshipParts" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button type="button" id="Main_MaxSpaceshipParts" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<br>
+
+			<label for="Main_SpaceshipParts_Price">{{ site.data.[page.lang].gba.general-sellprice }}</label>
+				<input type="number" id="Main_SpaceshipParts_Price" min="0" max="255" class="EditBox">
+				<button type="button" id="Main_MinSpaceshipPartsPrice" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button type="button" id="Main_MaxSpaceshipPartsPrice" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
 		<br><br>
 
 		<b id="collectables-nuclear-fuel-rods"></b><br>
 			<img src="/assets/images/collectables/fuelrod.png" alt="img"><br>
-			<input type="number" id="Main_Fuelrods" min="0" max="250" class="EditBox">
-			<button type="button" id="Main_MinFuelrods" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
-			<button type="button" id="Main_MaxFuelrods" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<label for="Main_Fuelrods_Amount">{{ site.data.[page.lang].gba.general-amount }}</label>
+				<input type="number" id="Main_Fuelrods_Amount" min="0" max="250" class="EditBox">
+				<button type="button" id="Main_MinFuelrods" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button type="button" id="Main_MaxFuelrods" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
+			<br>
+
+			<label for="Main_Fuelrods_Price">{{ site.data.[page.lang].gba.general-sellprice }}</label>
+				<input type="number" id="Main_Fuelrods_Price" min="0" max="255" class="EditBox">
+				<button type="button" id="Main_MinFuelrodsPrice" class="ClickButton">{{ site.data.[page.lang].gba.min }}</button>
+				<button type="button" id="Main_MaxFuelrodsPrice" class="ClickButton">{{ site.data.[page.lang].gba.max }}</button>
 		<br>
 	</div>
 </div>

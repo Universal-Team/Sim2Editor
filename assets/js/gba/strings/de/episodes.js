@@ -1,4 +1,4 @@
-/* Folgen-Namen. */
+/* Folgen und Folgen-Quoten Namen. */
 const Episodes_DE = [
 	"Wie alles begann",
 	"Von Gangstern vergraben",
@@ -11,7 +11,13 @@ const Episodes_DE = [
 	"Trias-Tumult",
 	"Weltuntergangsstimmung",
 	"Und alles ging zu Ende",
-	"Eine ganz besondere Reunion"
+	"Eine ganz besondere Reunion",
+
+	"Folgen Quote",
+	"Handlungspunkte erfüllt",
+	"Laufbahn-Gespräche",
+	"Heimlichen Wunsch erfüllt",
+	"Botengang erledigt"
 ];
 
 export default Episodes_DE;

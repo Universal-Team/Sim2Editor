@@ -38,11 +38,18 @@ export function MainEditorInit() {
 		document.getElementById("Main_Hour").value = ActiveSlot.GetTime()[0];
 		document.getElementById("Main_Minute").value = ActiveSlot.GetTime()[1];
 
-		/* Collectables. */
-		document.getElementById("Main_Cans").value = ActiveSlot.GetCans();
-		document.getElementById("Main_Cowbells").value = ActiveSlot.GetCowbells();
-		document.getElementById("Main_SpaceshipParts").value = ActiveSlot.GetSpaceship();
-		document.getElementById("Main_Fuelrods").value = ActiveSlot.GetFuelrods();
+		/* Collectables Amount + Sell Price. */
+		document.getElementById("Main_Cans_Amount").value = ActiveSlot.GetCans();
+		document.getElementById("Main_Cans_Price").value = ActiveSlot.GetCansPrice();
+
+		document.getElementById("Main_Cowbells_Amount").value = ActiveSlot.GetCowbells();
+		document.getElementById("Main_Cowbells_Price").value = ActiveSlot.GetCowbellsPrice();
+
+		document.getElementById("Main_SpaceshipParts_Amount").value = ActiveSlot.GetSpaceship();
+		document.getElementById("Main_SpaceshipParts_Price").value = ActiveSlot.GetSpaceshipPrice();
+
+		document.getElementById("Main_Fuelrods_Amount").value = ActiveSlot.GetFuelrods();
+		document.getElementById("Main_Fuelrods_Price").value = ActiveSlot.GetFuelrodsPrice();
 	}
 };
 /* Hide the Main Editor. */
@@ -98,58 +105,114 @@ document.getElementById("Main_Hour").onchange = () => TimeSet();
 document.getElementById("Main_Minute").onchange = () => TimeSet();
 
 
-/* Collectables -> Empty Chug-Chug Cola Cans. */
-document.getElementById("Main_Cans").onchange = function() {
-	ActiveSlot.SetCans(document.getElementById("Main_Cans").value);
-	document.getElementById("Main_Cans").value = ActiveSlot.GetCans();
+/* Collectables -> Empty Chug-Chug Cola Cans Amounts. */
+document.getElementById("Main_Cans_Amount").onchange = function() {
+	ActiveSlot.SetCans(document.getElementById("Main_Cans_Amount").value);
+	document.getElementById("Main_Cans_Amount").value = ActiveSlot.GetCans();
 };
 document.getElementById("Main_MinCans").onclick = function() {
 	ActiveSlot.SetCans(0);
-	document.getElementById("Main_Cans").value = ActiveSlot.GetCans();
+	document.getElementById("Main_Cans_Amount").value = ActiveSlot.GetCans();
 };
 document.getElementById("Main_MaxCans").onclick = function() {
 	ActiveSlot.SetCans(250);
-	document.getElementById("Main_Cans").value = ActiveSlot.GetCans();
+	document.getElementById("Main_Cans_Amount").value = ActiveSlot.GetCans();
 };
 
-/* Collectables -> Cowbells. */
-document.getElementById("Main_Cowbells").onchange = function() {
-	ActiveSlot.SetCowbells(document.getElementById("Main_Cowbells").value);
-	document.getElementById("Main_Cowbells").value = ActiveSlot.GetCowbells();
+/* Collectables -> Empty Chug-Chug Cola Cans Price. */
+document.getElementById("Main_Cans_Price").onchange = function() {
+	ActiveSlot.SetCansPrice(document.getElementById("Main_Cans_Price").value);
+	document.getElementById("Main_Cans_Price").value = ActiveSlot.GetCansPrice();
+};
+document.getElementById("Main_MinCansPrice").onclick = function() {
+	ActiveSlot.SetCansPrice(0);
+	document.getElementById("Main_Cans_Price").value = ActiveSlot.GetCansPrice();
+};
+document.getElementById("Main_MaxCansPrice").onclick = function() {
+	ActiveSlot.SetCansPrice(255);
+	document.getElementById("Main_Cans_Price").value = ActiveSlot.GetCansPrice();
+};
+
+/* Collectables -> Cowbells Amount. */
+document.getElementById("Main_Cowbells_Amount").onchange = function() {
+	ActiveSlot.SetCowbells(document.getElementById("Main_Cowbells_Amount").value);
+	document.getElementById("Main_Cowbells_Amount").value = ActiveSlot.GetCowbells();
 };
 document.getElementById("Main_MinCowbells").onclick = function() {
 	ActiveSlot.SetCowbells(0);
-	document.getElementById("Main_Cowbells").value = ActiveSlot.GetCowbells();
+	document.getElementById("Main_Cowbells_Amount").value = ActiveSlot.GetCowbells();
 };
 document.getElementById("Main_MaxCowbells").onclick = function() {
 	ActiveSlot.SetCowbells(250);
-	document.getElementById("Main_Cowbells").value = ActiveSlot.GetCowbells();
+	document.getElementById("Main_Cowbells_Amount").value = ActiveSlot.GetCowbells();
 };
 
-/* Collectables -> Alien Spaceship Parts. */
-document.getElementById("Main_SpaceshipParts").onchange = function() {
-	ActiveSlot.SetSpaceship(document.getElementById("Main_SpaceshipParts").value);
-	document.getElementById("Main_SpaceshipParts").value = ActiveSlot.GetSpaceship();
+/* Collectables -> Cowbells Price. */
+document.getElementById("Main_Cowbells_Price").onchange = function() {
+	ActiveSlot.SetCowbellsPrice(document.getElementById("Main_Cowbells_Price").value);
+	document.getElementById("Main_Cowbells_Price").value = ActiveSlot.GetCowbellsPrice();
+};
+document.getElementById("Main_MinCowbellsPrice").onclick = function() {
+	ActiveSlot.SetCowbellsPrice(0);
+	document.getElementById("Main_Cowbells_Price").value = ActiveSlot.GetCowbellsPrice();
+};
+document.getElementById("Main_MaxCowbellsPrice").onclick = function() {
+	ActiveSlot.SetCowbellsPrice(255);
+	document.getElementById("Main_Cowbells_Price").value = ActiveSlot.GetCowbellsPrice();
+};
+
+/* Collectables -> Alien Spaceship Parts Amount. */
+document.getElementById("Main_SpaceshipParts_Amount").onchange = function() {
+	ActiveSlot.SetSpaceship(document.getElementById("Main_SpaceshipParts_Amount").value);
+	document.getElementById("Main_SpaceshipParts_Amount").value = ActiveSlot.GetSpaceship();
 };
 document.getElementById("Main_MinSpaceshipParts").onclick = function() {
 	ActiveSlot.SetSpaceship(0);
-	document.getElementById("Main_SpaceshipParts").value = ActiveSlot.GetSpaceship();
+	document.getElementById("Main_SpaceshipParts_Amount").value = ActiveSlot.GetSpaceship();
 };
 document.getElementById("Main_MaxSpaceshipParts").onclick = function() {
 	ActiveSlot.SetSpaceship(250);
-	document.getElementById("Main_SpaceshipParts").value = ActiveSlot.GetSpaceship();
+	document.getElementById("Main_SpaceshipParts_Amount").value = ActiveSlot.GetSpaceship();
 };
 
-/* Collectables -> Nuclear Fuel Rods. */
-document.getElementById("Main_Fuelrods").onchange = function() {
-	ActiveSlot.SetFuelrods(document.getElementById("Main_Fuelrods").value);
-	document.getElementById("Main_Fuelrods").value = ActiveSlot.GetFuelrods();
+/* Collectables -> Alien Spaceship Parts Price. */
+document.getElementById("Main_SpaceshipParts_Price").onchange = function() {
+	ActiveSlot.SetSpaceshipPrice(document.getElementById("Main_SpaceshipParts_Price").value);
+	document.getElementById("Main_SpaceshipParts_Price").value = ActiveSlot.GetSpaceshipPrice();
+};
+document.getElementById("Main_MinSpaceshipPartsPrice").onclick = function() {
+	ActiveSlot.SetSpaceshipPrice(0);
+	document.getElementById("Main_SpaceshipParts_Price").value = ActiveSlot.GetSpaceshipPrice();
+};
+document.getElementById("Main_MaxSpaceshipPartsPrice").onclick = function() {
+	ActiveSlot.SetSpaceshipPrice(255);
+	document.getElementById("Main_SpaceshipParts_Price").value = ActiveSlot.GetSpaceshipPrice();
+};
+
+/* Collectables -> Nuclear Fuel Rods Amount. */
+document.getElementById("Main_Fuelrods_Amount").onchange = function() {
+	ActiveSlot.SetFuelrods(document.getElementById("Main_Fuelrods_Amount").value);
+	document.getElementById("Main_Fuelrods_Amount").value = ActiveSlot.GetFuelrods();
 };
 document.getElementById("Main_MinFuelrods").onclick = function() {
 	ActiveSlot.SetFuelrods(0);
-	document.getElementById("Main_Fuelrods").value = ActiveSlot.GetFuelrods();
+	document.getElementById("Main_Fuelrods_Amount").value = ActiveSlot.GetFuelrods();
 };
 document.getElementById("Main_MaxFuelrods").onclick = function() {
 	ActiveSlot.SetFuelrods(250);
-	document.getElementById("Main_Fuelrods").value = ActiveSlot.GetFuelrods();
+	document.getElementById("Main_Fuelrods_Amount").value = ActiveSlot.GetFuelrods();
+};
+
+/* Collectables -> Nuclear Fuel Rods Price. */
+document.getElementById("Main_Fuelrods_Price").onchange = function() {
+	ActiveSlot.SetFuelrodsPrice(document.getElementById("Main_Fuelrods_Price").value);
+	document.getElementById("Main_Fuelrods_Price").value = ActiveSlot.GetFuelrodsPrice();
+};
+document.getElementById("Main_MinFuelrodsPrice").onclick = function() {
+	ActiveSlot.SetFuelrodsPrice(0);
+	document.getElementById("Main_Fuelrods_Price").value = ActiveSlot.GetFuelrodsPrice();
+};
+document.getElementById("Main_MaxFuelrodsPrice").onclick = function() {
+	ActiveSlot.SetFuelrodsPrice(255);
+	document.getElementById("Main_Fuelrods_Price").value = ActiveSlot.GetFuelrodsPrice();
 };
