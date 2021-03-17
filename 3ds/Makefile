@@ -44,7 +44,7 @@ BANNERTOOL 	?= bannertool
 
 endif
 
-GIT_VER := "$(shell git describe --abbrev=0 --tags)-$(shell git rev-parse --short=7 HEAD)"
+GIT_VER := "$(shell git rev-parse --short=7 HEAD)"
 
 #---------------------------------------------------------------------------------
 # Version number

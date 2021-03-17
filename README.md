@@ -70,4 +70,5 @@ For a list of features of the C++ Core, check [this](https://github.com/Universa
 
 ### Others
 [devkitPro](https://github.com/devkitPro): Libfat, Libnds, Citro2D, Citro3D and Libctru.
+
 [Universal-Team](https://github.com/Universal-Team): Universal-Core.

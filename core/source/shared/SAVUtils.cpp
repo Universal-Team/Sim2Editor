@@ -225,7 +225,11 @@ const std::string SAVUtils::ReadString(const uint8_t *Buffer, const uint32_t Off
 	if (!Buffer) return "";
 
 	std::string str;
-	for (int Idx = 0; Idx < (int)Length; Idx++) str += Buffer[Offset + Idx];
+	for (int Idx = 0; Idx < (int)Length; Idx++) {
+		if (Buffer[Offset + Idx] == 0x0) break; // 0x0 -> End.
+
+		str += Buffer[Offset + Idx];
+	}
 
 	return str;
 };
