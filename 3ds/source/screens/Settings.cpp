@@ -99,7 +99,7 @@ void Settings::DrawCredits() const {
 	GFX::DrawTop();
 	Gui::DrawStringCentered(0, 3, 0.6f, TEXT_COLOR, "Sim2Editor");
 	Gui::DrawString(340, 3, 0.6f, TEXT_COLOR, V_STRING);
-	Gui::DrawSprite(GFX::Sprites, sprites_stackz_idx, 10, 62);
+	Gui::DrawSprite(GFX::Sprites, sprites_StackZ_idx, 10, 62);
 
 	Gui::DrawString(150, 40, 0.4f, TEXT_COLOR, "Developed by: Universal-Team.");
 	Gui::DrawString(150, 50, 0.4f, TEXT_COLOR, "Main Developer: SuperSaiyajinStackZ.");
