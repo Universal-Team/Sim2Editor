@@ -91,7 +91,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Publish build to Universal-Team/extras
     if: ${{ success() && !startsWith(github.ref, 'refs/pull') }}
-    needs: build
+    needs: [_3ds, nds]
     env:
       COMMIT_TAG: ${{ needs._3ds.outputs.commit_tag }}
       COMMIT_HASH: ${{ needs._3ds.outputs.commit_hash }}
@@ -160,7 +160,7 @@ jobs:
 
   send_webhook:
     runs-on: ubuntu-latest
-    needs: [publish_build, build]
+    needs: [_3ds, nds, publish_build]
     name: Send Discord webhook
     if: ${{ always() && !startsWith(github.ref, 'refs/pull') }}
     env:
