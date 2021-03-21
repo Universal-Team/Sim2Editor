@@ -174,14 +174,14 @@ jobs:
       COMMIT_MESSAGE: ${{ needs._3ds.outputs.commit_message }}
     steps:
       - name: Send success webhook
-        if: ${{ _3ds.status == success && nds.status == success }}
+        if: ${{ needs._3ds.status == success && nds.status == success }}
         run: |
           curl -o send.sh https://raw.githubusercontent.com/Universal-Team/discord-webhooks/master/send-ghactions.sh
           chmod +x send.sh
           export IMAGE=https://raw.githubusercontent.com/Universal-Team/extras/v$CURRENT_DATE/builds/Sim2Editor/Sim2Editor.png
           ./send.sh success ${{ secrets.WEBHOOK_URL }}
       - name: Send failure webhook
-        if: ${{ _3ds.status == failure || nds.status == failure }}
+        if: ${{ needs._3ds.status == failure || nds.status == failure }}
         run: |
           curl -o send.sh https://raw.githubusercontent.com/Universal-Team/discord-webhooks/master/send-ghactions.sh
           chmod +x send.sh
