@@ -8,8 +8,8 @@ EXECUTABLE_NAME :=	Test.exe
 # -o and Executable name.
 all:
 	@g++ -std=gnu++17 -D_WINDOWS \
-	*.cpp ../shared/source/*cpp ../core/source/gba/*.cpp ../core/source/nds/*cpp ../core/source/shared/*.cpp \
-	-I../shared/include -I../core/include/gba -I../core/include/nds -I../core/include/shared \
+	*.cpp ../shared/source/*cpp ../Sim2Editor-CPPCore/source/gba/*.cpp ../Sim2Editor-CPPCore/source/nds/*cpp ../Sim2Editor-CPPCore/source/shared/*.cpp \
+	-I../shared/include -I../Sim2Editor-CPPCore/include/gba -I../Sim2Editor-CPPCore/include/nds -I../Sim2Editor-CPPCore/include/shared \
 	-o $(EXECUTABLE_NAME)
 
 clean:

@@ -73,17 +73,17 @@ TARGET		:=	Sim2Editor
 BUILD		:=	build
 
 CORESOURCE	:= ../shared/source ../shared/source/console \
-			  ../core/source \
-			  ../core/source/gba \
-			  ../core/source/nds \
-			  ../core/source/shared \
-			  ../core/source/strings
+			  ../Sim2Editor-CPPCore/source \
+			  ../Sim2Editor-CPPCore/source/gba \
+			  ../Sim2Editor-CPPCore/source/nds \
+			  ../Sim2Editor-CPPCore/source/shared \
+			  ../Sim2Editor-CPPCore/source/strings
 
 COREINCLUDE	:= ../shared/include ../shared/include/console \
-			  ../core/include \
-			  ../core/include/gba \
-			  ../core/include/nds \
-			  ../core/include/shared
+			  ../Sim2Editor-CPPCore/include \
+			  ../Sim2Editor-CPPCore/include/gba \
+			  ../Sim2Editor-CPPCore/include/nds \
+			  ../Sim2Editor-CPPCore/include/shared
 
 
 SOURCES		:=	$(CORESOURCE) \

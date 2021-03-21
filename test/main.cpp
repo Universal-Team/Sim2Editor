@@ -24,8 +24,7 @@
 *         reasonable ways as different from the original version.
 */
 
-#include "../shared/include/Browser.hpp"
-#include "../core/include/shared/SAVUtils.hpp"
+#include "../Sim2Editor-CPPCore/include/shared/SAVUtils.hpp"
 #include <iostream> // For std::cin.
 #include <stdio.h> // printf.
 
@@ -51,7 +50,7 @@ const std::string GetSAV(const SAVType SAV) {
 
 static void Test(const std::string &file) {
 	printf(GetSAV(SAVUtils::DetectType(file)).c_str());
-	SAVUtils::LoadSAV(file, false);
+	SAVUtils::LoadSAV(file);
 
 	if (SAVUtils::SAV == SAVType::GBA && GBASAVUtils::SAV->SlotExist(1)) {
 		printf("Sim Name: %s.\nSimoleons: %d.\nRatings: %d.\n\n",
@@ -62,20 +61,10 @@ static void Test(const std::string &file) {
 	}
 };
 
-static void BrowserTest() {
-	const std::vector<std::string> TestStrings = { "Test1", "Test2", "Test3" };
-	std::unique_ptr<Browser> Browse = std::make_unique<Browser>(TestStrings);
-
-	for (int Idx = 0; Idx < (int)Browse->GetList().size(); Idx++) {
-		printf("Index %d: %s.\n", Idx, Browse->GetList()[Idx].c_str());
-	}
-};
-
 
 int main(int argc, char *argv[]) {
 	if (argc > 1) {
 		const std::string file = argv[1];
-		BrowserTest();
 	}
 
 	std::string END;

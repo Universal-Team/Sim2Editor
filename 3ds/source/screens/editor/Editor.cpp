@@ -58,7 +58,7 @@ void Editor::LoadSAV() {
 			SAVUtils::LoadSAV(Path);
 
 			if (CFG->CreateBackups()) {
-				if (SAVUtils::CreateBackup()) {
+				if (SAVUtils::CreateBackup("sdmc:/3ds/Sim2Editor")) {
 					std::unique_ptr<WaitMessage> Ovl = std::make_unique<WaitMessage>("Backup Created!\n\nHave fun with the Editor now.");
 					Ovl->Action();
 

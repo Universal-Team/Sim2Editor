@@ -30,6 +30,13 @@
 
 bool exiting = false;
 
+/*
+	Keeping Notes for here for later plans.
+
+	Sims 2 GBA Gamecode: B46E?
+	Sims 2 NDS Gamecode: ASJP?
+*/
+
 int main() {
 	mkdir("sd:/_nds", 0x777);
 	mkdir("sd:/_nds/Sim2Editor", 0x777);
