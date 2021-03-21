@@ -24,7 +24,7 @@
 *         reasonable ways as different from the original version.
 */
 
-#include "gfx.hpp"
+#include "GFX.hpp"
 #include "screenCommon.hpp"
 
 C2D_SpriteSheet GFX::Casts = nullptr, GFX::Moves = nullptr, GFX::Sprites = nullptr; // All used Spritesheets.
