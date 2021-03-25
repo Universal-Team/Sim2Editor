@@ -10,6 +10,7 @@
 	<li>Time (24 Hour format)</li>
 	<li>Checksum</li>
 	<li>Slot existence</li>
+	<li>Current Episode Name</li>
 </ul>
 
 <b>Fix the Checksum of a Slot.</b><br>

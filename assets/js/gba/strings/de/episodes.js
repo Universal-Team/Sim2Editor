@@ -12,6 +12,7 @@ const Episodes_DE = [
 	"Weltuntergangsstimmung",
 	"Und alles ging zu Ende",
 	"Eine ganz besondere Reunion",
+	"Inoffizielle Folge",
 
 	"Folgen Quote",
 	"Handlungspunkte erfüllt",

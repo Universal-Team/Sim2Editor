@@ -29,8 +29,8 @@ import { SavData } from './savutils.js';
 /* Social Moves class. */
 export class SocialMove {
 	constructor(Offs, Action) {
+		this.Offs = Offs;
 		this.Action = Action; // The current Action.
-		this.Offs = Offs + 0x3F0 + (this.Action * 0x8); // The Base Offset we are working with from. Also does it really start at 0x400?
 	};
 
 	/* Move Flag State. (0: Locked, 1: Unlocked, 2: Blocked) */

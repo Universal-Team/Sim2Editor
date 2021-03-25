@@ -34,21 +34,21 @@ export class Cast {
 
 	/* Friendly Interaction Level. */
 	GetFriendly() { return SavData.getUint8(this.Offs); };
-	SetFriendly(v) { SavData.setUint8(this.Offs, Math.min(3, v)); };
+	SetFriendly(V) { SavData.setUint8(this.Offs, Math.min(3, V)); };
 
 	/* Romance Interaction Level. */
 	GetRomance() { return SavData.getUint8(this.Offs + 0x1); };
-	SetRomance(v) { SavData.setUint8(this.Offs + 0x1, Math.min(3, v)); };
+	SetRomance(V) { SavData.setUint8(this.Offs + 0x1, Math.min(3, V)); };
 
 	/* Intimidate Interaction Level. */
 	GetIntimidate() { return SavData.getUint8(this.Offs + 0x2); };
-	SetIntimidate(v) { SavData.setUint8(this.Offs + 0x2, Math.min(3, v)); };
+	SetIntimidate(V) { SavData.setUint8(this.Offs + 0x2, Math.min(3, V)); };
 
 	/* Shows the Alternative (Friendly) picture. */
 	GetAlternatePic() { return SavData.getUint8(this.Offs + 0x3); };
-	SetAlternatePic(v) { SavData.setUint8(this.Offs + 0x3, Math.min(1, v)); };
+	SetAlternatePic(V) { SavData.setUint8(this.Offs + 0x3, Math.min(1, V)); };
 
 	/* The mystery of the cast locked (false) or unlocked (true). */
 	GetMystery() { return SavData.getUint8(this.Offs + 0x8); };
-	SetMystery(v) { SavData.setUint8(this.Offs + 0x8, Math.min(1, v)); };
+	SetMystery(V) { SavData.setUint8(this.Offs + 0x8, Math.min(1, V)); };
 };

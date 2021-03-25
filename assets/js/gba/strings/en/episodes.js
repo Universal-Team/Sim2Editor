@@ -12,6 +12,7 @@ const Episodes_EN = [
 	"The Doomed Earth",
 	"It All Came to an End",
 	"A Very Special Reunion",
+	"Unofficial Episode",
 
 	"Episode Ratings",
 	"Plot Points Completed",

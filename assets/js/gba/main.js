@@ -85,11 +85,11 @@ export function InitStrings() {
 	document.getElementById("collectables-nuclear-fuel-rods").innerText = Collectables[3];
 
 	/* Init Episode Rating names. */
-	document.getElementById("Episode_Ratings").innerText = Episodes[12];
-	document.getElementById("Episode_Plot_Points_Completed").innerText = Episodes[13];
-	document.getElementById("Episode_Aspiration_Conversation").innerText = Episodes[14]
-	document.getElementById("Episode_Hidden_Want_Completed").innerText = Episodes[15];
-	document.getElementById("Episode_Errand_Completed").innerText = Episodes[16];
+	document.getElementById("Episode_Ratings").innerText = Episodes[13];
+	document.getElementById("Episode_Plot_Points_Completed").innerText = Episodes[14];
+	document.getElementById("Episode_Aspiration_Conversation").innerText = Episodes[15]
+	document.getElementById("Episode_Hidden_Want_Completed").innerText = Episodes[16];
+	document.getElementById("Episode_Errand_Completed").innerText = Episodes[17];
 };
 
 

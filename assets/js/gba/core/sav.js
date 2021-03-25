@@ -27,6 +27,7 @@
 import { CalculateGBAChecksum, GBAChecksumGood } from "../../common/checksum.js";
 import { SAVSlot } from "./savslot.js";
 import { SavData } from "./savutils.js";
+import { GBASettings } from "./settings.js";
 
 export class SAV {
 	constructor() { }; // Nothing there yet.
@@ -51,10 +52,12 @@ export class SAV {
 
 		Slot: The Slot which to get ( 1 - 4 ).
 	*/
-	GetSlot(Slot) { if (Slot > 0 && Slot < 5 && this.SlotValid(Slot)) return new SAVSlot(Slot); };
+	GetSlot(Slot) { if (Slot > 0 && Slot < 5 && this.SlotValid(Slot)) return new SAVSlot(Slot, SavData.getUint8((Slot * 0x1000) + 0xD6)); };
+
+	GetSettings() { return new GBASettings(); };
 
 	/* Return the Language from in game. */
-	GetLanguage() { return SavData.getUint8(0xA); }; // 0xA is the Language.
+	GetLanguage() { return this.GetSettings().GetLanguage(); };
 
 	/* Finish call and update all available SAVSlots. */
 	Finish() {
@@ -65,5 +68,8 @@ export class SAV {
 				}
 			}
 		}
+
+		/* Also do the same for the Settings. */
+		this.GetSettings().UpdateChecksum();
 	};
 };

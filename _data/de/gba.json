@@ -47,7 +47,7 @@
 
 	"msg-no-sav-selected": "Keine Speicherdatei ausgewählt!",
 	"msg-no-valid-sav": "Dies ist kein gültiger Die Sims 2 GBA Speicherstand.\nFalls dies ein Fehler ist, berichte das zur Sim2Editor Repository.",
-	"msg-wip-warning": "Dies ist ein 'Work in progress' SAVEditor. Es wird empfohlen eine Sicherung zu erstellen bevor dies ausprobiert wird. NOTE: Ein paar Features könnten eventuell nicht richtig funktionieren, falls du noch an dem 'Wie alles begann' tutorial bist.",
+	"msg-wip-warning": "Dies ist ein 'Work in progress' SAVEditor. Es wird empfohlen eine Sicherung zu erstellen bevor dies ausprobiert wird.",
 
 	"move-blocked": "geblockt",
 	"move-flag": "Action Flag: ",
@@ -70,6 +70,7 @@
 	"slot-checksum": "Prüfsumme",
 	"slot-checksum-good": "Prüfsumme gut: ",
 	"slot-current-checksum": "Aktuelle Prüfsumme: ",
+	"slot-episode": "Folge: ",
 	"slot-erase": "Slot Löschen",
 	"slot-exist": "Slot Existiert: ",
 	"slot-fix-checksum": "Prüfsumme Beheben",

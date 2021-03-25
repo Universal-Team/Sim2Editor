@@ -25,6 +25,7 @@
 */
 
 import { MenuHandle } from '../main.js';
+import { Episodes } from '../string-handler.js';
 import { SimUtils_NumberFormat, SimUtils_TimeString, SimUtils_SimoleonFormat } from '../../common/simutils.js';
 import { SAV } from '../core/sav.js';
 import { SAVSlot } from '../core/savslot.js';
@@ -55,6 +56,7 @@ function SlotDisplay(Slot) {
 
 		/* Slot Information. */
 		document.getElementById("Slot_Exist").innerText = document.getElementById("External-Strings").dataset.yes;
+		document.getElementById("Slot_Episode").innerText = Episodes[S.GetCurrentEpisode()];
 		document.getElementById("Slot_Name").innerText = S.GetName();
 		document.getElementById("Slot_Simoleons").innerText = SimUtils_SimoleonFormat(S.GetSimoleons());
 		document.getElementById("Slot_Rating").innerText = SimUtils_NumberFormat(S.GetRating(), 3);
@@ -76,6 +78,7 @@ function SlotDisplay(Slot) {
 	} else {
 		/* Slot Information. */
 		document.getElementById("Slot_Exist").innerText = document.getElementById("External-Strings").dataset.no;
+		document.getElementById("Slot_Episode").innerText = "";
 		document.getElementById("Slot_Name").innerText = "";
 		document.getElementById("Slot_Simoleons").innerText = "";
 		document.getElementById("Slot_Rating").innerText = "";

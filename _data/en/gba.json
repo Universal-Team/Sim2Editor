@@ -48,7 +48,7 @@
 
 	"msg-no-sav-selected": "No SAVFile selected!",
 	"msg-no-valid-sav": "This is not a valid The Sims 2 GBA SAVFile.\nIf this is a mistake, report it on the Sim2Editor repository.",
-	"msg-wip-warning": "This is a work in progress SAVEditor. It is recommended to create backups before trying it out. NOTE: Some Features may not properly work if you are still on the 'It All Began' tutorial.",
+	"msg-wip-warning": "This is a work in progress SAVEditor. It is recommended to create backups before trying it out.",
 
 	"move-blocked": "blocked",
 	"move-flag": "Move Flag: ",
@@ -71,6 +71,7 @@
 	"slot-checksum": "Checksum",
 	"slot-checksum-good": "Checksum good: ",
 	"slot-current-checksum": "Current Checksum: ",
+	"slot-episode": "Episode: ",
 	"slot-erase": "Erase Slot",
 	"slot-exist": "Slot Exist: ",
 	"slot-fix-checksum": "Fix Checksum",
