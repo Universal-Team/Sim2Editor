@@ -41,7 +41,7 @@ public:
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
-	enum class Tabs : uint8_t { Main, Collectables };
+	enum class Tabs : uint8_t { Main, Collectables, SkillPoints };
 
 	bool Exit = false; // This is needed cause the whole hRepeat operations on touch exit are quite bugged otherwise and cause a crash.
 	std::shared_ptr<GBASlot> Slot = nullptr;
@@ -50,21 +50,26 @@ private:
 	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> TimeLabels = { }; // uint8_t.
 	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> CollectableLabels = { }; // uint8_t.
 	std::unique_ptr<StringInputLabel> NameLabel = nullptr;
+	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> SkillLabels = { }; // uint8_t.
 	Tabs Tab = Tabs::Main;
 
 	/* Shared. */
 	void MainTab() { this->Tab = Tabs::Main; };
 	void CollectableTab() { this->Tab = Tabs::Collectables; };
+	void SkillPointsTab() { this->Tab = Tabs::SkillPoints; };
 	void Back();
 
 	const std::vector<PointerStr> Positions = {
-		{ 0, 0, 160, 20, [this]() { this->MainTab(); } },
-		{ 160, 0, 160, 20, [this]() { this->CollectableTab(); } },
+		{ 1, 0, 106, 20, [this]() { this->MainTab(); } },
+		{ 107, 0, 106, 20, [this]() { this->CollectableTab(); } },
+		{ 213, 0, 106, 20, [this]() { this->SkillPointsTab(); } },
 		{ 0, 223, 17, 17, [this]() { this->Back(); } }
 	};
 
 	/* Collectables Tab. */
 	void CollectableUpdater(const uint8_t Idx);
+	/* Skill Points Tab. */
+	void SkillUpdater(const uint8_t Idx);
 };
 
 #endif

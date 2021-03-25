@@ -145,8 +145,9 @@ void Settings::DrawPages() const {
 
 			/* Change this, after changes to the 3DS version. */
 			Gui::DrawStringCentered(0, 130, 0.4f, TEXT_COLOR,
-				"* Initial C++ Core of Sim2Editor + 3DS version.\n"
-				"* [CORE]: Stop reading a String if 0x0."
+				"* [GBA]: Added Skill Points Editing.\n"
+				"* [GBA]: Display the current Episode you are in.\n"
+				"* [GBA]: Proper Movement Offset support."
 			);
 			break;
 	}

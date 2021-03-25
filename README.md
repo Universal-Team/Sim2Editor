@@ -28,7 +28,7 @@ For a list of features of the C++ Core, check [this](https://github.com/Universa
 ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaSocialMoveEditor.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaSocialMoveSelector.png)
 
 ### General Editor
-![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaGeneralEditorMain.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaGeneralEditorCollectables.png)
+![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaGeneralEditorMain.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaGeneralEditorCollectables.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaGeneralEditorSkillPoints.png)
 
 ### Slot Editor
 ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaSlotSelector.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaSlotEditor.png)

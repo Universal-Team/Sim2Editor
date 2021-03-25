@@ -26,6 +26,7 @@
 
 #include "Common.hpp"
 #include "GBAGeneralEditor.hpp"
+#include "Strings.hpp"
 
 /* Initialize the GBASlot + the Labels. */
 GBAGeneralEditor::GBAGeneralEditor(std::shared_ptr<GBASlot> &Slot) : Slot(Slot) {
@@ -54,6 +55,14 @@ GBAGeneralEditor::GBAGeneralEditor(std::shared_ptr<GBASlot> &Slot) : Slot(Slot) 
 	/* Init Collectables. - Nuclear Fuelrods. */
 	this->CollectableLabels.push_back(std::make_unique<NumInputLabel<uint8_t>>(5, 195, this->Slot->Fuelrods(), 0, 250, "Enter the Nuclear Fuelrods Amount."));
 	this->CollectableLabels.push_back(std::make_unique<NumInputLabel<uint8_t>>(225, 195, this->Slot->FuelrodsPrice(), 0, 255, "Enter the Nuclear Fuelrods Price."));
+
+	/* Init Skill point Labels. */
+	this->SkillLabels.push_back(std::make_unique<NumInputLabel<uint8_t>>(190, 40, this->Slot->Confidence(), 0, 5, "Enter the Confidence Skill Points."));
+	this->SkillLabels.push_back(std::make_unique<NumInputLabel<uint8_t>>(190, 70, this->Slot->Mechanical(), 0, 5, "Enter the Mechanical Skill Points."));
+	this->SkillLabels.push_back(std::make_unique<NumInputLabel<uint8_t>>(190, 100, this->Slot->Strength(), 0, 5, "Enter the Strength Skill Points."));
+	this->SkillLabels.push_back(std::make_unique<NumInputLabel<uint8_t>>(190, 130, this->Slot->Personality(), 0, 5, "Enter the Personality Skill Points."));
+	this->SkillLabels.push_back(std::make_unique<NumInputLabel<uint8_t>>(190, 160, this->Slot->Hotness(), 0, 5, "Enter the Hotness Skill Points."));
+	this->SkillLabels.push_back(std::make_unique<NumInputLabel<uint8_t>>(190, 190, this->Slot->Intellect(), 0, 5, "Enter the Intellect Skill Points."));
 };
 
 /* Goes back to the Slot Editor. */
@@ -70,10 +79,12 @@ void GBAGeneralEditor::Draw(void) const {
 	GFX::DrawBottom();
 
 	/* Draw Tabs. */
-	Gui::Draw_Rect(0, 0, 160, 20, (this->Tab == Tabs::Main ? KBD_KEYPRESSED : KD_KEYUNPRESSED));
-	Gui::Draw_Rect(160, 0, 160, 20, (this->Tab == Tabs::Collectables ? KBD_KEYPRESSED : KD_KEYUNPRESSED));
-	Gui::DrawStringCentered(-80, 3, 0.45f, TEXT_COLOR, "Main");
-	Gui::DrawStringCentered(80, 3, 0.45f, TEXT_COLOR, "Collectables");
+	Gui::Draw_Rect(1, 0, 106, 20, (this->Tab == Tabs::Main ? KBD_KEYPRESSED : KD_KEYUNPRESSED));
+	Gui::Draw_Rect(107, 0, 106, 20, (this->Tab == Tabs::Collectables ? KBD_KEYPRESSED : KD_KEYUNPRESSED));
+	Gui::Draw_Rect(213, 0, 106, 20, (this->Tab == Tabs::SkillPoints ? KBD_KEYPRESSED : KD_KEYUNPRESSED));
+	Gui::DrawString(1 + 40, 3, 0.45f, TEXT_COLOR, "Main");
+	Gui::DrawString(107 + 19, 3, 0.45f, TEXT_COLOR, "Collectables");
+	Gui::DrawString(213 + 23, 3, 0.45f, TEXT_COLOR, "Skill Points");
 
 	switch(this->Tab) {
 		case Tabs::Main:
@@ -102,10 +113,17 @@ void GBAGeneralEditor::Draw(void) const {
 			Gui::DrawSprite(GFX::Sprites, sprites_spaceship_idx, 122, 140);
 			Gui::DrawSprite(GFX::Sprites, sprites_fuelrod_idx, 122, 190);
 			break;
+
+		case Tabs::SkillPoints:
+			for (uint8_t Idx = 0; Idx < 6; Idx++) {
+				Gui::DrawString(50, 44 + (Idx * 30), 0.5f, TEXT_COLOR, Strings::GBASkillPointNames_EN[Idx]);
+				this->SkillLabels[Idx]->Draw();
+			}
+			break;
 	}
 
-	Gui::Draw_Rect(this->Positions[2].X, this->Positions[2].Y, this->Positions[2].W, this->Positions[2].H, KBD_KEYPRESSED); // Back Icn.
-	Gui::DrawSprite(GFX::Sprites, sprites_back_btn_idx, this->Positions[2].X, this->Positions[2].Y);
+	Gui::Draw_Rect(this->Positions[3].X, this->Positions[3].Y, this->Positions[3].W, this->Positions[3].H, KBD_KEYPRESSED); // Back Icn.
+	Gui::DrawSprite(GFX::Sprites, sprites_back_btn_idx, this->Positions[3].X, this->Positions[3].Y);
 
 	Pointer::Draw();
 };
@@ -152,6 +170,39 @@ void GBAGeneralEditor::CollectableUpdater(const uint8_t Idx) {
 	}
 };
 
+/*
+	Just a way to not have a whole mess on the KEY_A whatever operations.
+	This basically sets the proper things into the Slot.
+
+	const uint8_t Idx: The Index of the Skillpoint.
+*/
+void GBAGeneralEditor::SkillUpdater(const uint8_t Idx) {
+	switch(Idx) {
+		case 0:
+			this->Slot->Confidence(this->SkillLabels[0]->GetVal());
+			break;
+
+		case 1:
+			this->Slot->Mechanical(this->SkillLabels[1]->GetVal());
+			break;
+
+		case 2:
+			this->Slot->Strength(this->SkillLabels[2]->GetVal());
+			break;
+
+		case 3:
+			this->Slot->Personality(this->SkillLabels[3]->GetVal());
+			break;
+
+		case 4:
+			this->Slot->Hotness(this->SkillLabels[4]->GetVal());
+			break;
+
+		case 5:
+			this->Slot->Intellect(this->SkillLabels[5]->GetVal());
+			break;
+	}
+};
 
 void GBAGeneralEditor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 	Pointer::FrameHandle();
@@ -314,9 +365,8 @@ void GBAGeneralEditor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 			}
 		}
 
-
 	/* Collectables Tab. */
-	} else {
+	} else if (this->Tab == Tabs::Collectables) {
 		if (hDown & KEY_A) {
 			bool Pressed = false;
 
@@ -376,9 +426,100 @@ void GBAGeneralEditor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 				}
 			}
 		}
+
+	} else if (this->Tab == Tabs::SkillPoints) {
+		if (hDown & KEY_A) {
+			bool Pressed = false;
+
+			for (auto &Pos : this->Positions) {
+				if (Pointer::Callback(Pos, true)) {
+					Pressed = true;
+					break;
+				}
+			}
+
+			if (!Pressed) {
+				for (uint8_t Idx = 0; Idx < 6; Idx++) {
+					if (SkillLabels[Idx]->CallbackA()) {
+						this->SkillUpdater(Idx);
+						break;
+					}
+				}
+			}
+		}
+
+		/* NUM Input Labels Only. */
+		if (hRepeat & KEY_A) {
+			for (uint8_t Idx = 0; Idx < 6; Idx++) {
+				if (SkillLabels[Idx]->CallbackAmountA()) {
+					this->SkillUpdater(Idx);
+					break;
+				}
+			}
+		}
+
+		/* Same for Touch as well now. */
+		if (hDown & KEY_TOUCH) {
+			bool Pressed = false;
+
+			for (auto &Pos : this->Positions) {
+				if (Touching(Pos, touch, true)) {
+					Pressed = true;
+					break;
+				}
+			}
+
+			if (!Pressed) {
+				for (uint8_t Idx = 0; Idx < 6; Idx++) {
+					if (SkillLabels[Idx]->CallbackTouch(touch)) {
+						this->SkillUpdater(Idx);
+						break;
+					}
+				}
+			}
+		}
+
+		/* Same for the Minus and Plus buttons as well. */
+		if (hRepeat & KEY_TOUCH) {
+			if (this->Exit) return;
+
+			for (uint8_t Idx = 0; Idx < 6; Idx++) {
+				if (SkillLabels[Idx]->CallbackAmountTouch(touch)) {
+					this->SkillUpdater(Idx);
+					break;
+				}
+			}
+		}
 	}
 
 	if (hDown & KEY_B) this->Back();
-	if (hDown & KEY_L) this->MainTab();
-	if (hDown & KEY_R) this->CollectableTab();
+	if (hDown & KEY_L) {
+		switch(this->Tab) {
+			case Tabs::SkillPoints:
+				this->CollectableTab();
+				break;
+
+			case Tabs::Collectables:
+				this->MainTab();
+				break;
+
+			case Tabs::Main:
+				break;
+		}
+	}
+
+	if (hDown & KEY_R) {
+		switch(this->Tab) {
+			case Tabs::Main:
+				this->CollectableTab();
+				break;
+
+			case Tabs::Collectables:
+				this->SkillPointsTab();
+				break;
+
+			case Tabs::SkillPoints:
+				break;
+		}
+	}
 };

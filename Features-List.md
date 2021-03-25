@@ -37,6 +37,12 @@
 - [x] Edit Cowbells Amount + Sell price.
 - [x] Edit Alien Spaceship Parts Amount + Sell price.
 - [x] Edit Nuclear Fuelrods Amount + Sell price.
+- [x] Edit Confident Skill Points.
+- [x] Edit Mechanical Skill Points.
+- [x] Edit Strength Skill Points.
+- [x] Edit Personality Skill Points.
+- [x] Edit Hotness Skill Points.
+- [x] Edit Intellect Skill Points.
 
 
 ## NDS (The Sims 2 Version)
