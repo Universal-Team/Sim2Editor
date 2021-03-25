@@ -87,7 +87,7 @@ void Editor::LoadSlot() {
 			std::unique_ptr<GBASlotSelection> Overlay = std::make_unique<GBASlotSelection>();
 			const int8_t Slot = Overlay->Action();
 
-			if (Slot != -1) Gui::setScreen(std::make_unique<GBASlotEditor>(GBASAVUtils::SAV->GetSlot(Slot)), false, true);
+			if (Slot != -1) Gui::setScreen(std::make_unique<GBASlotEditor>(GBASAVUtils::SAV->Slot(Slot)), false, true);
 
 		} else {
 			std::unique_ptr<WaitMessage> Overlay = std::make_unique<WaitMessage>("The NDS version is not supported right now.\n\nStay tuned though for progress on it.");

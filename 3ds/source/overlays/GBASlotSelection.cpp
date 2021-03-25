@@ -28,6 +28,7 @@
 #include "GBASlotSelection.hpp"
 #include "SAVUtils.hpp"
 #include "SimUtils.hpp"
+#include "Strings.hpp"
 
 /* Go to the last Slot and fetch the information. */
 void GBASlotSelection::PrevSlot() const {
@@ -64,18 +65,20 @@ void GBASlotSelection::FetchSlot() const {
 	this->Info.Slot = this->Res;
 
 	if (GBASAVUtils::SAV->SlotExist(this->Res)) {
-		std::unique_ptr<GBASlot> Slt = GBASAVUtils::SAV->GetSlot(this->Res);
+		std::unique_ptr<GBASlot> Slt = GBASAVUtils::SAV->Slot(this->Res);
 
 		this->Info.SimoleonString = SimUtils::SimoleonsString(Slt->Simoleons());
 		this->Info.RatingString = SimUtils::RatingString(Slt->Ratings());
 		this->Info.SimName = Slt->Name();
 		this->Info.TimeString = SimUtils::TimeString(Slt->Time(), false);
+		this->Info.Episode = Strings::GBAEpisodeNames_EN[Slt->CurrentEpisode()];
 
 	} else {
 		this->Info.SimoleonString = "0$";
 		this->Info.RatingString = "0";
 		this->Info.SimName = "";
 		this->Info.TimeString = SimUtils::TimeString(0, false);
+		this->Info.Episode = "";
 	}
 };
 
@@ -110,10 +113,11 @@ int8_t GBASlotSelection::Action() const {
 
 		/* Info. */
 		Gui::DrawStringCentered(0, 36, 0.6f, TEXT_COLOR, "Selected Slot: " + std::to_string(this->Info.Slot));
-		Gui::DrawStringCentered(0, 80, 0.5f, TEXT_COLOR, "Name: " + this->Info.SimName);
-		Gui::DrawStringCentered(0, 100, 0.5f, TEXT_COLOR, "Time: " + this->Info.TimeString);
-		Gui::DrawStringCentered(0, 120, 0.5f, TEXT_COLOR, "Simoleons: " + this->Info.SimoleonString);
-		Gui::DrawStringCentered(0, 140, 0.5f, TEXT_COLOR, "Ratings: " + this->Info.RatingString);
+		Gui::DrawStringCentered(0, 65, 0.5f, TEXT_COLOR, "Name: " + this->Info.SimName, 260);
+		Gui::DrawStringCentered(0, 85, 0.5f, TEXT_COLOR, "Time: " + this->Info.TimeString, 260);
+		Gui::DrawStringCentered(0, 105, 0.5f, TEXT_COLOR, "Simoleons: " + this->Info.SimoleonString, 260);
+		Gui::DrawStringCentered(0, 125, 0.5f, TEXT_COLOR, "Ratings: " + this->Info.RatingString, 260);
+		Gui::DrawStringCentered(0, 145, 0.5f, TEXT_COLOR, "Episode: " + this->Info.Episode, 260);
 
 		Gui::DrawStringCentered(2, this->Positions[1].Y + 2, 0.5f, TEXT_COLOR, "OK"); // OK.
 
