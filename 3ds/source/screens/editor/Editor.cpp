@@ -54,25 +54,37 @@ void Editor::LoadSAV() {
 
 	const std::string Path = Overlay->Action();
 	if (Path != "!") { // '!' means canceled.
-		if (SAVUtils::DetectType(Path) != SAVType::NONE) {
-			SAVUtils::LoadSAV(Path);
+		const SAVType ST = SAVUtils::DetectType(Path);
+		switch(ST) {
+			case SAVType::_NDS: {
+					std::unique_ptr<PromptMessage> Ovl = std::make_unique<PromptMessage>("NDS Save editing is not supported right now.\nCome back in the future or so.\nWould you like to load another Savefile?");
+					if (!Ovl->Action()) this->Back();
+				}
+				break;
 
+			case SAVType::GBA:
+				break;
+			case SAVType::NONE: {
+					std::unique_ptr<PromptMessage> Ovl = std::make_unique<PromptMessage>("This is not a The Sims 2 Savefile.\nWould you like to load another Savefile?");
+					if (!Ovl->Action()) this->Back();
+				}
+				break;
+		}
+
+		if (ST == SAVType::GBA) {
+			SAVUtils::LoadSAV(Path);
 			if (CFG->CreateBackups()) {
 				if (SAVUtils::CreateBackup("sdmc:/3ds/Sim2Editor")) {
-					std::unique_ptr<WaitMessage> Ovl = std::make_unique<WaitMessage>("Backup Created!\n\nHave fun with the Editor now.");
+					std::unique_ptr<WaitMessage> Ovl = std::make_unique<WaitMessage>("Backup Created!\nHave fun with the Editor now.");
 					Ovl->Action();
 
 				} else {
-					std::unique_ptr<WaitMessage> Ovl = std::make_unique<WaitMessage>("Backup Creation Failed!\n\nIssue might be related to your SD Card or so.");
+					std::unique_ptr<WaitMessage> Ovl = std::make_unique<WaitMessage>("Backup Creation Failed!\nIssue might be related to your SD Card or so.");
 					Ovl->Action();
 				}
 			}
 
 			this->Mode = Modes::Menu;
-
-		} else {
-			std::unique_ptr<PromptMessage> Ovl = std::make_unique<PromptMessage>("This is an invalid SAV.\n\nWould you like to retry to load a SAV?");
-			if (!Ovl->Action()) this->Back();
 		}
 
 	} else {
@@ -88,10 +100,6 @@ void Editor::LoadSlot() {
 			const int8_t Slot = Overlay->Action();
 
 			if (Slot != -1) Gui::setScreen(std::make_unique<GBASlotEditor>(GBASAVUtils::SAV->Slot(Slot)), false, true);
-
-		} else {
-			std::unique_ptr<WaitMessage> Overlay = std::make_unique<WaitMessage>("The NDS version is not supported right now.\n\nStay tuned though for progress on it.");
-			Overlay->Action();
 		}
 	}
 };
@@ -102,7 +110,7 @@ void Editor::SAV() {
 		this->Mode = Modes::SAVLoad; // First set to SAVLoad.
 		SAVUtils::Finish(); // Finish, Write to File, Reset variables such as the pointer to the SAV.
 
-		std::unique_ptr<PromptMessage> Overlay = std::make_unique<PromptMessage>("Changes have been saved.\n\nWould you like to load another SAVFile?");
+		std::unique_ptr<PromptMessage> Overlay = std::make_unique<PromptMessage>("Changes have been saved.\nWould you like to load another Savefile?");
 		const bool Res = Overlay->Action();
 
 		if (!Res) this->Back();

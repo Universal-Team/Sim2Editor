@@ -147,8 +147,9 @@ void Settings::DrawPages() const {
 			Gui::DrawStringCentered(0, 130, 0.4f, TEXT_COLOR,
 				"* [GBA]: Added Skill Points Editing.\n"
 				"* [GBA]: Display the current Episode you are in.\n"
-				"* [GBA]: Proper Movement Offset support."
-			);
+				"* [GBA]: Proper Movement Offset support.\n"
+				"* [Loader]: Add Warning that NDS SAV Editing is not supported right now.",
+			310);
 			break;
 	}
 
