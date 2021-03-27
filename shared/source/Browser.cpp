@@ -28,9 +28,6 @@
 #include <cstring>
 #include <dirent.h>
 #include <functional>
-#ifdef _WINDOWS
-#include <limits.h> // For PATH_MAX. Not neccesary on 3DS and NDS it seems.
-#endif
 #include <sys/stat.h>
 #include <unistd.h>
 

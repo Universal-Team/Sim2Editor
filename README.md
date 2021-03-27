@@ -8,8 +8,6 @@ Also only the 3DS version has work as of now with the GBA Core, the NDS version 
 ## Features
 For a list of features, check [this](https://github.com/Universal-Team/Sim2Editor/blob/console/Features-List.md) out.
 
-For a list of features of the C++ Core, check [this](https://github.com/Universal-Team/Sim2Editor/blob/console/Core-List.md) out.
-
 ## Screenshots
 
 <details><summary>Screenshots</summary>
