@@ -148,7 +148,6 @@ void GBAEpisodeEditor::EpisodeSelectLogic(u32 hDown, u32 hHeld, touchPosition to
 
 /* Screen go back. */
 void GBAEpisodeEditor::Back() {
-	Pointer::SetPos(136, 48);
 	Gui::screenBack();
 	return;
 };

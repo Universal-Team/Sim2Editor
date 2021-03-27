@@ -43,8 +43,8 @@ void Editor::Back() {
 		}
 	}
 
-	Pointer::SetPos(90, 35);
 	Gui::screenBack();
+	return;
 };
 
 /* Loading a SAV Operation. */

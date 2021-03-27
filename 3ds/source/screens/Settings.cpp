@@ -67,7 +67,6 @@ void Settings::SetPointerSpeed() {
 
 /* Go back to MainMenu. */
 void Settings::Back() {
-	Pointer::SetPos(90, 170);
 	Gui::screenBack();
 	return;
 };
@@ -145,10 +144,8 @@ void Settings::DrawPages() const {
 
 			/* Change this, after changes to the 3DS version. */
 			Gui::DrawStringCentered(0, 130, 0.4f, TEXT_COLOR,
-				"* [GBA]: Added Skill Points Editing.\n"
-				"* [GBA]: Display the current Episode you are in.\n"
-				"* [GBA]: Proper Movement Offset support.\n"
-				"* [Loader]: Add Warning that NDS SAV Editing is not supported right now.",
+				"* [GBA]: Added Item Editing.\n"
+				"*[CORE]: Some Small fixes.",
 			310);
 			break;
 	}

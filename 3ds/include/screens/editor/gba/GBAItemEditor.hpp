@@ -24,35 +24,46 @@
 *         reasonable ways as different from the original version.
 */
 
-#ifndef _SIM2EDITOR_GBA_SLOT_EDITOR_HPP
-#define _SIM2EDITOR_GBA_SLOT_EDITOR_HPP
+#ifndef _SIM2EDITOR_GBA_ITEM_EDITOR_HPP
+#define _SIM2EDITOR_GBA_ITEM_EDITOR_HPP
 
+#include "GBAItem.hpp"
 #include "GBASlot.hpp"
 #include "Pointer.hpp"
 #include "screen.hpp"
 #include <vector>
 
-class GBASlotEditor : public Screen {
+class GBAItemEditor : public Screen {
 public:
-	GBASlotEditor(std::shared_ptr<GBASlot> GBASlot) : Slot(std::move(GBASlot)) { Pointer::SetPos(this->Positions[0]); };
+	GBAItemEditor(std::shared_ptr<GBASlot> &Slot) : Slot(Slot) { this->SwitchTab(Tabs::Pawnshop); };
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
-	std::shared_ptr<GBASlot> Slot = nullptr;
+	enum class Tabs : uint8_t { Pawnshop, Saloon, Skills, Mailbox, Inventory };
 
-	void GotoCastEditor();
-	void GotoEpisodeEditor();
-	void GotoMoveEditor();
-	void GotoGeneralEditor();
-	void GotoItemEditor();
+	Tabs Tab = Tabs::Pawnshop;
+	std::shared_ptr<GBASlot> Slot = nullptr;
+	std::unique_ptr<GBAItem> ActiveItemGroup = nullptr;
+
 	void Back();
+	void SelectItem(const uint8_t Slot);
+	void SwitchTab(const Tabs T);
 
 	const std::vector<PointerStr> Positions = {
-		{ 56, 48, 48, 48, [this]() { this->GotoCastEditor(); } },
-		{ 136, 48, 48, 48, [this]() { this->GotoEpisodeEditor(); } },
-		{ 216, 48, 48, 48, [this]() { this->GotoMoveEditor(); } },
-		{ 56, 144, 48, 48, [this]() { this->GotoGeneralEditor(); } },
-		{ 136, 144, 48, 48, [this]() { this->GotoItemEditor(); } },
+		{ 0, 0, 64, 20, [this]() { this->SwitchTab(Tabs::Pawnshop); } },
+		{ 64, 0, 64, 20, [this]() { this->SwitchTab(Tabs::Saloon); } },
+		{ 128, 0, 64, 20, [this]() { this->SwitchTab(Tabs::Skills); } },
+		{ 192, 0, 64, 20, [this]() { this->SwitchTab(Tabs::Mailbox); } },
+		{ 256, 0, 64, 20, [this]() { this->SwitchTab(Tabs::Inventory); } },
+
+		{ 250, 30, 24, 24, [this]() { this->SelectItem(0); } },
+		{ 250, 66, 24, 24, [this]() { this->SelectItem(1); } },
+		{ 250, 102, 24, 24, [this]() { this->SelectItem(2); } },
+		{ 250, 138, 24, 24, [this]() { this->SelectItem(3); } },
+		{ 250, 174, 24, 24, [this]() { this->SelectItem(4); } },
+		{ 250, 210, 24, 24, [this]() { this->SelectItem(5); } },
+
+
 		{ 0, 223, 17, 17, [this]() { this->Back(); } }
 	};
 };

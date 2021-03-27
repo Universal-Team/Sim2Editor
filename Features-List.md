@@ -44,6 +44,12 @@
 - [x] Edit Hotness Skill Points.
 - [x] Edit Intellect Skill Points.
 
+### Item Editor
+- [x] Edit the 6 Item Slots of the Pawn Shop.
+- [x] Edit the 6 Item Slots of the Saloon.
+- [x] Edit the 6 Item Slots of the Skill Shop.
+- [x] Edit the 6 Item Slots of the Mailbox.
+- [x] Edit the 6 Item Slots of the Inventory.
 
 ## NDS (The Sims 2 Version)
 

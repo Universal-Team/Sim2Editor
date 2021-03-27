@@ -32,6 +32,7 @@
 ListSelection::ListSelection(const std::vector<std::string> &List, const std::string &Text, const int OldSelection) : Text(Text), OldSelection(OldSelection) {
 	this->Browse = std::make_unique<Browser>(List);
 	this->List = this->Browse->GetList();
+	this->Browse->SetSelection(this->OldSelection);
 };
 
 /* Pages. */
@@ -106,10 +107,11 @@ int ListSelection::Action() const {
 		hidTouchRead(&T);
 		uint32_t hDown = hidKeysDown();
 		uint32_t hHeld = hidKeysHeld();
+		uint32_t hRepeat = hidKeysDownRepeat();
 		Pointer::ScrollHandle(hHeld);
 
-		if (hDown & KEY_R) this->NextPage();
-		if (hDown & KEY_L) this->PrevPage();
+		if (hRepeat & KEY_R) this->NextPage();
+		if (hRepeat & KEY_L) this->PrevPage();
 		if (hDown & KEY_B) this->BCall();
 
 		if (hDown & KEY_A) {

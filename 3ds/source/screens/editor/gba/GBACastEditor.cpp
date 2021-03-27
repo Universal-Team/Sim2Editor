@@ -171,7 +171,6 @@ void GBACastEditor::SelectCast() {
 
 /* Goes screen back. */
 void GBACastEditor::Back() {
-	Pointer::SetPos(56, 48);
 	Gui::screenBack();
 	return;
 };

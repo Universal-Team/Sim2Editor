@@ -127,7 +127,6 @@ void GBASocialMoveEditor::SelectMove() {
 
 /* Go back to the Slot Editor. */
 void GBASocialMoveEditor::Back() {
-	Pointer::SetPos(56, 48);
 	Gui::screenBack();
 	return;
 };
