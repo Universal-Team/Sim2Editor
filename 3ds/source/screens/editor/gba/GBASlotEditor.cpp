@@ -28,6 +28,7 @@
 #include "GBACastEditor.hpp"
 #include "GBAEpisodeEditor.hpp"
 #include "GBAGeneralEditor.hpp"
+#include "GBAHouseEditor.hpp"
 #include "GBAItemEditor.hpp"
 #include "GBASlotEditor.hpp"
 #include "GBASocialMoveEditor.hpp"
@@ -43,6 +44,8 @@ void GBASlotEditor::GotoMoveEditor() { Gui::setScreen(std::make_unique<GBASocial
 void GBASlotEditor::GotoGeneralEditor() { Gui::setScreen(std::make_unique<GBAGeneralEditor>(this->Slot), false, true); };
 /* Go to Item Editor. */
 void GBASlotEditor::GotoItemEditor() { Gui::setScreen(std::make_unique<GBAItemEditor>(this->Slot), false, true); };
+/* Go to House Editor. */
+void GBASlotEditor::GotoHouseEditor() { Gui::setScreen(std::make_unique<GBAHouseEditor>(this->Slot), false, true); };
 /* Go back to Editor. */
 void GBASlotEditor::Back() {
 	Gui::screenBack();
@@ -75,8 +78,11 @@ void GBASlotEditor::Draw(void) const {
 	Gui::Draw_Rect(this->Positions[4].X, this->Positions[4].Y, this->Positions[4].W, this->Positions[4].H, KBD_KEYPRESSED); // Item Icn.
 	Gui::DrawSprite(GFX::Sprites, sprites_item_btn_idx, this->Positions[4].X, this->Positions[4].Y + 5);
 
-	Gui::Draw_Rect(this->Positions[5].X, this->Positions[5].Y, this->Positions[5].W, this->Positions[5].H, KBD_KEYPRESSED); // Back Icn.
-	Gui::DrawSprite(GFX::Sprites, sprites_back_btn_idx, this->Positions[5].X, this->Positions[5].Y);
+	Gui::Draw_Rect(this->Positions[5].X, this->Positions[5].Y, this->Positions[5].W, this->Positions[5].H, KBD_KEYPRESSED); // House Icn.
+	Gui::DrawSprite(GFX::Sprites, sprites_house_btn_idx, this->Positions[5].X, this->Positions[5].Y + 2);
+
+	Gui::Draw_Rect(this->Positions[6].X, this->Positions[6].Y, this->Positions[6].W, this->Positions[6].H, KBD_KEYPRESSED); // Back Icn.
+	Gui::DrawSprite(GFX::Sprites, sprites_back_btn_idx, this->Positions[6].X, this->Positions[6].Y);
 
 	Pointer::Draw();
 };

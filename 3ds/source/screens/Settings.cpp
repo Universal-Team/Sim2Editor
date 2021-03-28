@@ -144,8 +144,8 @@ void Settings::DrawPages() const {
 
 			/* Change this, after changes to the 3DS version. */
 			Gui::DrawStringCentered(0, 130, 0.4f, TEXT_COLOR,
-				"* [GBA]: Added Item Editing.\n"
-				"* [CORE]: Some Small fixes.",
+				"* [GBA]: Early Work in Progress House Editor.\n"
+				"* [CORE]: Some slight fixes.",
 			310);
 			break;
 	}

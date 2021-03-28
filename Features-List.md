@@ -51,6 +51,11 @@
 - [x] Edit the 6 Item Slots of the Mailbox.
 - [x] Edit the 6 Item Slots of the Inventory.
 
+### House Editor
+- [x] Edit all the 12 Item Slots of your House, including ID, Flags, Use Count(?), X-Position, Y-Position and Direction / Rotation.
+- [x] Add an Item to your House.
+- [x] Remove an Item from your House.
+
 ## NDS (The Sims 2 Version)
 
 - [x] None right now.

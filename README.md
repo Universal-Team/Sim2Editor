@@ -31,6 +31,9 @@ For a list of features, check [this](https://github.com/Universal-Team/Sim2Edito
 ### Item Editor
 ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaItemEditor.png)
 
+### House Editor
+![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaHouseEditorEditing.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaHouseEditorAdd.png)
+
 ### Slot Editor
 ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaSlotSelector.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaSlotEditor.png)
 
