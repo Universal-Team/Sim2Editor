@@ -25,6 +25,7 @@
 */
 
 #include "Common.hpp"
+#include "GBAAppearanceEditor.hpp"
 #include "GBACastEditor.hpp"
 #include "GBAEpisodeEditor.hpp"
 #include "GBAGeneralEditor.hpp"
@@ -46,6 +47,8 @@ void GBASlotEditor::GotoGeneralEditor() { Gui::setScreen(std::make_unique<GBAGen
 void GBASlotEditor::GotoItemEditor() { Gui::setScreen(std::make_unique<GBAItemEditor>(this->Slot), false, true); };
 /* Go to House Editor. */
 void GBASlotEditor::GotoHouseEditor() { Gui::setScreen(std::make_unique<GBAHouseEditor>(this->Slot), false, true); };
+/* Go to Appearance Editor. */
+void GBASlotEditor::GotoAppearanceEditor() { Gui::setScreen(std::make_unique<GBAAppearanceEditor>(this->Slot), false, true); };
 /* Go back to Editor. */
 void GBASlotEditor::Back() {
 	Gui::screenBack();
@@ -72,17 +75,20 @@ void GBASlotEditor::Draw(void) const {
 	Gui::Draw_Rect(this->Positions[2].X, this->Positions[2].Y, this->Positions[2].W, this->Positions[2].H, KBD_KEYPRESSED); // Social Move Icn.
 	Gui::DrawSprite(GFX::Sprites, sprites_moves_btn_idx, this->Positions[2].X, this->Positions[2].Y);
 
-	Gui::Draw_Rect(this->Positions[3].X, this->Positions[3].Y, this->Positions[3].W, this->Positions[3].H, KBD_KEYPRESSED); // General Icn.
-	Gui::DrawSprite(GFX::Sprites, sprites_collectables_btn_idx, this->Positions[3].X, this->Positions[3].Y);
+	Gui::Draw_Rect(this->Positions[3].X, this->Positions[3].Y, this->Positions[3].W, this->Positions[3].H, KBD_KEYPRESSED); // Appearance Icn.
+	Gui::DrawSprite(GFX::Sprites, sprites_appearance_btn_idx, this->Positions[3].X, this->Positions[3].Y);
 
-	Gui::Draw_Rect(this->Positions[4].X, this->Positions[4].Y, this->Positions[4].W, this->Positions[4].H, KBD_KEYPRESSED); // Item Icn.
-	Gui::DrawSprite(GFX::Sprites, sprites_item_btn_idx, this->Positions[4].X, this->Positions[4].Y + 5);
+	Gui::Draw_Rect(this->Positions[4].X, this->Positions[4].Y, this->Positions[4].W, this->Positions[4].H, KBD_KEYPRESSED); // General Icn.
+	Gui::DrawSprite(GFX::Sprites, sprites_collectables_btn_idx, this->Positions[4].X, this->Positions[4].Y);
 
-	Gui::Draw_Rect(this->Positions[5].X, this->Positions[5].Y, this->Positions[5].W, this->Positions[5].H, KBD_KEYPRESSED); // House Icn.
-	Gui::DrawSprite(GFX::Sprites, sprites_house_btn_idx, this->Positions[5].X, this->Positions[5].Y + 2);
+	Gui::Draw_Rect(this->Positions[5].X, this->Positions[5].Y, this->Positions[5].W, this->Positions[5].H, KBD_KEYPRESSED); // Item Icn.
+	Gui::DrawSprite(GFX::Sprites, sprites_item_btn_idx, this->Positions[5].X, this->Positions[5].Y + 5);
 
-	Gui::Draw_Rect(this->Positions[6].X, this->Positions[6].Y, this->Positions[6].W, this->Positions[6].H, KBD_KEYPRESSED); // Back Icn.
-	Gui::DrawSprite(GFX::Sprites, sprites_back_btn_idx, this->Positions[6].X, this->Positions[6].Y);
+	Gui::Draw_Rect(this->Positions[6].X, this->Positions[6].Y, this->Positions[6].W, this->Positions[6].H, KBD_KEYPRESSED); // House Icn.
+	Gui::DrawSprite(GFX::Sprites, sprites_house_btn_idx, this->Positions[6].X, this->Positions[6].Y + 2);
+
+	Gui::Draw_Rect(this->Positions[7].X, this->Positions[7].Y, this->Positions[7].W, this->Positions[7].H, KBD_KEYPRESSED); // Back Icn.
+	Gui::DrawSprite(GFX::Sprites, sprites_back_btn_idx, this->Positions[7].X, this->Positions[7].Y);
 
 	Pointer::Draw();
 };

@@ -90,7 +90,7 @@ SOURCES		:=	$(CORESOURCE) \
 				Universal-Core \
 				source \
 				source/labels \
-				source/overlays \
+				source/overlays source/overlays/gba source/overlays/nds \
 				source/screens \
 				source/screens/editor source/screens/editor/gba source/screens/editor/nds \
 				source/ui \
@@ -102,7 +102,7 @@ INCLUDES	:=	$(COREINCLUDE) \
 				Universal-Core \
 				include \
 				include/labels \
-				include/overlays \
+				include/overlays include/overlays/gba include/overlays/nds \
 				include/screens \
 				include/screens/editor include/screens/editor/gba include/screens/editor/nds \
 				include/ui \

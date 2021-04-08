@@ -258,6 +258,8 @@ void GBAGeneralEditor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 
 		/* NUM Input Labels Only. */
 		if (hRepeat & KEY_A) {
+			if (this->Exit) return;
+
 			bool Pressed = false;
 
 			/* Simoleons. */
@@ -338,6 +340,7 @@ void GBAGeneralEditor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 		/* Same for the Minus and Plus buttons as well. */
 		if (hRepeat & KEY_TOUCH) {
 			if (this->Exit) return;
+
 			bool Pressed = false;
 
 			/* Simoleons. */
@@ -388,6 +391,8 @@ void GBAGeneralEditor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 		}
 
 		if (hRepeat & KEY_A) {
+			if (this->Exit) return;
+
 			for (uint8_t Idx = 0; Idx < 8; Idx++) {
 				if (this->CollectableLabels[Idx]->CallbackAmountA()) {
 					this->CollectableUpdater(Idx);
@@ -450,6 +455,8 @@ void GBAGeneralEditor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 
 		/* NUM Input Labels Only. */
 		if (hRepeat & KEY_A) {
+			if (this->Exit) return;
+
 			for (uint8_t Idx = 0; Idx < 6; Idx++) {
 				if (SkillLabels[Idx]->CallbackAmountA()) {
 					this->SkillUpdater(Idx);

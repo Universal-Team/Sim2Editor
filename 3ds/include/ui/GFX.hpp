@@ -40,7 +40,7 @@
 #define CORNER_COLOR C2D_Color32(52, 60, 76, 255)
 
 namespace GFX {
-	extern C2D_SpriteSheet Casts, Moves, Sprites;
+	extern C2D_SpriteSheet Appearance, Casts, Moves, Sprites;
 
 	void LoadSheets();
 	void UnloadSheets();

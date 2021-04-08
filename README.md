@@ -25,7 +25,10 @@ For a list of features, check [this](https://github.com/Universal-Team/Sim2Edito
 ### Social Move Editor
 ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaSocialMoveEditor.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaSocialMoveSelector.png)
 
-### General Editor
+### Appearance Editor
+![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaAppearanceEditor.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaHairSelection.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaShirtSelection.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaPantsSelection.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaColorSelection.png)
+
+### GBA General Editor
 ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaGeneralEditorMain.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaGeneralEditorCollectables.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaGeneralEditorSkillPoints.png)
 
 ### Item Editor
@@ -34,8 +37,16 @@ For a list of features, check [this](https://github.com/Universal-Team/Sim2Edito
 ### House Editor
 ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaHouseEditorEditing.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaHouseEditorAdd.png)
 
-### Slot Editor
+### GBA Slot Editor
 ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaSlotSelector.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/gbaSlotEditor.png)
+
+## NDS Menus
+
+### NDS General Editor
+![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/ndsGeneralEditorMain.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/ndsGeneralEditorCollectables.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/ndsGeneralEditorSkills.png)
+
+### NDS Slot Editor
+![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/ndsSlotSelector.png) ![](https://github.com/Universal-Team/Sim2Editor/blob/console/screenshots/3DS/ndsSlotEditor.png)
 
 
 ## Inputs

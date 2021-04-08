@@ -24,50 +24,37 @@
 *         reasonable ways as different from the original version.
 */
 
-#ifndef _SIM2EDITOR_GBA_SLOT_SELECTION_HPP
-#define _SIM2EDITOR_GBA_SLOT_SELECTION_HPP
+#ifndef _SIM2EDITOR_GBA_SHIRT_SELECTION_HPP
+#define _SIM2EDITOR_GBA_SHIRT_SELECTION_HPP
 
 #include "Pointer.hpp"
 #include <string>
 #include <vector>
 
-class GBASlotSelection {
+class GBAShirtSelection {
 public:
-	GBASlotSelection() { };
+	GBAShirtSelection(const int8_t OldSelection) : Res(OldSelection) { };
 	int8_t Action() const;
 private:
-	struct GBASlotInformation {
-		uint8_t Slot = 1;
-		bool Gender = true;
-		std::string SimoleonString = "0$";
-		std::string RatingString = "0";
-		std::string SimName = "";
-		std::string Episode = "It All Began"; // TODO: Get current Episode.
-		std::string TimeString = "00:00";
-	};
-
 	mutable int8_t Res = 1;
 	mutable bool Done = false;
-	mutable GBASlotInformation Info;
 
-	void PrevSlot() const;
-	void NextSlot() const;
-	void OK() const;
-	void FetchSlot() const;
+	void PrevShirt() const;
+	void NextShirt() const;
+	void Select() const;
 	void Cancel() const;
 
 	const std::vector<PointerStr> Positions = {
-		{ 40, 60, 25, 145, [this]() { this->PrevSlot(); } }, // Prev.
-		{ 166, 172, 73, 21, [this]() { this->OK(); } }, // OK.
-		{ 335, 60, 25, 145, [this]() { this->NextSlot(); } }, // Next.
-		{ 97, 37, 206, 17 } // Top Box, also NO action there.
+		{ 0, 25, 25, 215, [this]() { this->PrevShirt(); } },
+		{ 375, 25, 25, 215, [this]() { this->NextShirt(); } },
+		{ 100, 200, 200, 20, [this]() { this->Select(); } }
 	};
 
 	/* Same as above, but on the bottom for touch compatibility! */
 	const std::vector<PointerStr> BottomPos = {
-		{ 70, 75, 25, 90, [this]() { this->PrevSlot(); } },
-		{ 123, 109, 74, 22, [this]() { this->OK(); } },
-		{ 225, 75, 25, 90, [this]() { this->NextSlot(); } },
+		{ 70, 75, 25, 90, [this]() { this->PrevShirt(); } },
+		{ 123, 109, 74, 22, [this]() { this->Select(); } },
+		{ 225, 75, 25, 90, [this]() { this->NextShirt(); } },
 		{ 0, 223, 17, 17, [this]() { this->Cancel(); } }
 	};
 };

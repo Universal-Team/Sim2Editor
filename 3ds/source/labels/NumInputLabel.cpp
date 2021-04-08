@@ -69,7 +69,11 @@ void NumInputLabel<T>::InputCallback() {
 
 /* The A Button Callback. */
 template <typename T>
-bool NumInputLabel<T>::CallbackA() { return (Pointer::Callback(this->Positions[1], true)); };
+bool NumInputLabel<T>::CallbackA() {
+	if (1 < this->Positions.size()) return (Pointer::Callback(this->Positions[1], true));
+
+	return false;
+};
 
 /* The A Button Amount change for the hidKeysDownRepeat() method. */
 template <typename T>
@@ -77,7 +81,9 @@ bool NumInputLabel<T>::CallbackAmountA() {
 	const uint8_t Callbacks[2] = { 0, 2 };
 
 	for (uint8_t Idx = 0; Idx < 2; Idx++) {
-		if (Pointer::Callback(this->Positions[Callbacks[Idx]], true)) return true;
+		if (Callbacks[Idx] < this->Positions.size()) {
+			if (Pointer::Callback(this->Positions[Callbacks[Idx]], true)) return true;
+		}
 	}
 
 	return false;
@@ -85,7 +91,11 @@ bool NumInputLabel<T>::CallbackAmountA() {
 
 /* The Touch Tap Callback. */
 template <typename T>
-bool NumInputLabel<T>::CallbackTouch(touchPosition touch) { return (Touching(this->Positions[1], touch, true)); };
+bool NumInputLabel<T>::CallbackTouch(touchPosition touch) {
+	if (1 < this->Positions.size()) return (Touching(this->Positions[1], touch, true));
+
+	return false;
+};
 
 /* The Touch Tap Amount change for the hidKeysDownRepeat() method. */
 template <typename T>
@@ -93,7 +103,9 @@ bool NumInputLabel<T>::CallbackAmountTouch(touchPosition touch) {
 	const uint8_t Callbacks[2] = { 0, 2 };
 
 	for (uint8_t Idx = 0; Idx < 2; Idx++) {
-		if (Touching(this->Positions[Callbacks[Idx]], touch, true)) return true;
+		if (Callbacks[Idx] < this->Positions.size()) {
+			if (Touching(this->Positions[Callbacks[Idx]], touch, true)) return true;
+		}
 	}
 
 	return false;

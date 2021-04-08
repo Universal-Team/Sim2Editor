@@ -40,7 +40,7 @@ int main() {
 	romfsInit();
 	Gui::init();
 
-	/* Create neccesary directories. */
+	/* Create necessary directories. */
 	mkdir("sdmc:/3ds", 0x777);
 	mkdir("sdmc:/3ds/Sim2Editor", 0x777);
 	mkdir("sdmc:/3ds/Sim2Editor/Backups", 0x777);
@@ -54,7 +54,7 @@ int main() {
 	if (CFG->FirstStart()) {
 		std::unique_ptr<WaitMessage> Overlay = std::make_unique<WaitMessage>(std::vector<std::string>({
 			"Welcome to Sim2Editor, the Sims 2 GBA and NDS SAVEditor for Nintendo 3DS, Nintendo DS and for your web browser.\n\nFor more Information, please use the next page arrow button.",
-			"Currently it has all the Features which the GBA Web SAV Editor has, but nothing more. The NDS Version isn't supported right now as well, until more progress has been done.",
+			"Currently the GBA Version has the most progress, however work on the NDS version has already started as well.",
 			"Always create a backup of your SAVFile though, in case bad things may happen, because this is still an early work in progress SAVEditor.",
 			"If you need to know more, checkout the wiki from Sim2Editor. And now have fun with Sim2Editor! ~SuperSaiyajinStackZ"
 		}));

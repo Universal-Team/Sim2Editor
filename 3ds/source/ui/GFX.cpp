@@ -27,10 +27,11 @@
 #include "GFX.hpp"
 #include "screenCommon.hpp"
 
-C2D_SpriteSheet GFX::Casts = nullptr, GFX::Moves = nullptr, GFX::Sprites = nullptr; // All used Spritesheets.
+C2D_SpriteSheet GFX::Appearance = nullptr, GFX::Casts = nullptr, GFX::Moves = nullptr, GFX::Sprites = nullptr; // All used Spritesheets.
 
 /* Load all Spritesheets. */
 void GFX::LoadSheets() {
+	Gui::loadSheet("romfs:/gfx/appearance.t3x", GFX::Appearance);
 	Gui::loadSheet("romfs:/gfx/cast.t3x", GFX::Casts);
 	Gui::loadSheet("romfs:/gfx/social_move.t3x", GFX::Moves);
 	Gui::loadSheet("romfs:/gfx/sprites.t3x", GFX::Sprites);
@@ -38,6 +39,7 @@ void GFX::LoadSheets() {
 
 /* Unload all Spritesheets. */
 void GFX::UnloadSheets() {
+	Gui::unloadSheet(GFX::Appearance);
 	Gui::unloadSheet(GFX::Casts);
 	Gui::unloadSheet(GFX::Moves);
 	Gui::unloadSheet(GFX::Sprites);

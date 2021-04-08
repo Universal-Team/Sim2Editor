@@ -46,15 +46,21 @@ private:
 	void GotoGeneralEditor();
 	void GotoItemEditor();
 	void GotoHouseEditor();
+	void GotoAppearanceEditor();
 	void Back();
 
 	const std::vector<PointerStr> Positions = {
-		{ 56, 48, 48, 48, [this]() { this->GotoCastEditor(); } },
-		{ 136, 48, 48, 48, [this]() { this->GotoEpisodeEditor(); } },
-		{ 216, 48, 48, 48, [this]() { this->GotoMoveEditor(); } },
-		{ 56, 144, 48, 48, [this]() { this->GotoGeneralEditor(); } },
-		{ 136, 144, 48, 48, [this]() { this->GotoItemEditor(); } },
-		{ 216, 144, 48, 48, [this]() { this->GotoHouseEditor(); } },
+		/* Row 1. */
+		{ 46, 48, 48, 48, [this]() { this->GotoCastEditor(); } },
+		{ 106, 48, 48, 48, [this]() { this->GotoEpisodeEditor(); } },
+		{ 166, 48, 48, 48, [this]() { this->GotoMoveEditor(); } },
+		{ 226, 48, 48, 48, [this]() { this->GotoAppearanceEditor(); } },
+
+		/* Row 2. */
+		{ 46, 144, 48, 48, [this]() { this->GotoGeneralEditor(); } },
+		{ 106, 144, 48, 48, [this]() { this->GotoItemEditor(); } },
+		{ 166, 144, 48, 48, [this]() { this->GotoHouseEditor(); } },
+
 		{ 0, 223, 17, 17, [this]() { this->Back(); } }
 	};
 };

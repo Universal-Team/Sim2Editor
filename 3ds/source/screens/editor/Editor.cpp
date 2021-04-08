@@ -29,6 +29,8 @@
 #include "FileSelection.hpp"
 #include "GBASlotEditor.hpp"
 #include "GBASlotSelection.hpp"
+#include "NDSSlotSelection.hpp"
+#include "NDSSlotEditor.hpp"
 #include "PromptMessage.hpp"
 #include "SAVUtils.hpp"
 #include "WaitMessage.hpp"
@@ -56,22 +58,17 @@ void Editor::LoadSAV() {
 	if (Path != "!") { // '!' means canceled.
 		const SAVType ST = SAVUtils::DetectType(Path);
 		switch(ST) {
-			case SAVType::_NDS: {
-					std::unique_ptr<PromptMessage> Ovl = std::make_unique<PromptMessage>("NDS Save editing is not supported right now.\nCome back in the future or so.\nWould you like to load another Savefile?");
-					if (!Ovl->Action()) this->Back();
-				}
-				break;
-
 			case SAVType::GBA:
+			case SAVType::_NDS:
 				break;
 			case SAVType::NONE: {
-					std::unique_ptr<PromptMessage> Ovl = std::make_unique<PromptMessage>("This is not a The Sims 2 Savefile.\nWould you like to load another Savefile?");
+					std::unique_ptr<PromptMessage> Ovl = std::make_unique<PromptMessage>("This is not a The Sims 2 GBA or NDS Savefile.\nWould you like to load another Savefile?");
 					if (!Ovl->Action()) this->Back();
 				}
 				break;
 		}
 
-		if (ST == SAVType::GBA) {
+		if (ST == SAVType::GBA || ST == SAVType::_NDS) {
 			SAVUtils::LoadSAV(Path);
 			if (CFG->CreateBackups()) {
 				if (SAVUtils::CreateBackup("sdmc:/3ds/Sim2Editor")) {
@@ -92,7 +89,7 @@ void Editor::LoadSAV() {
 	}
 };
 
-/* Loading a SAVSlot (GBA only for now). */
+/* Loading a SAVSlot. */
 void Editor::LoadSlot() {
 	if (this->Mode == Modes::Menu) {
 		if (SAVUtils::SAV == SAVType::GBA) {
@@ -100,6 +97,12 @@ void Editor::LoadSlot() {
 			const int8_t Slot = Overlay->Action();
 
 			if (Slot != -1) Gui::setScreen(std::make_unique<GBASlotEditor>(GBASAVUtils::SAV->Slot(Slot)), false, true);
+
+		} else if (SAVUtils::SAV == SAVType::_NDS) {
+			std::unique_ptr<NDSSlotSelection> Overlay = std::make_unique<NDSSlotSelection>();
+			const int8_t Slot = Overlay->Action();
+
+			if (Slot != -1) Gui::setScreen(std::make_unique<NDSSlotEditor>(NDSSAVUtils::SAV->Slot(Slot)), false, true);
 		}
 	}
 };

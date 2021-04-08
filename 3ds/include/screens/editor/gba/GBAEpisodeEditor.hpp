@@ -47,7 +47,9 @@ private:
 	bool EpisodeSelect = false;
 	std::shared_ptr<GBASlot> Slot = nullptr;
 	std::unique_ptr<GBAEpisode> ActiveEpisode = nullptr;
+	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> Boxes = { };
 	Tabs Tab = Tabs::Main;
+	bool Exit = false;
 
 	/* Shared. */
 	void SetInputBoxes();
@@ -91,7 +93,7 @@ private:
 	/* MAIN. */
 	void ToggleEpisode();
 	void DrawStripes(void) const;
-	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> Boxes;
+
 
 	const std::vector<PointerStr> MainPositions = {
 		{ 0, 0, 160, 20, [this]() { this->MainTab(); } },

@@ -148,6 +148,7 @@ void GBAEpisodeEditor::EpisodeSelectLogic(u32 hDown, u32 hHeld, touchPosition to
 
 /* Screen go back. */
 void GBAEpisodeEditor::Back() {
+	this->Exit = true;
 	Gui::screenBack();
 	return;
 };
@@ -236,7 +237,6 @@ void GBAEpisodeEditor::Draw(void) const {
 			this->DrawStripes();
 			break;
 
-
 		case Tabs::Misc:
 			/* Display Misc Buttons. */
 			for (uint8_t Idx = 0; Idx < 4; Idx++) {
@@ -302,6 +302,8 @@ void GBAEpisodeEditor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 	}
 
 	if (hRepeat & KEY_A) {
+		if (this->Exit) return;
+
 		if (this->Tab == Tabs::Main) {
 			for (uint8_t Idx = 0; Idx < 4; Idx++) {
 				if (this->Boxes[Idx]->CallbackAmountA()) {
@@ -333,6 +335,8 @@ void GBAEpisodeEditor::Logic(u32 hDown, u32 hHeld, touchPosition touch) {
 	}
 
 	if (hRepeat & KEY_TOUCH) {
+		if (this->Exit) return;
+
 		if (this->Tab == Tabs::Main) {
 			for (uint8_t Idx = 0; Idx < 4; Idx++) {
 				if (this->Boxes[Idx]->CallbackAmountTouch(touch)) {

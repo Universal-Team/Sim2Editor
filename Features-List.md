@@ -27,6 +27,11 @@
 - [x] Mass Edit the Social Move Flag.
 - [x] Mass Edit the Social Move Level.
 
+### Appearance Editor
+- [x] Edit Hairstyle, Hat / Shoe Color and Haircolor.
+- [x] Edit Shirtstyle, Shirt Body, Shirt Short Sleeve and Long Sleeve color.
+- [x] Edit Pantsstyle and Pants color.
+
 ### General Editor
 - [x] Edit Sim Name.
 - [x] Edit Simoleons.
@@ -58,8 +63,18 @@
 
 ## NDS (The Sims 2 Version)
 
-- [x] None right now.
-
+### General Editor
+- [x] Edit Sim Name.
+- [x] Edit Simoleons.
+- [x] Edit Nuclear Fuelrods Amount.
+- [x] Edit License Plates Amount.
+- [x] Edit Strange Gourds Amount.
+- [x] Edit Alien Spaceship Parts Amount.
+- [x] Edit Creativity Skill Points.
+- [x] Edit Business Skill Points.
+- [x] Edit Body Skill Points.
+- [x] Edit Charisma Skill Points.
+- [x] Edit Mechanical Skill Points.
 
 ## NDS (Console)
 

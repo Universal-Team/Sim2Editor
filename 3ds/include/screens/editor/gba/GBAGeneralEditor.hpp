@@ -43,7 +43,6 @@ public:
 private:
 	enum class Tabs : uint8_t { Main, Collectables, SkillPoints };
 
-	bool Exit = false; // This is needed cause the whole hRepeat operations on touch exit are quite bugged otherwise and cause a crash.
 	std::shared_ptr<GBASlot> Slot = nullptr;
 	std::unique_ptr<NumInputLabel<uint32_t>> SimoleonLabel = nullptr; // uint32_t.
 	std::unique_ptr<NumInputLabel<uint16_t>> RatingLabel = nullptr; // uint16_t.
@@ -52,6 +51,7 @@ private:
 	std::unique_ptr<StringInputLabel> NameLabel = nullptr;
 	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> SkillLabels = { }; // uint8_t.
 	Tabs Tab = Tabs::Main;
+	bool Exit = false;
 
 	/* Shared. */
 	void MainTab() { this->Tab = Tabs::Main; };

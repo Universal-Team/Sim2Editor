@@ -46,11 +46,11 @@ private:
 	enum class Tabs : uint8_t { Editing, Add, Remove };
 
 	uint8_t Selection = 0;
-	bool Exit = false;
 	std::shared_ptr<GBASlot> Slot = nullptr;
 	std::unique_ptr<GBAHouseItem> Items = nullptr;
 	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> InputLabels = { };
 	Tabs Tab = Tabs::Editing;
+	bool Exit = false;
 
 	/* Item Add Vars. */
 	uint8_t AddID = 0, AddFlag = 0, AddUseCount = 0, AddX = 0, AddY = 0;
