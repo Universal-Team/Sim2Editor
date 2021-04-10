@@ -4,6 +4,6 @@
 [submodule "nds/arm9/Universal-Core"]
 	path = nds/arm9/Universal-Core
 	url = https://github.com/Universal-Team/Universal-Core.git
-[submodule "Sim2Editor-CPPCore"]
-	path = Sim2Editor-CPPCore
-	url = https://github.com/SuperSaiyajinStackZ/Sim2Editor-CPPCore.git
+[submodule "Sim2Editor-Core"]
+	path = Sim2Editor-Core
+	url = https://github.com/SuperSaiyajinStackZ/Sim2Editor-Core.git

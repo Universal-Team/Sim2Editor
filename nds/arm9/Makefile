@@ -28,16 +28,16 @@ VERSION_STRING := "v$(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_MICRO)"
 BUILD		:=	build
 
 CORESOURCE	:= ../../shared/source ../../shared/source/console \
-			  ../../Sim2Editor-CPPCore/source \
-			  ../../Sim2Editor-CPPCore/source/gba \
-			  ../../Sim2Editor-CPPCore/source/nds \
-			  ../../Sim2Editor-CPPCore/source/shared
+			  ../../Sim2Editor-Core/source \
+			  ../../Sim2Editor-Core/source/gba \
+			  ../../Sim2Editor-Core/source/nds \
+			  ../../Sim2Editor-Core/source/shared
 
 COREINCLUDE	:= ../../shared/include ../../shared/include/console \
-			  ../../Sim2Editor-CPPCore/include \
-			  ../../Sim2Editor-CPPCore/include/gba \
-			  ../../Sim2Editor-CPPCore/include/nds \
-			  ../../Sim2Editor-CPPCore/include/shared
+			  ../../Sim2Editor-Core/include \
+			  ../../Sim2Editor-Core/include/gba \
+			  ../../Sim2Editor-Core/include/nds \
+			  ../../Sim2Editor-Core/include/shared
 
 
 
