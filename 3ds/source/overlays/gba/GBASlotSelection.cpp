@@ -48,7 +48,7 @@ void GBASlotSelection::NextSlot() const {
 
 /* Check if Slot exist and set to done. */
 void GBASlotSelection::OK() const {
-	if (GBASAVUtils::SAV->SlotExist(this->Res)) this->Done = true;
+	if (S2Editor::GBASAVUtils::SAV->SlotExist(this->Res)) this->Done = true;
 };
 
 /*
@@ -64,20 +64,20 @@ void GBASlotSelection::OK() const {
 void GBASlotSelection::FetchSlot() const {
 	this->Info.Slot = this->Res;
 
-	if (GBASAVUtils::SAV->SlotExist(this->Res)) {
-		std::unique_ptr<GBASlot> Slt = GBASAVUtils::SAV->Slot(this->Res);
+	if (S2Editor::GBASAVUtils::SAV->SlotExist(this->Res)) {
+		std::unique_ptr<S2Editor::GBASlot> Slt = S2Editor::GBASAVUtils::SAV->Slot(this->Res);
 
-		this->Info.SimoleonString = SimUtils::SimoleonsString(Slt->Simoleons());
-		this->Info.RatingString = SimUtils::RatingString(Slt->Ratings());
+		this->Info.SimoleonString = S2Editor::SimUtils::SimoleonsString(Slt->Simoleons());
+		this->Info.RatingString = S2Editor::SimUtils::RatingString(Slt->Ratings());
 		this->Info.SimName = Slt->Name();
-		this->Info.TimeString = SimUtils::TimeString(Slt->Time(), false);
-		this->Info.Episode = Strings::GBAEpisodeNames_EN[Slt->CurrentEpisode()];
+		this->Info.TimeString = S2Editor::SimUtils::TimeString(Slt->Time(), false);
+		this->Info.Episode = S2Editor::Strings::GBAEpisodeNames_EN[Slt->CurrentEpisode()];
 
 	} else {
 		this->Info.SimoleonString = "0$";
 		this->Info.RatingString = "0";
 		this->Info.SimName = "";
-		this->Info.TimeString = SimUtils::TimeString(0, false);
+		this->Info.TimeString = S2Editor::SimUtils::TimeString(0, false);
 		this->Info.Episode = "";
 	}
 };

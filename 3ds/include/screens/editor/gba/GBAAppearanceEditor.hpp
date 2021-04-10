@@ -35,13 +35,13 @@
 
 class GBAAppearanceEditor : public Screen {
 public:
-	GBAAppearanceEditor(std::shared_ptr<GBASlot> &Slot);
+	GBAAppearanceEditor(std::shared_ptr<S2Editor::GBASlot> &Slot);
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
 	enum class Tabs : uint8_t { Head, Shirt, Pants };
 
-	std::shared_ptr<GBASlot> Slot = nullptr;
+	std::shared_ptr<S2Editor::GBASlot> Slot = nullptr;
 	Tabs Tab = Tabs::Head;
 
 	/* Shared. */

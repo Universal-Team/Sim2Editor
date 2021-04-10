@@ -29,7 +29,7 @@
 #include "Numpad.hpp"
 #include "Strings.hpp"
 
-GBAEpisodeEditor::GBAEpisodeEditor(std::shared_ptr<GBASlot> &Slot) : Slot(Slot) {
+GBAEpisodeEditor::GBAEpisodeEditor(std::shared_ptr<S2Editor::GBASlot> &Slot) : Slot(Slot) {
 	this->ActiveEpisode = this->Slot->Episode(0);
 
 	/* Push initial Boxes. */
@@ -101,21 +101,21 @@ void GBAEpisodeEditor::DrawEpisodeSelection(void) const {
 		case 1: // Season 1, 3 Episodes.
 			for (uint8_t Idx = 0; Idx < 3; Idx++) {
 				Gui::Draw_Rect(this->EPSelect[1 + Idx].X, this->EPSelect[1 + Idx].Y, this->EPSelect[1 + Idx].W, this->EPSelect[1 + Idx].H, (Idx % 2 == 0 ? KBD_KEYPRESSED : KD_KEYUNPRESSED));
-				Gui::DrawStringCentered(0, this->EPSelect[1 + Idx].Y + 8, 0.5f, TEXT_COLOR, Strings::GBAEpisodeNames_EN[1 + Idx]);
+				Gui::DrawStringCentered(0, this->EPSelect[1 + Idx].Y + 8, 0.5f, TEXT_COLOR, S2Editor::Strings::GBAEpisodeNames_EN[1 + Idx]);
 			}
 			break;
 
 		case 2: // Season 2, 4 Episodes.
 			for (uint8_t Idx = 0; Idx < 4; Idx++) {
 				Gui::Draw_Rect(this->EPSelect[1 + Idx].X, this->EPSelect[1 + Idx].Y, this->EPSelect[1 + Idx].W, this->EPSelect[1 + Idx].H, (Idx % 2 == 0 ? KBD_KEYPRESSED : KD_KEYUNPRESSED));
-				Gui::DrawStringCentered(0, this->EPSelect[1 + Idx].Y + 8, 0.5f, TEXT_COLOR, Strings::GBAEpisodeNames_EN[4 + Idx]);
+				Gui::DrawStringCentered(0, this->EPSelect[1 + Idx].Y + 8, 0.5f, TEXT_COLOR, S2Editor::Strings::GBAEpisodeNames_EN[4 + Idx]);
 			}
 			break;
 
 		case 3: // Season 3: 4 Episodes.
 			for (uint8_t Idx = 0; Idx < 4; Idx++) {
 				Gui::Draw_Rect(this->EPSelect[1 + Idx].X, this->EPSelect[1 + Idx].Y, this->EPSelect[1 + Idx].W, this->EPSelect[1 + Idx].H, (Idx % 2 == 0 ? KBD_KEYPRESSED : KD_KEYUNPRESSED));
-				Gui::DrawStringCentered(0, this->EPSelect[1 + Idx].Y + 8, 0.5f, TEXT_COLOR, Strings::GBAEpisodeNames_EN[8 + Idx]);
+				Gui::DrawStringCentered(0, this->EPSelect[1 + Idx].Y + 8, 0.5f, TEXT_COLOR, S2Editor::Strings::GBAEpisodeNames_EN[8 + Idx]);
 			}
 			break;
 	}
@@ -166,7 +166,7 @@ void GBAEpisodeEditor::ToggleEpisode() { this->ActiveEpisode->State(!this->Activ
 /* Lock all Episodes cause why not LoL. */
 void GBAEpisodeEditor::Lockall() {
 	for (uint8_t Idx = 0; Idx < 11; Idx++) {
-		std::unique_ptr<GBAEpisode> EP = this->Slot->Episode(Idx);
+		std::unique_ptr<S2Editor::GBAEpisode> EP = this->Slot->Episode(Idx);
 		EP->State(false);
 	}
 };
@@ -174,7 +174,7 @@ void GBAEpisodeEditor::Lockall() {
 /* Unlock all Episodes. */
 void GBAEpisodeEditor::Unlockall() {
 	for (uint8_t Idx = 0; Idx < 11; Idx++) {
-		std::unique_ptr<GBAEpisode> EP = this->Slot->Episode(Idx);
+		std::unique_ptr<S2Editor::GBAEpisode> EP = this->Slot->Episode(Idx);
 		EP->State(true);
 	}
 };
@@ -182,7 +182,7 @@ void GBAEpisodeEditor::Unlockall() {
 /* Clear the Rating of all Episodes. */
 void GBAEpisodeEditor::ClearRatings() {
 	for (uint8_t Idx = 0; Idx < 11; Idx++) {
-		std::unique_ptr<GBAEpisode> EP = this->Slot->Episode(Idx);
+		std::unique_ptr<S2Editor::GBAEpisode> EP = this->Slot->Episode(Idx);
 
 		for (uint8_t Idx2 = 0; Idx2 < 4; Idx2++) EP->Rating(Idx2, 0);
 	}
@@ -193,7 +193,7 @@ void GBAEpisodeEditor::ClearRatings() {
 /* Max out the Rating of all Episodes. */
 void GBAEpisodeEditor::MaxRatings() {
 	for (uint8_t Idx = 0; Idx < 11; Idx++) {
-		std::unique_ptr<GBAEpisode> EP = this->Slot->Episode(Idx);
+		std::unique_ptr<S2Editor::GBAEpisode> EP = this->Slot->Episode(Idx);
 
 		for (uint8_t Idx2 = 0; Idx2 < 4; Idx2++) EP->Rating(Idx2, 25);
 	}
@@ -213,7 +213,7 @@ void GBAEpisodeEditor::Draw(void) const {
 		GFX::DrawTop();
 		Gui::DrawStringCentered(0, 3, 0.6f, TEXT_COLOR, "GBA Episode Editor");
 		Gui::Draw_Rect(100, 200, 200, 20, BUTTON_COLOR);
-		Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, Strings::GBAEpisodeNames_EN[this->ActiveEpisode->Index() + 1]); // +1 cause 'It all Began' isn't a real Episode.
+		Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, S2Editor::Strings::GBAEpisodeNames_EN[this->ActiveEpisode->Index() + 1]); // +1 cause 'It all Began' isn't a real Episode.
 	}
 
 	GFX::DrawBottom();

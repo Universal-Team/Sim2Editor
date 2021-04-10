@@ -29,7 +29,7 @@
 #include "Strings.hpp"
 
 /* Initialize the GBASlot + the Labels. */
-GBAGeneralEditor::GBAGeneralEditor(std::shared_ptr<GBASlot> &Slot) : Slot(Slot) {
+GBAGeneralEditor::GBAGeneralEditor(std::shared_ptr<S2Editor::GBASlot> &Slot) : Slot(Slot) {
 	/* Init Name Label. */
 	this->NameLabel = std::make_unique<StringInputLabel>(140, 40, 8, this->Slot->Name(), "Enter a Sim Name.");
 	/* Init Simoleon Label. */
@@ -116,7 +116,7 @@ void GBAGeneralEditor::Draw(void) const {
 
 		case Tabs::SkillPoints:
 			for (uint8_t Idx = 0; Idx < 6; Idx++) {
-				Gui::DrawString(50, 44 + (Idx * 30), 0.5f, TEXT_COLOR, Strings::GBASkillPointNames_EN[Idx]);
+				Gui::DrawString(50, 44 + (Idx * 30), 0.5f, TEXT_COLOR, S2Editor::Strings::GBASkillPointNames_EN[Idx]);
 				this->SkillLabels[Idx]->Draw();
 			}
 			break;

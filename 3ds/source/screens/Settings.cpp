@@ -146,7 +146,8 @@ void Settings::DrawPages() const {
 			Gui::DrawStringCentered(0, 130, 0.4f, TEXT_COLOR,
 				"* [GBA]: Added Appearance Editor.\n"
 				"* [CORE]: Updated Core with latest changes.\n"
-				"* [NDS]: Initial NDS SAV Editing.",
+				"* [NDS]: Initial NDS SAV Editing.\n"
+				"* [CORE]: Namespace S2Editor.",
 			310);
 			break;
 	}

@@ -35,7 +35,7 @@
 
 class GBACastEditor : public Screen {
 public:
-	GBACastEditor(std::shared_ptr<GBASlot> &Slot) : Slot(Slot) { this->ActiveCast = this->Slot->Cast(0); };
+	GBACastEditor(std::shared_ptr<S2Editor::GBASlot> &Slot) : Slot(Slot) { this->ActiveCast = this->Slot->Cast(0); };
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
@@ -43,8 +43,8 @@ private:
 
 	bool CastSelection = false;
 	uint8_t SelectedCast = 0;
-	std::unique_ptr<GBACast> ActiveCast = nullptr;
-	std::shared_ptr<GBASlot> Slot = nullptr;
+	std::unique_ptr<S2Editor::GBACast> ActiveCast = nullptr;
+	std::shared_ptr<S2Editor::GBASlot> Slot = nullptr;
 	Tabs Tab = Tabs::Main;
 
 	/* Shared things. */

@@ -76,7 +76,7 @@ void GBACastEditor::DrawCastSelector(void) const {
 	}
 
 	Gui::Draw_Rect(this->CastSelector[2].X, this->CastSelector[2].Y, this->CastSelector[2].W, this->CastSelector[2].H, BUTTON_COLOR);
-	Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, Strings::GBACastNames_EN[this->SelectedCast]);
+	Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, S2Editor::Strings::GBACastNames_EN[this->SelectedCast]);
 	Pointer::Draw();
 };
 
@@ -135,28 +135,28 @@ void GBACastEditor::ToggleMystery() { this->ActiveCast->Mystery(!this->ActiveCas
 /* Miscellaneous Tab. */
 void GBACastEditor::MinConversation() { // Clear Conversations.
 	for (uint8_t Idx = 0; Idx < 26; Idx++) {
-		std::unique_ptr<GBACast> Cst = this->Slot->Cast(Idx);
+		std::unique_ptr<S2Editor::GBACast> Cst = this->Slot->Cast(Idx);
 
 		Cst->Friendly(0); Cst->Romance(0); Cst->Intimidate(0);
 	}
 };
 void GBACastEditor::MaxConversation() { // Max out Conversations.
 	for (uint8_t Idx = 0; Idx < 26; Idx++) {
-		std::unique_ptr<GBACast> Cst = this->Slot->Cast(Idx);
+		std::unique_ptr<S2Editor::GBACast> Cst = this->Slot->Cast(Idx);
 
 		Cst->Friendly(3); Cst->Romance(3); Cst->Intimidate(3);
 	}
 };
 void GBACastEditor::MysteryUnlocks() { // Unlock all Mysteries.
 	for (uint8_t Idx = 0; Idx < 26; Idx++) {
-		std::unique_ptr<GBACast> Cst = this->Slot->Cast(Idx);
+		std::unique_ptr<S2Editor::GBACast> Cst = this->Slot->Cast(Idx);
 
 		Cst->Mystery(true);
 	}
 };
 void GBACastEditor::PictureUnlocks() { // Unlock all Alternative Pictures.
 	for (uint8_t Idx = 0; Idx < 26; Idx++) {
-		std::unique_ptr<GBACast> Cst = this->Slot->Cast(Idx);
+		std::unique_ptr<S2Editor::GBACast> Cst = this->Slot->Cast(Idx);
 
 		Cst->Alternativepic(true);
 	}
@@ -183,7 +183,7 @@ void GBACastEditor::Draw(void) const {
 		Gui::DrawStringCentered(0, 3, 0.6f, TEXT_COLOR, "GBA Cast Editor");
 		Gui::DrawSprite(GFX::Casts, this->ActiveCast->Index() + (this->ActiveCast->Alternativepic() ? 26 : 0), 150, 25 + 57);
 		Gui::Draw_Rect(100, 200, 200, 20, BUTTON_COLOR);
-		Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, Strings::GBACastNames_EN[this->ActiveCast->Index()]);
+		Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, S2Editor::Strings::GBACastNames_EN[this->ActiveCast->Index()]);
 	}
 
 	GFX::DrawBottom();

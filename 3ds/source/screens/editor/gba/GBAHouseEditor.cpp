@@ -87,7 +87,7 @@ void GBAHouseEditor::RemoveTab() {
 	const bool AddItem: If it's on add mode or not.
 */
 void GBAHouseEditor::SelectItemID(const bool AddMode) {
-	std::unique_ptr<ListSelection> Ovl = std::make_unique<ListSelection>(Strings::GBAItemNames_EN, "Select an Item.", (AddMode ? this-> AddID : this->Items->ID(this->Selection)));
+	std::unique_ptr<ListSelection> Ovl = std::make_unique<ListSelection>(S2Editor::Strings::GBAItemNames_EN, "Select an Item.", (AddMode ? this-> AddID : this->Items->ID(this->Selection)));
 	const uint8_t ID = Ovl->Action();
 
 	if (ID != (AddMode ? this->AddID : this->Items->ID(this->Selection))) {
@@ -108,27 +108,27 @@ void GBAHouseEditor::SelectItemDirection(const bool AddMode) {
 	const uint8_t Direction = Ovl->Action();
 
 	if (Direction != (AddMode ? this-> AddID : this->Items->ID(this->Selection))) {
-		GBAHouseItemDirection Dir = GBAHouseItemDirection::Invalid;
+		S2Editor::GBAHouseItemDirection Dir = S2Editor::GBAHouseItemDirection::Invalid;
 
 		switch(Direction) {
 			case 0:
-				Dir = GBAHouseItemDirection::Right;
+				Dir = S2Editor::GBAHouseItemDirection::Right;
 				break;
 
 			case 1:
-				Dir = GBAHouseItemDirection::Down;
+				Dir = S2Editor::GBAHouseItemDirection::Down;
 				break;
 
 			case 2:
-				Dir = GBAHouseItemDirection::Left;
+				Dir = S2Editor::GBAHouseItemDirection::Left;
 				break;
 
 			case 3:
-				Dir = GBAHouseItemDirection::Up;
+				Dir = S2Editor::GBAHouseItemDirection::Up;
 				break;
 
 			case 4:
-				Dir = GBAHouseItemDirection::Invalid;
+				Dir = S2Editor::GBAHouseItemDirection::Invalid;
 				break;
 		};
 
@@ -145,7 +145,7 @@ void GBAHouseEditor::SelectItem() {
 
 	for (uint8_t Idx = 0; Idx < 12; Idx++) {
 		if (Idx < this->Items->Count()) {
-			ITMs.push_back(Strings::GBAItemNames_EN[this->Items->ID(Idx)]);
+			ITMs.push_back(S2Editor::Strings::GBAItemNames_EN[this->Items->ID(Idx)]);
 			ITMsExist.push_back(true);
 
 		} else {
@@ -174,23 +174,23 @@ void GBAHouseEditor::AddItem() {
 /*
 	Returns the Direction as an Integer.
 
-	const GBAHouseItemDirection V: The Direction.
+	const S2Editor::GBAHouseItemDirection V: The Direction.
 */
-uint8_t GBAHouseEditor::DirectionInt(const GBAHouseItemDirection V) const {
+uint8_t GBAHouseEditor::DirectionInt(const S2Editor::GBAHouseItemDirection V) const {
 	switch(V) {
-		case GBAHouseItemDirection::Right:
+		case S2Editor::GBAHouseItemDirection::Right:
 			return 0;
 
-		case GBAHouseItemDirection::Down:
+		case S2Editor::GBAHouseItemDirection::Down:
 			return 1;
 
-		case GBAHouseItemDirection::Left:
+		case S2Editor::GBAHouseItemDirection::Left:
 			return 2;
 
-		case GBAHouseItemDirection::Up:
+		case S2Editor::GBAHouseItemDirection::Up:
 			return 3;
 
-		case GBAHouseItemDirection::Invalid:
+		case S2Editor::GBAHouseItemDirection::Invalid:
 			return 4;
 	}
 
@@ -200,23 +200,23 @@ uint8_t GBAHouseEditor::DirectionInt(const GBAHouseItemDirection V) const {
 /*
 	Returns the Direction as a String.
 
-	const GBAHouseItemDirection V: The Direction.
+	const S2Editor::GBAHouseItemDirection V: The Direction.
 */
-std::string GBAHouseEditor::Direction(const GBAHouseItemDirection V) const {
+std::string GBAHouseEditor::Direction(const S2Editor::GBAHouseItemDirection V) const {
 	switch(V) {
-		case GBAHouseItemDirection::Right:
+		case S2Editor::GBAHouseItemDirection::Right:
 			return "Right";
 
-		case GBAHouseItemDirection::Down:
+		case S2Editor::GBAHouseItemDirection::Down:
 			return "Down";
 
-		case GBAHouseItemDirection::Left:
+		case S2Editor::GBAHouseItemDirection::Left:
 			return "Left";
 
-		case GBAHouseItemDirection::Up:
+		case S2Editor::GBAHouseItemDirection::Up:
 			return "Up";
 
-		case GBAHouseItemDirection::Invalid:
+		case S2Editor::GBAHouseItemDirection::Invalid:
 			return "Invalid";
 	}
 
@@ -285,7 +285,7 @@ void GBAHouseEditor::Draw(void) const {
 
 	switch(this->Tab) {
 		case Tabs::Editing:
-			Gui::DrawString(30, 34 + (0 * 30), 0.5f, TEXT_COLOR, Strings::GBAItemNames_EN[this->Items->ID(this->Selection)], 150);
+			Gui::DrawString(30, 34 + (0 * 30), 0.5f, TEXT_COLOR, S2Editor::Strings::GBAItemNames_EN[this->Items->ID(this->Selection)], 150);
 			Gui::DrawSprite(GFX::Sprites, sprites_stripe_idx, this->EditPositions[3].X, this->EditPositions[3].Y);
 
 			Gui::DrawString(30, 34 + (1 * 30), 0.5f, TEXT_COLOR, "Item Flags ", 150);
@@ -301,7 +301,7 @@ void GBAHouseEditor::Draw(void) const {
 			break;
 
 		case Tabs::Add:
-			Gui::DrawString(30, 34 + (0 * 30), 0.5f, TEXT_COLOR, Strings::GBAItemNames_EN[this->AddID], 150);
+			Gui::DrawString(30, 34 + (0 * 30), 0.5f, TEXT_COLOR, S2Editor::Strings::GBAItemNames_EN[this->AddID], 150);
 			Gui::DrawSprite(GFX::Sprites, sprites_stripe_idx, this->EditPositions[3].X, this->EditPositions[3].Y);
 
 			Gui::DrawString(30, 34 + (1 * 30), 0.5f, TEXT_COLOR, "Item Flags ", 150);

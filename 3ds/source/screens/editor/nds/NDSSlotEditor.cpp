@@ -43,8 +43,8 @@ void NDSSlotEditor::Draw(void) const {
 
 	/* Display Info. */
 	Gui::DrawStringCentered(0, 50, 0.5f, TEXT_COLOR, "Sim Name: " + this->Slot->Name());
-	Gui::DrawStringCentered(0, 80, 0.5f, TEXT_COLOR, "Simoleons: " + SimUtils::SimoleonsString(this->Slot->Simoleons()));
-	//Gui::DrawStringCentered(0, 110, 0.5f, TEXT_COLOR, "Time: " + SimUtils::TimeString(this->Slot->Time(), false));
+	Gui::DrawStringCentered(0, 80, 0.5f, TEXT_COLOR, "Simoleons: " + S2Editor::SimUtils::SimoleonsString(this->Slot->Simoleons()));
+	//Gui::DrawStringCentered(0, 110, 0.5f, TEXT_COLOR, "Time: " + S2Editor::SimUtils::TimeString(this->Slot->Time(), false));
 	GFX::DrawBottom();
 
 	Gui::Draw_Rect(this->Positions[0].X, this->Positions[0].Y, this->Positions[0].W, this->Positions[0].H, KBD_KEYPRESSED); // Cast Icn.

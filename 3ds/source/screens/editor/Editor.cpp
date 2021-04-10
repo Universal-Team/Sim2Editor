@@ -39,7 +39,7 @@
 void Editor::Back() {
 	/* Warning if changes made and you try to exit. */
 	if (this->Mode == Modes::Menu) {
-		if (SAVUtils::ChangesMade()) {
+		if (S2Editor::SAVUtils::ChangesMade()) {
 			std::unique_ptr<PromptMessage> Overlay = std::make_unique<PromptMessage>("Changes have been made to the SAVFile.\n\nWould you still like to exit without Saving?");
 			if (!Overlay->Action()) return;
 		}
@@ -56,22 +56,23 @@ void Editor::LoadSAV() {
 
 	const std::string Path = Overlay->Action();
 	if (Path != "!") { // '!' means canceled.
-		const SAVType ST = SAVUtils::DetectType(Path);
+		const S2Editor::SAVType ST = S2Editor::SAVUtils::DetectType(Path);
 		switch(ST) {
-			case SAVType::GBA:
-			case SAVType::_NDS:
+			case S2Editor::SAVType::_GBA:
+			case S2Editor::SAVType::_NDS:
 				break;
-			case SAVType::NONE: {
+
+			case S2Editor::SAVType::_NONE: {
 					std::unique_ptr<PromptMessage> Ovl = std::make_unique<PromptMessage>("This is not a The Sims 2 GBA or NDS Savefile.\nWould you like to load another Savefile?");
 					if (!Ovl->Action()) this->Back();
 				}
 				break;
 		}
 
-		if (ST == SAVType::GBA || ST == SAVType::_NDS) {
-			SAVUtils::LoadSAV(Path);
+		if (ST == S2Editor::SAVType::_GBA || ST == S2Editor::SAVType::_NDS) {
+			S2Editor::SAVUtils::LoadSAV(Path);
 			if (CFG->CreateBackups()) {
-				if (SAVUtils::CreateBackup("sdmc:/3ds/Sim2Editor")) {
+				if (S2Editor::SAVUtils::CreateBackup("sdmc:/3ds/Sim2Editor")) {
 					std::unique_ptr<WaitMessage> Ovl = std::make_unique<WaitMessage>("Backup Created!\nHave fun with the Editor now.");
 					Ovl->Action();
 
@@ -92,17 +93,17 @@ void Editor::LoadSAV() {
 /* Loading a SAVSlot. */
 void Editor::LoadSlot() {
 	if (this->Mode == Modes::Menu) {
-		if (SAVUtils::SAV == SAVType::GBA) {
+		if (S2Editor::SAVUtils::SAV == S2Editor::SAVType::_GBA) {
 			std::unique_ptr<GBASlotSelection> Overlay = std::make_unique<GBASlotSelection>();
 			const int8_t Slot = Overlay->Action();
 
-			if (Slot != -1) Gui::setScreen(std::make_unique<GBASlotEditor>(GBASAVUtils::SAV->Slot(Slot)), false, true);
+			if (Slot != -1) Gui::setScreen(std::make_unique<GBASlotEditor>(S2Editor::GBASAVUtils::SAV->Slot(Slot)), false, true);
 
-		} else if (SAVUtils::SAV == SAVType::_NDS) {
+		} else if (S2Editor::SAVUtils::SAV == S2Editor::SAVType::_NDS) {
 			std::unique_ptr<NDSSlotSelection> Overlay = std::make_unique<NDSSlotSelection>();
 			const int8_t Slot = Overlay->Action();
 
-			if (Slot != -1) Gui::setScreen(std::make_unique<NDSSlotEditor>(NDSSAVUtils::SAV->Slot(Slot)), false, true);
+			if (Slot != -1) Gui::setScreen(std::make_unique<NDSSlotEditor>(S2Editor::NDSSAVUtils::SAV->Slot(Slot)), false, true);
 		}
 	}
 };
@@ -111,7 +112,7 @@ void Editor::LoadSlot() {
 void Editor::SAV() {
 	if (this->Mode == Modes::Menu) {
 		this->Mode = Modes::SAVLoad; // First set to SAVLoad.
-		SAVUtils::Finish(); // Finish, Write to File, Reset variables such as the pointer to the SAV.
+		S2Editor::SAVUtils::Finish(); // Finish, Write to File, Reset variables such as the pointer to the SAV.
 
 		std::unique_ptr<PromptMessage> Overlay = std::make_unique<PromptMessage>("Changes have been saved.\nWould you like to load another Savefile?");
 		const bool Res = Overlay->Action();
@@ -125,16 +126,16 @@ void Editor::Draw(void) const {
 		GFX::DrawTop();
 		Gui::DrawStringCentered(0, 3, 0.6f, TEXT_COLOR, "Editor Main Screen");
 
-		switch(SAVUtils::SAV) {
-			case SAVType::GBA:
+		switch(S2Editor::SAVUtils::SAV) {
+			case S2Editor::SAVType::_GBA:
 				Gui::DrawStringCentered(0, 60, 0.5f, TEXT_COLOR, "Detected SAVType: GBA.");
 				break;
 
-			case SAVType::_NDS:
+			case S2Editor::SAVType::_NDS:
 				Gui::DrawStringCentered(0, 60, 0.5f, TEXT_COLOR, "Detected SAVType: NDS.");
 				break;
 
-			case SAVType::NONE:
+			case S2Editor::SAVType::_NONE:
 				break;
 		};
 

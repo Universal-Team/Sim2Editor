@@ -36,8 +36,9 @@
 
 class GBAHouseEditor : public Screen {
 public:
-	GBAHouseEditor(std::shared_ptr<GBASlot> &Slot) : Slot(Slot) {
-		this->Items = this->Slot->House();
+	GBAHouseEditor(std::shared_ptr<S2Editor::GBASlot> &Slot) : Slot(Slot) {
+		this->House = this->Slot->House(); // Not used right now, it will later for the room design.
+		this->Items = this->House->Items();
 		this->InitItem(false);
 	};
 	void Draw(void) const override;
@@ -46,15 +47,17 @@ private:
 	enum class Tabs : uint8_t { Editing, Add, Remove };
 
 	uint8_t Selection = 0;
-	std::shared_ptr<GBASlot> Slot = nullptr;
-	std::unique_ptr<GBAHouseItem> Items = nullptr;
+	std::shared_ptr<S2Editor::GBASlot> Slot = nullptr;
+	std::unique_ptr<S2Editor::GBAHouse> House = nullptr;
+	std::unique_ptr<S2Editor::GBAHouseItem> Items = nullptr;
+
 	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> InputLabels = { };
 	Tabs Tab = Tabs::Editing;
 	bool Exit = false;
 
 	/* Item Add Vars. */
 	uint8_t AddID = 0, AddFlag = 0, AddUseCount = 0, AddX = 0, AddY = 0;
-	GBAHouseItemDirection AddDirection = GBAHouseItemDirection::Down;
+	S2Editor::GBAHouseItemDirection AddDirection = S2Editor::GBAHouseItemDirection::Down;
 
 	void EditingTab();
 	void AddTab();
@@ -67,8 +70,8 @@ private:
 	void SelectItem();
 	void AddItem();
 	void ValueUpdate(const uint8_t C);
-	std::string Direction(const GBAHouseItemDirection V) const;
-	uint8_t DirectionInt(const GBAHouseItemDirection V) const;
+	std::string Direction(const S2Editor::GBAHouseItemDirection V) const;
+	uint8_t DirectionInt(const S2Editor::GBAHouseItemDirection V) const;
 
 	/* Logics. */
 	void EditLogic(uint32_t hDown, uint32_t hHeld, touchPosition touch);

@@ -34,11 +34,11 @@
 
 class GBASlotEditor : public Screen {
 public:
-	GBASlotEditor(std::shared_ptr<GBASlot> GBASlot) : Slot(std::move(GBASlot)) { Pointer::SetPos(this->Positions[0]); };
+	GBASlotEditor(std::shared_ptr<S2Editor::GBASlot> GBASlot) : Slot(std::move(GBASlot)) { Pointer::SetPos(this->Positions[0]); };
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
-	std::shared_ptr<GBASlot> Slot = nullptr;
+	std::shared_ptr<S2Editor::GBASlot> Slot = nullptr;
 
 	void GotoCastEditor();
 	void GotoEpisodeEditor();

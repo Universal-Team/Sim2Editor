@@ -35,15 +35,15 @@
 
 class GBAItemEditor : public Screen {
 public:
-	GBAItemEditor(std::shared_ptr<GBASlot> &Slot) : Slot(Slot) { this->SwitchTab(Tabs::Pawnshop); };
+	GBAItemEditor(std::shared_ptr<S2Editor::GBASlot> &Slot) : Slot(Slot) { this->SwitchTab(Tabs::Pawnshop); };
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
 	enum class Tabs : uint8_t { Pawnshop, Saloon, Skills, Mailbox, Inventory };
 
 	Tabs Tab = Tabs::Pawnshop;
-	std::shared_ptr<GBASlot> Slot = nullptr;
-	std::unique_ptr<GBAItem> ActiveItemGroup = nullptr;
+	std::shared_ptr<S2Editor::GBASlot> Slot = nullptr;
+	std::unique_ptr<S2Editor::GBAItem> ActiveItemGroup = nullptr;
 
 	void Back();
 	void SelectItem(const uint8_t Slot);

@@ -37,13 +37,13 @@
 
 class GBAGeneralEditor : public Screen {
 public:
-	GBAGeneralEditor(std::shared_ptr<GBASlot> &Slot);
+	GBAGeneralEditor(std::shared_ptr<S2Editor::GBASlot> &Slot);
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
 	enum class Tabs : uint8_t { Main, Collectables, SkillPoints };
 
-	std::shared_ptr<GBASlot> Slot = nullptr;
+	std::shared_ptr<S2Editor::GBASlot> Slot = nullptr;
 	std::unique_ptr<NumInputLabel<uint32_t>> SimoleonLabel = nullptr; // uint32_t.
 	std::unique_ptr<NumInputLabel<uint16_t>> RatingLabel = nullptr; // uint16_t.
 	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> TimeLabels = { }; // uint8_t.

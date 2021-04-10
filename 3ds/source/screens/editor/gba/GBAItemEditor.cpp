@@ -56,7 +56,7 @@ void GBAItemEditor::Draw(void) const {
 
 	for (uint8_t Idx = 0; Idx < 6; Idx++) {
 		Gui::DrawSprite(GFX::Sprites, sprites_stripe_idx, 250, this->Positions[5 + Idx].Y); // Draw Option Stripes.
-		Gui::DrawString(30, 34 + (Idx * 36), 0.5f, TEXT_COLOR, Strings::GBAItemNames_EN[this->ActiveItemGroup->ID(Idx)], 200);
+		Gui::DrawString(30, 34 + (Idx * 36), 0.5f, TEXT_COLOR, S2Editor::Strings::GBAItemNames_EN[this->ActiveItemGroup->ID(Idx)], 200);
 	}
 
 	Gui::Draw_Rect(this->Positions[11].X, this->Positions[11].Y, this->Positions[11].W, this->Positions[11].H, KBD_KEYPRESSED); // Back Icn.
@@ -70,7 +70,7 @@ void GBAItemEditor::Draw(void) const {
 	const uint8_t Slot: The Item Slot to edit.
 */
 void GBAItemEditor::SelectItem(const uint8_t Slot) {
-	std::unique_ptr<ListSelection> Ovl = std::make_unique<ListSelection>(Strings::GBAItemNames_EN, "Select an Item.", this->ActiveItemGroup->ID(Slot));
+	std::unique_ptr<ListSelection> Ovl = std::make_unique<ListSelection>(S2Editor::Strings::GBAItemNames_EN, "Select an Item.", this->ActiveItemGroup->ID(Slot));
 	const uint8_t ID = Ovl->Action();
 
 	if (ID != this->ActiveItemGroup->ID(Slot)) this->ActiveItemGroup->ID(Slot, ID);

@@ -37,14 +37,14 @@
 
 class GBASocialMoveEditor : public Screen {
 public:
-	GBASocialMoveEditor(std::shared_ptr<GBASlot> &Slot) : Slot(Slot) { this->ActiveMove = this->Slot->SocialMove(0); };
+	GBASocialMoveEditor(std::shared_ptr<S2Editor::GBASlot> &Slot) : Slot(Slot) { this->ActiveMove = this->Slot->SocialMove(0); };
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
 	uint8_t SelectedMove = 0;
 	bool MoveSelection = false;
-	std::shared_ptr<GBASlot> Slot = nullptr;
-	std::unique_ptr<GBASocialMove> ActiveMove = nullptr;
+	std::shared_ptr<S2Editor::GBASlot> Slot = nullptr;
+	std::unique_ptr<S2Editor::GBASocialMove> ActiveMove = nullptr;
 
 	/* Social Move Selection. */
 	void DrawMoveSelector(void) const;

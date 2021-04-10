@@ -29,7 +29,7 @@
 #include "Strings.hpp"
 
 /* Initialize the NDSSlot + the Labels. */
-NDSGeneralEditor::NDSGeneralEditor(std::shared_ptr<NDSSlot> &Slot) : Slot(Slot) {
+NDSGeneralEditor::NDSGeneralEditor(std::shared_ptr<S2Editor::NDSSlot> &Slot) : Slot(Slot) {
 	/* Init Name Label. */
 	this->NameLabel = std::make_unique<StringInputLabel>(140, 40, 8, this->Slot->Name(), "Enter a Sim Name.");
 	/* Init Simoleon Label. */
@@ -95,7 +95,7 @@ void NDSGeneralEditor::Draw(void) const {
 
 		case Tabs::SkillPoints:
 			for (uint8_t Idx = 0; Idx < 5; Idx++) {
-				Gui::DrawString(50, 44 + (Idx * 30), 0.5f, TEXT_COLOR, Strings::NDSSkillPointNames_EN[Idx]);
+				Gui::DrawString(50, 44 + (Idx * 30), 0.5f, TEXT_COLOR, S2Editor::Strings::NDSSkillPointNames_EN[Idx]);
 				this->SkillLabels[Idx]->Draw();
 			}
 			break;

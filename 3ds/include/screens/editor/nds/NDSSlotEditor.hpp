@@ -34,12 +34,12 @@
 
 class NDSSlotEditor : public Screen {
 public:
-	NDSSlotEditor(std::shared_ptr<NDSSlot> NDSSlot) : Slot(std::move(NDSSlot)) { Pointer::SetPos(this->Positions[0]); };
+	NDSSlotEditor(std::shared_ptr<S2Editor::NDSSlot> NDSSlot) : Slot(std::move(NDSSlot)) { Pointer::SetPos(this->Positions[0]); };
 
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
-	std::shared_ptr<NDSSlot> Slot = nullptr;
+	std::shared_ptr<S2Editor::NDSSlot> Slot = nullptr;
 
 	void GotoGeneralEditor();
 	void Back();

@@ -37,13 +37,13 @@
 
 class NDSGeneralEditor : public Screen {
 public:
-	NDSGeneralEditor(std::shared_ptr<NDSSlot> &Slot);
+	NDSGeneralEditor(std::shared_ptr<S2Editor::NDSSlot> &Slot);
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
 	enum class Tabs : uint8_t { Main, Collectables, SkillPoints };
 
-	std::shared_ptr<NDSSlot> Slot = nullptr;
+	std::shared_ptr<S2Editor::NDSSlot> Slot = nullptr;
 	std::unique_ptr<NumInputLabel<uint32_t>> SimoleonLabel = nullptr; // uint32_t.
 	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> CollectableLabels = { }; // uint8_t.
 	std::unique_ptr<StringInputLabel> NameLabel = nullptr;

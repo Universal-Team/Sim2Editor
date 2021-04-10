@@ -48,7 +48,7 @@ void NDSSlotSelection::NextSlot() const {
 
 /* Check if Slot exist and set to done. */
 void NDSSlotSelection::OK() const {
-	if (NDSSAVUtils::SAV->SlotExist(this->Res)) this->Done = true;
+	if (S2Editor::NDSSAVUtils::SAV->SlotExist(this->Res)) this->Done = true;
 };
 
 /*
@@ -62,9 +62,9 @@ void NDSSlotSelection::OK() const {
 void NDSSlotSelection::FetchSlot() const {
 	this->Info.Slot = this->Res;
 
-	if (NDSSAVUtils::SAV->SlotExist(this->Res)) {
-		std::unique_ptr<NDSSlot> Slt = NDSSAVUtils::SAV->Slot(this->Res);
-		this->Info.SimoleonString = SimUtils::SimoleonsString(Slt->Simoleons());
+	if (S2Editor::NDSSAVUtils::SAV->SlotExist(this->Res)) {
+		std::unique_ptr<S2Editor::NDSSlot> Slt = S2Editor::NDSSAVUtils::SAV->Slot(this->Res);
+		this->Info.SimoleonString = S2Editor::SimUtils::SimoleonsString(Slt->Simoleons());
 		this->Info.SimName = Slt->Name();
 
 	} else {

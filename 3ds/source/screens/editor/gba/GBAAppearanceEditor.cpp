@@ -31,7 +31,7 @@
 #include "GBAPantsSelection.hpp"
 #include "GBAShirtSelection.hpp"
 
-GBAAppearanceEditor::GBAAppearanceEditor(std::shared_ptr<GBASlot> &Slot) : Slot(Slot) { };
+GBAAppearanceEditor::GBAAppearanceEditor(std::shared_ptr<S2Editor::GBASlot> &Slot) : Slot(Slot) { };
 
 /* Goes back to the Slot Editor. */
 void GBAAppearanceEditor::Back() {

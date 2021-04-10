@@ -37,7 +37,7 @@
 
 class GBAEpisodeEditor : public Screen {
 public:
-	GBAEpisodeEditor(std::shared_ptr<GBASlot> &Slot);
+	GBAEpisodeEditor(std::shared_ptr<S2Editor::GBASlot> &Slot);
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
@@ -45,8 +45,8 @@ private:
 
 	uint8_t SelectedEpisode = 0, Season = 1;
 	bool EpisodeSelect = false;
-	std::shared_ptr<GBASlot> Slot = nullptr;
-	std::unique_ptr<GBAEpisode> ActiveEpisode = nullptr;
+	std::shared_ptr<S2Editor::GBASlot> Slot = nullptr;
+	std::unique_ptr<S2Editor::GBAEpisode> ActiveEpisode = nullptr;
 	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> Boxes = { };
 	Tabs Tab = Tabs::Main;
 	bool Exit = false;

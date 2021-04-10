@@ -80,7 +80,7 @@ void GBASocialMoveEditor::DrawMoveSelector(void) const {
 	}
 
 	Gui::Draw_Rect(this->MoveSelector[2].X, this->MoveSelector[2].Y, this->MoveSelector[2].W, this->MoveSelector[2].H, BUTTON_COLOR);
-	Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, Strings::GBASocialMoveNames_EN[this->SelectedMove]);
+	Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, S2Editor::Strings::GBASocialMoveNames_EN[this->SelectedMove]);
 	Pointer::Draw();
 };
 
@@ -134,7 +134,7 @@ void GBASocialMoveEditor::Back() {
 /* Change the Flag of the current Move. */
 void GBASocialMoveEditor::ChangeFlag() {
 	std::unique_ptr<ListSelection> Overlay = std::make_unique<ListSelection>(this->Flags, "Select a Social Move State.", (uint8_t)this->ActiveMove->Flag());
-	this->ActiveMove->Flag((SocialMoveFlag)Overlay->Action());
+	this->ActiveMove->Flag((S2Editor::SocialMoveFlag)Overlay->Action());
 };
 
 /* Change the Flags of all Moves. */
@@ -143,8 +143,8 @@ void GBASocialMoveEditor::ChangeMassFlag() {
 	const uint8_t Flag = Overlay->Action();
 
 	for (uint8_t Idx = 0; Idx < 15; Idx++) {
-		std::unique_ptr<GBASocialMove> Move = this->Slot->SocialMove(Idx);
-		Move->Flag((SocialMoveFlag)Flag);
+		std::unique_ptr<S2Editor::GBASocialMove> Move = this->Slot->SocialMove(Idx);
+		Move->Flag((S2Editor::SocialMoveFlag)Flag);
 	}
 };
 
@@ -160,7 +160,7 @@ void GBASocialMoveEditor::ChangeMassLevel() {
 	const uint8_t Level = Overlay->Action();
 
 	for (uint8_t Idx = 0; Idx < 15; Idx++) {
-		std::unique_ptr<GBASocialMove> Move = this->Slot->SocialMove(Idx);
+		std::unique_ptr<S2Editor::GBASocialMove> Move = this->Slot->SocialMove(Idx);
 		Move->Level(Level);
 	}
 };
@@ -178,7 +178,7 @@ void GBASocialMoveEditor::Draw(void) const {
 		Gui::DrawStringCentered(0, 3, 0.6f, TEXT_COLOR, "GBA Social Move Editor");
 		Gui::DrawSprite(GFX::Moves, this->ActiveMove->Index(), 150, 25 + 57);
 		Gui::Draw_Rect(100, 200, 200, 20, BUTTON_COLOR);
-		Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, Strings::GBASocialMoveNames_EN[this->ActiveMove->Index()]);
+		Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, S2Editor::Strings::GBASocialMoveNames_EN[this->ActiveMove->Index()]);
 	}
 
 	GFX::DrawBottom();
