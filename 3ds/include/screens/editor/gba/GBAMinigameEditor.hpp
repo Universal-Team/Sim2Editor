@@ -24,52 +24,70 @@
 *         reasonable ways as different from the original version.
 */
 
-#ifndef _SIM2EDITOR_GBA_GENERAL_EDITOR_HPP
-#define _SIM2EDITOR_GBA_GENERAL_EDITOR_HPP
+#ifndef _SIM2EDITOR_GBA_MINIGAME_EDITOR_HPP
+#define _SIM2EDITOR_GBA_MINIGAME_EDITOR_HPP
 
+#include "GBAMinigame.hpp"
 #include "GBASlot.hpp"
 #include "NumInputLabel.hpp"
 #include "Pointer.hpp"
 #include "screen.hpp"
-#include "StringInputLabel.hpp"
-#include <string>
 #include <vector>
 
-class GBAGeneralEditor : public Screen {
+class GBAMinigameEditor : public Screen {
 public:
-	GBAGeneralEditor(std::shared_ptr<S2Editor::GBASlot> &Slot);
+	GBAMinigameEditor(std::shared_ptr<S2Editor::GBASlot> &Slot) : Slot(Slot) { this->InitGame(0); };
 	void Draw(void) const override;
 	void Logic(u32 hDown, u32 hHeld, touchPosition touch) override;
 private:
-	enum class Tabs : uint8_t { Main, Collectables, SkillPoints };
+	enum class Tabs : uint8_t { Main, Misc };
 
+	std::unique_ptr<S2Editor::GBAMinigame> ActiveMinigame = nullptr;
 	std::shared_ptr<S2Editor::GBASlot> Slot = nullptr;
-	std::unique_ptr<NumInputLabel<uint32_t>> SimoleonLabel = nullptr; // uint32_t.
-	std::unique_ptr<NumInputLabel<uint16_t>> RatingLabel = nullptr; // uint16_t.
-	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> TimeLabels = { }; // uint8_t.
-	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> CollectableLabels = { }; // uint8_t.
-	std::unique_ptr<StringInputLabel> NameLabel = nullptr;
-	std::vector<std::unique_ptr<NumInputLabel<uint8_t>>> SkillLabels = { }; // uint8_t.
+	std::unique_ptr<NumInputLabel<uint8_t>> LevelLabel = nullptr;
 	Tabs Tab = Tabs::Main;
 	bool Exit = false;
 
-	/* Shared. */
+	/* Shared things. */
 	void MainTab() { this->Tab = Tabs::Main; };
-	void CollectableTab() { this->Tab = Tabs::Collectables; };
-	void SkillPointsTab() { this->Tab = Tabs::SkillPoints; };
+	void MiscTab() { this->Tab = Tabs::Misc; };
 	void Back();
+	void InitGame(const uint8_t Game);
+	void SelectMinigame();
+
+	/* Main Tab. */
+	void TogglePlayed();
 
 	const std::vector<PointerStr> Positions = {
-		{ 1, 0, 106, 20, [this]() { this->MainTab(); } },
-		{ 107, 0, 106, 20, [this]() { this->CollectableTab(); } },
-		{ 213, 0, 106, 20, [this]() { this->SkillPointsTab(); } },
+		{ 0, 0, 160, 20, [this]() { this->MainTab(); } },
+		{ 160, 0, 160, 20, [this]() { this->MiscTab(); } },
+
+		{ 106, 180, 24, 24, [this]() { this->TogglePlayed(); } },
+
+		{ 272, 192, 48, 48, [this]() { this->SelectMinigame(); } },
 		{ 0, 223, 17, 17, [this]() { this->Back(); } }
 	};
 
-	/* Collectables Tab. */
-	void CollectableUpdater(const uint8_t Idx);
-	/* Skill Points Tab. */
-	void SkillUpdater(const uint8_t Idx);
+	/* Miscellaneous Tab. */
+	void ResetLevels();
+	void MaxLevels();
+	void AllUnplayed();
+	void AllPlayed();
+
+	const std::vector<PointerStr> MassPos = {
+		{ 0, 0, 160, 20, [this]() { this->MainTab(); } },
+		{ 160, 0, 160, 20, [this]() { this->MiscTab(); } },
+
+		{ 80, 35, 160, 35, [this]() { this->ResetLevels(); } },
+		{ 80, 80, 160, 35, [this]() { this->MaxLevels(); } },
+		{ 80, 125, 160, 35, [this]() { this->AllUnplayed(); } },
+		{ 80, 170, 160, 35, [this]() { this->AllPlayed(); } },
+
+		{ 272, 192, 48, 48, [this]() { this->SelectMinigame(); } },
+		{ 0, 223, 17, 17, [this]() { this->Back(); } }
+	};
+
+	const std::vector<std::string> MiscNames = { "Reset all Levels", "Max out all Levels", "Set all unplayed", "Set all played" };
 };
 
 #endif

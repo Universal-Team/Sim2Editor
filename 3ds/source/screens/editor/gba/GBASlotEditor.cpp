@@ -31,6 +31,7 @@
 #include "GBAGeneralEditor.hpp"
 #include "GBAHouseEditor.hpp"
 #include "GBAItemEditor.hpp"
+#include "GBAMinigameEditor.hpp"
 #include "GBASlotEditor.hpp"
 #include "GBASocialMoveEditor.hpp"
 #include "SimUtils.hpp"
@@ -49,6 +50,8 @@ void GBASlotEditor::GotoItemEditor() { Gui::setScreen(std::make_unique<GBAItemEd
 void GBASlotEditor::GotoHouseEditor() { Gui::setScreen(std::make_unique<GBAHouseEditor>(this->Slot), false, true); };
 /* Go to Appearance Editor. */
 void GBASlotEditor::GotoAppearanceEditor() { Gui::setScreen(std::make_unique<GBAAppearanceEditor>(this->Slot), false, true); };
+/* Go to Minigame Editor. */
+void GBASlotEditor::GotoMinigameEditor() { Gui::setScreen(std::make_unique<GBAMinigameEditor>(this->Slot), false, true); };
 /* Go back to Editor. */
 void GBASlotEditor::Back() {
 	Gui::screenBack();
@@ -87,8 +90,11 @@ void GBASlotEditor::Draw(void) const {
 	Gui::Draw_Rect(this->Positions[6].X, this->Positions[6].Y, this->Positions[6].W, this->Positions[6].H, KBD_KEYPRESSED); // House Icn.
 	Gui::DrawSprite(GFX::Sprites, sprites_house_btn_idx, this->Positions[6].X, this->Positions[6].Y + 2);
 
-	Gui::Draw_Rect(this->Positions[7].X, this->Positions[7].Y, this->Positions[7].W, this->Positions[7].H, KBD_KEYPRESSED); // Back Icn.
-	Gui::DrawSprite(GFX::Sprites, sprites_back_btn_idx, this->Positions[7].X, this->Positions[7].Y);
+	Gui::Draw_Rect(this->Positions[7].X, this->Positions[7].Y, this->Positions[7].W, this->Positions[7].H, KBD_KEYPRESSED); // Minigame Icn.
+	Gui::DrawSprite(GFX::Sprites, sprites_minigame_btn_idx, this->Positions[7].X, this->Positions[7].Y);
+
+	Gui::Draw_Rect(this->Positions[8].X, this->Positions[8].Y, this->Positions[8].W, this->Positions[8].H, KBD_KEYPRESSED); // Back Icn.
+	Gui::DrawSprite(GFX::Sprites, sprites_back_btn_idx, this->Positions[8].X, this->Positions[8].Y);
 
 	Pointer::Draw();
 };

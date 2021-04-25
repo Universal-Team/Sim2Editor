@@ -47,6 +47,7 @@ private:
 	void GotoItemEditor();
 	void GotoHouseEditor();
 	void GotoAppearanceEditor();
+	void GotoMinigameEditor();
 	void Back();
 
 	const std::vector<PointerStr> Positions = {
@@ -60,6 +61,7 @@ private:
 		{ 46, 144, 48, 48, [this]() { this->GotoGeneralEditor(); } },
 		{ 106, 144, 48, 48, [this]() { this->GotoItemEditor(); } },
 		{ 166, 144, 48, 48, [this]() { this->GotoHouseEditor(); } },
+		{ 226, 144, 48, 48, [this]() { this->GotoMinigameEditor(); } },
 
 		{ 0, 223, 17, 17, [this]() { this->Back(); } }
 	};

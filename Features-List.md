@@ -61,6 +61,11 @@
 - [x] Add an Item to your House.
 - [x] Remove an Item from your House.
 
+### Minigame Editor
+- [x] Edit the Level of the active minigame. (NOTE: This will also set it to the Settings for the Minigames menu).
+- [x] Edit played today flag.
+
+
 ## NDS (The Sims 2 Version)
 
 ### General Editor
