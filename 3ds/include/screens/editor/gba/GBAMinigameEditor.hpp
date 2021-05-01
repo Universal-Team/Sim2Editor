@@ -62,7 +62,7 @@ private:
 		{ 0, 0, 160, 20, [this]() { this->MainTab(); } },
 		{ 160, 0, 160, 20, [this]() { this->MiscTab(); } },
 
-		{ 106, 180, 24, 24, [this]() { this->TogglePlayed(); } },
+		{ 140, 120, 24, 24, [this]() { this->TogglePlayed(); } },
 
 		{ 272, 192, 48, 48, [this]() { this->SelectMinigame(); } },
 		{ 0, 223, 17, 17, [this]() { this->Back(); } }

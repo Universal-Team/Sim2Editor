@@ -26,6 +26,7 @@
 
 #include "Common.hpp"
 #include "GBACastEditor.hpp"
+#include "ListSelection.hpp"
 #include "Strings.hpp"
 
 /* Cast Selector. */
@@ -128,8 +129,15 @@ void GBACastEditor::ChangeIntimidate() { // Changes the Intimidate Conversation 
 	else this->ActiveCast->Intimidate(0);
 };
 
-/* Toogle Alternative Picture + Mystery. */
-void GBACastEditor::ToggleAlt() { this->ActiveCast->Alternativepic(!this->ActiveCast->Alternativepic()); };
+/* Set the Picture. */
+void GBACastEditor::SetPicture() {
+	std::unique_ptr<ListSelection> Ovl = std::make_unique<ListSelection>(this->PictureNames, "Select the expression for the Picture.", (uint8_t)this->ActiveCast->Picture());
+	const S2Editor::GBACastPicture Picture = (S2Editor::GBACastPicture)Ovl->Action();
+
+	if (Picture != this->ActiveCast->Picture()) this->ActiveCast->Picture(Picture);
+};
+
+/* Toggle Mystery. */
 void GBACastEditor::ToggleMystery() { this->ActiveCast->Mystery(!this->ActiveCast->Mystery()); };
 
 /* Miscellaneous Tab. */
@@ -154,11 +162,14 @@ void GBACastEditor::MysteryUnlocks() { // Unlock all Mysteries.
 		Cst->Mystery(true);
 	}
 };
-void GBACastEditor::PictureUnlocks() { // Unlock all Alternative Pictures.
+void GBACastEditor::MassPictureChange() { // Set the picture for all casts.
+	std::unique_ptr<ListSelection> Ovl = std::make_unique<ListSelection>(this->PictureNames, "Select the expression for the Picture.", (uint8_t)this->ActiveCast->Picture());
+	const S2Editor::GBACastPicture Picture = (S2Editor::GBACastPicture)Ovl->Action();
+
 	for (uint8_t Idx = 0; Idx < 26; Idx++) {
 		std::unique_ptr<S2Editor::GBACast> Cst = this->Slot->Cast(Idx);
 
-		Cst->Alternativepic(true);
+		Cst->Picture(Picture);
 	}
 };
 
@@ -181,7 +192,7 @@ void GBACastEditor::Draw(void) const {
 	else {
 		GFX::DrawTop();
 		Gui::DrawStringCentered(0, 3, 0.6f, TEXT_COLOR, "GBA Cast Editor");
-		Gui::DrawSprite(GFX::Casts, this->ActiveCast->Index() + (this->ActiveCast->Alternativepic() ? 26 : 0), 150, 25 + 57);
+		Gui::DrawSprite(GFX::Casts, this->ActiveCast->Index(), 150, 25 + 57);
 		Gui::Draw_Rect(100, 200, 200, 20, BUTTON_COLOR);
 		Gui::DrawStringCentered(0, 202, 0.5f, TEXT_COLOR, S2Editor::Strings::GBACastNames_EN[this->ActiveCast->Index()]);
 	}
@@ -204,9 +215,9 @@ void GBACastEditor::Draw(void) const {
 			Gui::DrawString(230, 30, 0.5f, TEXT_COLOR, "Intimidate");
 			Gui::DrawSprite(GFX::Sprites, sprites_conversation_0_idx + (this->ActiveCast->Intimidate()), this->Positions[4].X, this->Positions[4].Y);
 
-			/* Draw Alt pic + Mystery boxes. */
-			Gui::DrawString(10, this->Positions[5].Y + 5, 0.4f, TEXT_COLOR, "Alternative Picture: ");
-			GFX::DrawCheckbox(this->Positions[5].X, this->Positions[5].Y, this->ActiveCast->Alternativepic());
+			/* Draw Picture + Mystery box. */
+			Gui::DrawString(10, this->Positions[5].Y + 5, 0.4f, TEXT_COLOR, "Picture: " + this->PictureNames[(uint8_t)this->ActiveCast->Picture()]);
+			Gui::DrawSprite(GFX::Sprites, sprites_stripe_idx, this->Positions[5].X, this->Positions[5].Y);
 			Gui::DrawString(10, this->Positions[6].Y + 5, 0.4f, TEXT_COLOR, "Mystery Unlocked: ");
 			GFX::DrawCheckbox(this->Positions[6].X, this->Positions[6].Y, this->ActiveCast->Mystery());
 			break;

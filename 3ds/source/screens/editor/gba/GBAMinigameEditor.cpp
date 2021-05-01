@@ -37,8 +37,10 @@ void GBAMinigameEditor::ResetLevels() { // Reset Minigame Levels.
 	for (uint8_t Idx = 0; Idx < 7; Idx++) {
 		std::unique_ptr<S2Editor::GBAMinigame> Game = this->Slot->Minigame(Idx);
 
-		Game->Level(1, true);
+		Game->Level(0, true);
 	}
+
+	this->LevelLabel = std::make_unique<NumInputLabel<uint8_t>>(140, 80, this->ActiveMinigame->Level(), 0, 5, "Enter the Minigame Level.");
 };
 void GBAMinigameEditor::MaxLevels() { // Max out Minigame Levels.
 	for (uint8_t Idx = 0; Idx < 7; Idx++) {
@@ -46,6 +48,8 @@ void GBAMinigameEditor::MaxLevels() { // Max out Minigame Levels.
 
 		Game->Level(5, true);
 	}
+
+	this->LevelLabel = std::make_unique<NumInputLabel<uint8_t>>(140, 80, this->ActiveMinigame->Level(), 0, 5, "Enter the Minigame Level.");
 };
 void GBAMinigameEditor::AllPlayed() { // Set all Minigames to played.
 	for (uint8_t Idx = 0; Idx < 7; Idx++) {
@@ -108,7 +112,7 @@ void GBAMinigameEditor::Draw(void) const {
 			this->LevelLabel->Draw();
 
 			/* Draw Minigame Played. */
-			Gui::DrawString(10, this->Positions[2].Y + 5, 0.4f, TEXT_COLOR, "Minigame played: ");
+			Gui::DrawString(120, 123, 0.5f, TEXT_COLOR, "Played Today: ", 110, 0, nullptr, C2D_AlignRight);
 			GFX::DrawCheckbox(this->Positions[2].X, this->Positions[2].Y, this->ActiveMinigame->Played());
 			break;
 

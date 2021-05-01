@@ -57,6 +57,7 @@ void Editor::LoadSAV() {
 	const std::string Path = Overlay->Action();
 	if (Path != "!") { // '!' means canceled.
 		const S2Editor::SAVType ST = S2Editor::SAVUtils::DetectType(Path);
+
 		switch(ST) {
 			case S2Editor::SAVType::_GBA:
 			case S2Editor::SAVType::_NDS:
@@ -71,6 +72,7 @@ void Editor::LoadSAV() {
 
 		if (ST == S2Editor::SAVType::_GBA || ST == S2Editor::SAVType::_NDS) {
 			S2Editor::SAVUtils::LoadSAV(Path);
+
 			if (CFG->CreateBackups()) {
 				if (S2Editor::SAVUtils::CreateBackup("sdmc:/3ds/Sim2Editor")) {
 					std::unique_ptr<WaitMessage> Ovl = std::make_unique<WaitMessage>("Backup Created!\nHave fun with the Editor now.");

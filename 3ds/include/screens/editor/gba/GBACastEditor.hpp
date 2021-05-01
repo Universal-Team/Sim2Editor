@@ -79,7 +79,7 @@ private:
 	void ChangeFriendly();
 	void ChangeRomance();
 	void ChangeIntimidate();
-	void ToggleAlt();
+	void SetPicture();
 	void ToggleMystery();
 
 	const std::vector<PointerStr> Positions = {
@@ -89,7 +89,7 @@ private:
 		{ 26, 50, 73, 80, [this]() { this->ChangeFriendly(); } },
 		{ 124, 50, 73, 80, [this]() { this->ChangeRomance(); } },
 		{ 222, 50, 73, 80, [this]() { this->ChangeIntimidate(); } },
-		{ 106, 140, 24, 24, [this]() { this->ToggleAlt(); } },
+		{ 106, 140, 24, 24, [this]() { this->SetPicture(); } },
 		{ 106, 180, 24, 24, [this]() { this->ToggleMystery(); } },
 		{ 272, 192, 48, 48, [this]() { this->SelectCast(); } },
 		{ 0, 223, 17, 17, [this]() { this->Back(); } }
@@ -99,7 +99,7 @@ private:
 	void MinConversation();
 	void MaxConversation();
 	void MysteryUnlocks();
-	void PictureUnlocks();
+	void MassPictureChange();
 
 	const std::vector<PointerStr> MassPos = {
 		{ 0, 0, 160, 20, [this]() { this->MainTab(); } },
@@ -108,13 +108,14 @@ private:
 		{ 80, 35, 160, 35, [this]() { this->MinConversation(); } },
 		{ 80, 80, 160, 35, [this]() { this->MaxConversation(); } },
 		{ 80, 125, 160, 35, [this]() { this->MysteryUnlocks(); } },
-		{ 80, 170, 160, 35, [this]() { this->PictureUnlocks(); } },
+		{ 80, 170, 160, 35, [this]() { this->MassPictureChange(); } },
 
 		{ 272, 192, 48, 48, [this]() { this->SelectCast(); } },
 		{ 0, 223, 17, 17, [this]() { this->Back(); } }
 	};
 
-	const std::vector<std::string> MiscNames = { "Clear Conversations", "Max out Conversations", "Unlock all Mysteries", "Unlock all Alternative Pictures" };
+	const std::vector<std::string> MiscNames = { "Clear Conversations", "Max out Conversations", "Unlock all Mysteries", "Set all Pictures" };
+	const std::vector<std::string> PictureNames = { "Neutral", "Friendly", "Angry", "Love", "Invalid" };
 };
 
 #endif

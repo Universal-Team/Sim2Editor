@@ -144,8 +144,7 @@ void Settings::DrawPages() const {
 
 			/* Change this, after changes to the 3DS version. */
 			Gui::DrawStringCentered(0, 130, 0.4f, TEXT_COLOR,
-				"* [GBA]: Added Minigame Editor.\n"
-				"* [CORE]: Updated Core with latest changes.\n",
+				"* [CORE]: Fixed Cast Pictures\n(You can now change it between Neutral, Friendly, Angry, Love).",
 			310);
 			break;
 	}

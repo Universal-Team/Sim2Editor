@@ -7,11 +7,11 @@
 ### Cast Editor
 - [x] Edit the Cast Friendly, Romance and Intimidate Conversation Level.
 - [x] Edit the Cast's Mystery Unlocked state.
-- [x] Edit the Cast's Alternative Picture (Friendly) state.
+- [x] Edit the Cast's picture / feeling.
 - [x] Mass clear out Cast Conversations.
 - [x] Mass max out Cast Conversations.
 - [x] Mass unlock the Mystery unlocked state.
-- [x] Mass unlock all the Alternative Pictures.
+- [x] Mass set the cast picture / feeling.
 
 ### Episode Editor
 - [x] Edit Episode Ratings individually (`Plot Points Completed`, `Aspiration Conversations`, `Hidden Want Completed` and `Errand Completed`).
